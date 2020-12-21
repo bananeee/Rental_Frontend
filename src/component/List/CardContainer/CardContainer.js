@@ -8,13 +8,18 @@ function CardContainer() {
 
     const [posts, setPosts] = useState([])
 
+    const getPosts = async () => {
+        try {
+            const res = await axios.get('http://localhost:3004/post')
+            setPosts(res)
+        } catch (error) {
+            console.log(error)
+        }
+    } 
+
     useEffect(() => {
+        getPosts()
         // console.log("Fetch item");
-        axios.get('http://localhost:3004/post')
-            .then(res => {
-                setPosts(res.data)
-            })
-            .catch(err => console.log(err))
         // let termposts = new Array(12).fill(
         //     {
         //         price: 400,

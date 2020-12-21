@@ -5,5 +5,41 @@
 }
 
 .content {
-
+    background-color: aqua;
+    width: 70%;
 }
+
+.contentTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar img {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.presDes {
+    display: flex;
+    align-items: center;
+}
+
+.presDes > * {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border: 0.5px dotted rgb(184, 184, 184);
+}
+

@@ -3,11 +3,11 @@ import ApartmentDetailMain from '../component/ApartmentDetails/ApartmentDetailMa
 import Footer from '../component/Layout/Footer/Footer'
 import Nav from '../component/Layout/Nav/Nav'
 
-function ApartmentDetail() {
+function ApartmentDetail({ match }) {
     return (
         <div>
             <Nav />
-            <ApartmentDetailMain />
+            <ApartmentDetailMain id={match.params.id}/>
             <Footer />
         </div>
     )

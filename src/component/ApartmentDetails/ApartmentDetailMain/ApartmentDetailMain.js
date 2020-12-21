@@ -3,27 +3,36 @@ import SlideShow from '../SlideShow/SlideShow'
 import axios from "axios";
 import style from './apartmentdetail.main.module.css'
 
-function ApartmentDetailMain({ match }) {
+function ApartmentDetailMain({ id }) {
 
     const [post, setPost] = useState({})
     const [host, setHost] = useState({})
 
-    const getData = async () => {
-        await axios.get(`http://localhost:3004/post/${match.params}`)
-            .then(res => {
-                setPost(res.data)
-            })
-            .catch(err => console.log(err))
-        axios.get(`http://localhost:3004/host/${post.host}`)
-            .then(res => {
-                setHost(res.data)
-            })
-            .catch(err => console.log(err))
-    }
+    useEffect(() => {
+        const getPostData = async () => {
+            try {
+                const resPost = await axios.get(`http://localhost:3004/post/${id}`)
+                setPost(resPost.data)
+                console.log(resPost.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getPostData()
+    }, [])
 
     useEffect(() => {
-        getData()
-    }, [])
+        const getHostData = async () => {
+            try {
+                const resHost = await axios.get(`http://localhost:3004/host/${post.host}`)
+                setHost(resHost.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        if (post)
+            getHostData(post)
+    }, [post])
 
     return (
         <main>
@@ -36,19 +45,39 @@ function ApartmentDetailMain({ match }) {
                                 Home {">"} {post.type}  {">"} {post.title}
                             </div>
                             <div className={style.title}>
-                                {post.title}
+                                <h2>{post.title}</h2>
                             </div>
                             <div className={style.location}>
                                 {post.location}
                             </div>
                         </div>
                         <div className={style.avatar}>
-                            <img src={host.image} alt=""/>
+                            <img src={host.image} alt="" />
                         </div>
                     </div>
                     <div className={style.presDes}>
-                        
-                    </div> 
+                        <div>
+                            <i className="fas fa-home-alt"></i>
+                            <span>Price</span>
+                            <span>{post.price}</span>
+                        </div>
+                        <div>
+                            <i className="fas fa-home-alt"></i>
+                            <span>Type</span>
+                            <span>{post.type}</span>
+                        </div>
+                        <div>
+                            <i className="fas fa-home-alt"></i>
+                            <span>Size</span>
+                            <span>{post.size}</span>
+                        </div>
+                        <div>
+                            <i className="fas fa-home-alt"></i>
+                            <span>Room</span>
+                            <span>{post.room}</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </main>
