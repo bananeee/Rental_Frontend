@@ -1,0 +1,53 @@
+.card {
+    /* max-width: 400px; */
+    /* min-width: 300px; */
+    width: 20rem;
+    margin: 2rem;
+    background-color: white;
+}
+
+.cardPres {
+    position: relative;
+    height: 13rem;
+    width: 100%;
+}
+
+.cardPrice {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    color: white;
+}
+
+.cardImg {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    /* width: 20rem; */
+    width: 100%;
+    overflow: hidden;
+}
+
+.cardImg img {
+    height: 100%;
+    transform: scale(1.1);
+}
+
+.cardBody {
+    padding: 0 1.2rem;
+
+}
+
+.cardBody p {
+    margin: 0.5rem 0;
+    display: inline;
+}
+
+.cardTitle {
+    margin: 1.25rem 0 0.25rem 0;
+}
+
