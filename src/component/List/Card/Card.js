@@ -14,7 +14,7 @@ function Card({ post }) {
         <div className={style.card}>
             <div className={style.cardPres}>
                 <div className={style.cardPrice}>
-                    {post.price}
+                    {post.price}<span>/month</span>
                 </div>
                 <div className={style.cardImg}>
                     <img src={post.image[0]} alt="" />
@@ -24,17 +24,18 @@ function Card({ post }) {
                 <h3 className={style.cardTitle}>{post.title}</h3>
                 <p className={style.cardLocation}>{post.location}</p>
                 <div className={style.cardAme}>
-                    <i className="fal fa-bed-empty"></i>
-                    <p>{post.room}</p>
-                    <i className="fal fa-shower"></i>
-                    <p>{post.bathroom}</p>
-                    <i className="fal fa-house"></i>
-                    <p>{post.type}</p>
+                    <i className="fas fa-bed"></i>
+                    <span>{post.room}</span>
+                    <i className="fas fa-shower"></i>
+                    <span>{post.bathroom}</span>
+                    <i className="fas fa-house"></i>
+                    <span>{post.type}</span>
                 </div>
                 <div className={style.numLove}>
                     <i className="fas fa-heart"></i>{post.love}
                 </div>
                 <div className={style.cardHeart}>
+                    
                     <i onClick={() => setLove(!love)} className={love ? 'fas fa-heart' : 'far fa-heart'}></i>
                 </div>
             </div>
