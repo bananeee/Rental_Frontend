@@ -1,7 +1,7 @@
 #image_container {
     background-color: #f7f8f9;
     flex: 4;
-    min-height: 92vh;
+    min-height: 100vh;
 }
 
 .container {
