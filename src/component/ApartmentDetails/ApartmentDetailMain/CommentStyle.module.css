@@ -1,3 +1,11 @@
+* {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
 .image {
     width: 60px;
     height: 60px;
@@ -11,12 +19,12 @@
     justify-content: center;
 }
 
-.content > div,
+.content>div,
 .star {
     display: flex;
 }
 
-.content > div:nth-child(2) {
+.content>div:nth-child(2) {
     align-items: center;
 }
 
@@ -24,7 +32,7 @@
     padding: 40px;
 }
 
-.container > div > h2 {
+.container>div>h2 {
     margin-bottom: 30px;
 }
 

@@ -10,8 +10,8 @@ function CardContainer() {
 
     const getPosts = async () => {
         try {
-            const res = await axios.get('http://localhost:3004/post')
-            setPosts(res)
+            const res = await axios.get('/post')
+            setPosts(res.data)
         } catch (error) {
             console.log(error)
         }
@@ -19,18 +19,6 @@ function CardContainer() {
 
     useEffect(() => {
         getPosts()
-        // console.log("Fetch item");
-        // let termposts = new Array(12).fill(
-        //     {
-        //         price: 400,
-        //         title: "Hello",
-        //         location: "hanoi",
-        //         room: 4,
-        //         bathroom: 2,
-        //         type: "apartment",
-        //         love: 100
-        //     } 
-        // )
 
     }, [])
 
