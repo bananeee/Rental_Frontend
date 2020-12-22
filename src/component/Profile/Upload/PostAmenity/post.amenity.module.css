@@ -1,15 +1,21 @@
 #list_container {
-  background-color: white;
-  /* padding: 30px; */
+  background-color: #f7f8f9;
   flex: 4;
 }
 
-#add_new_listing {
-  padding-bottom: 40px;
+#container {
+  background-color: white;
+  margin: 1.5rem;
+
+}
+
+.amenity_form {
+  padding: 2rem;
 }
 
 #amenity {
-  padding-bottom: 20px;
+  padding: 2rem;
+  border-bottom: 1px dotted rgb(218, 215, 215);
 }
 
 .category {
@@ -30,6 +36,7 @@
   font-weight: 700;
   color: rgba(36, 36, 36, 0.733);
   padding-bottom: 6px;
+  font-size: 15px;
 }
 
 .to_complete > input,
@@ -37,11 +44,11 @@
 .to_complete > textarea {
   width: 250px;
   height: 40px;
-  padding-left: 5px;
+  padding: 10px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   color: rgba(29, 28, 28, 0.733);
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid #ced4da;
 }
 
@@ -62,13 +69,12 @@
 }
 
 #continue_button {
-  min-width: 15%;
-  max-width: 30%;
+  width: 15%;
   height: 40px;
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #dc3545;
-  font-size: 17px;
+  font-size: 15px;
   color: white;
   font-weight: 700;
   margin-top: 10px;
