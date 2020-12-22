@@ -33,8 +33,12 @@ function Nav({ layout }) {
             }
         } else {
             setNavbg({
-                position: "relative"
+                position: "fixed",
+                backgroundColor: 'white',
+                color: 'black',
+                boxShadow: '0 -4px 25px -5px rgba(0, 0, 0, 0.274)'
             })
+            
         }
             
     }, [layout])

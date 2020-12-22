@@ -7,7 +7,10 @@ function ApartmentDetail({ match }) {
     return (
         <div>
             <Nav />
-            <ApartmentDetailMain id={match.params.id}/>
+            <ApartmentDetailMain id={match.params.id}
+                style={{
+                    marginTop: "8vh"
+                }}/>
             <Footer />
         </div>
     )

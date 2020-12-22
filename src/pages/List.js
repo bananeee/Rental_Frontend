@@ -7,10 +7,14 @@ function List() {
     return (
         <div>
             <Nav />
-            <CardContainer />
+            <CardContainer 
+                style={{
+                    marginTop: "8vh"
+                }}/>
             <Footer />
         </div>
     )
 }
 
 export default List
+

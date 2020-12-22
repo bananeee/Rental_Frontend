@@ -11,7 +11,7 @@ function ApartmentDetailMain({ id }) {
     useEffect(() => {
         const getPostData = async () => {
             try {
-                const resPost = await axios.get(`http://localhost:3004/post/${id}`)
+                const resPost = await axios.get(`/post/${id}`)
                 setPost(resPost.data)
                 console.log(resPost.data)
             } catch (error) {
@@ -24,7 +24,7 @@ function ApartmentDetailMain({ id }) {
     useEffect(() => {
         const getHostData = async () => {
             try {
-                const resHost = await axios.get(`http://localhost:3004/host/${post.host}`)
+                const resHost = await axios.get(`/host/${post.host}`)
                 setHost(resHost.data)
             } catch (error) {
                 console.log(error)
