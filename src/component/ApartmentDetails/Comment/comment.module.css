@@ -1,38 +1,36 @@
-.image {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 20px;
+.commentContainer {
+    display: flex;
+    padding: 2rem 0;
+    /* box-shadow: 0 0 25px -2px rgba(0, 0, 0, 0.185); */
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.123);
 }
 
-.cmt1 {
+.avatar {
     display: flex;
     justify-content: center;
-}
-
-.content > div,
-.star {
-    display: flex;
-}
-
-.content > div:nth-child(2) {
     align-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    overflow: hidden;
+    border-radius: 50px;
 }
 
-.container {
-    padding: 40px;
+.avatar img {
+    width: 100%;
 }
 
-.container > div > h2 {
-    margin-bottom: 30px;
+.commentContent {
+    margin-left: 2rem;
 }
 
-.content strong {
-    margin-right: 15px;
-    font-size: 17px;
+.userName {
+    font-weight: 600;
 }
 
-.content p {
-    margin-top: 20px;
+.date {
+    padding: 0.4rem 0;
+}
+
+.date i {
+    padding: 0 1rem 0 0;
 }

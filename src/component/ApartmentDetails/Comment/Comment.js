@@ -1,62 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import style from './comment.module.css'
 
-function Comment() {
+function Comment({ comment }) {
+    
     return (
-        <div className={styles.container}>
+        <div className={style.commentContainer}>
             <div>
-                <h2>2 Review</h2>
-            </div>
-
-            <div className={styles.cmt}>
-                <div className={styles.cmt1}>
-                    <img className={styles.image} src={image1} alt="" />
-
-                    <div className={styles.content}>
-                        <div>
-                            <strong>Diana Cooper</strong>
-                            
-                        </div>
-
-                        <div>
-                            
-                            Octover 22, 2018
-                            
-                            5:18 pm
-                        </div>
-
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Quae enim adipisci corrupti consequuntur,
-                            delectus, dolorum sed ea soluta, temporibus animi
-                            ipsum! Repellendus atque sit nam dolores eos
-                            reiciendis veniam odit!
-                        </p>
-                    </div>
+                <div className={style.avatar}>
+                    <img src={comment.avatar} alt="" />
                 </div>
-                <div className={styles.cmt1}>
-                    <img className={styles.image} src={image1} alt="" />
-
-                    <div className={styles.content}>
-                        <div>
-                            <strong>Diana Cooper</strong>
-                            
-                        </div>
-
-                        <div>
-                            
-                            Octover 22, 2018
-                            
-                            5:18 pm
-                        </div>
-
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Quae enim adipisci corrupti consequuntur,
-                            delectus, dolorum sed ea soluta, temporibus animi
-                            ipsum! Repellendus atque sit nam dolores eos
-                            reiciendis veniam odit!
-                        </p>
-                    </div>
+            </div>
+            <div className={style.commentContent}>
+                <div className={style.userName}>{comment.userName}</div>
+                <div className={style.date}>
+                    <i class="fal fa-calendar-alt"></i>
+                    {comment.date}
+                </div>
+                <div className={style.description}>
+                    {comment.content}
                 </div>
             </div>
         </div>
