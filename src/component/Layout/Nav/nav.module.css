@@ -16,6 +16,7 @@ nav {
   height: 8vh;
   box-shadow: 0 -4px 25px -5px rgba(0, 0, 0, 0.274);
   transition: all 0.25s ease;
+  z-index: 100;
 }
 
 nav {
