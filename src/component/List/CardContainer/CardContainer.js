@@ -24,7 +24,6 @@ function CardContainer() {
 
     return (
         <div style={{ backgroundColor: "#f7f8f9" }}>
-            <SearchBar />
             <div className={style.cardContainer}>
                 {posts.map((post, key) => <Card post={post} key={key} />)}
             </div>
