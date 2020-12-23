@@ -9,18 +9,19 @@ function Upload() {
     const [post, setPost] = useState({})
 
     const nextStep = () => {
+        console.log(post)
         setStep(prevStep => prevStep + 1)
     }
 
     const uploadPost = () => {
-
+        console.log(post)
     }
 
     return (
         <div className={style.upload}>
-            {step === 0 && <PostDes increaseStep={nextStep} setPost={setPost} />}
-            {step === 1 && <PostImage increaseStep={nextStep} setPost={setPost} />}
-            {step === 2 && <PostAmenity uploadPost={uploadPost} setPost={setPost} />}
+            {step === 0 && <PostDes increaseStep={nextStep} setPost={setPost} post={post} />}
+            {step === 1 && <PostImage increaseStep={nextStep} setPost={setPost} post={post} />}
+            {step === 2 && <PostAmenity uploadPost={uploadPost} setPost={setPost} post={post} />}
         </div>
     )
 }

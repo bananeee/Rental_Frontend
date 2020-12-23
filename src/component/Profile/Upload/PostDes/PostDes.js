@@ -1,7 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./post.des.module.css";
 
-function PostDes({ increaseStep, setPost }) {
+function PostDes({ increaseStep, setPost, post }) {
+    const [locationData, setLocationData] = useState({})
+    const [priceData, setPriceData] = useState({})
+
+    const handleChange = (e) => {
+        setPost({
+            ...post,
+            [e.target.name]: e.target.value
+        })
+
+    }
+
+    const handleChangeLocation = async (e) => {
+        setLocationData({
+            ...locationData,
+            [e.target.name]: e.target.value
+        })
+
+        setPost({
+            ...post,
+            location: locationData
+        })
+    }
+
+    const handleChangePrice = async (e) => {
+        setPriceData({
+            ...priceData,
+            [e.target.name]: e.target.value
+        })
+
+        setPost({
+            ...post,
+            price: priceData
+        })
+    }
+
+    // useEffect(() => {
+    //     setPost({
+    //         ...post,
+    //         location: locationData
+    //     })
+    // }, [locationData])
+
+    // useEffect(() => {
+    //     setPriceData({
+    //         ...post,
+    //         price: priceData
+    //     })
+    // }, [priceData])
+
     return (
         <div className={style.container}>
             <div id={style.description}>
@@ -15,9 +64,9 @@ function PostDes({ increaseStep, setPost }) {
                         <div className={style.to_complete}>
                             <label for="title_title">Title</label>
                             <input
-                                onChange={() => {
-                                    
-                                }}
+                                value={post.title === undefined ? "" : post.title}
+                                onChange={handleChange}
+                                name="title"
                                 type="text"
                                 id={style.title_title}
                                 placeholder="Home Sweet Home"
@@ -33,6 +82,9 @@ function PostDes({ increaseStep, setPost }) {
                             >
                                 <label for="to_complete_no">No</label>
                                 <input
+                                    value={locationData.no === undefined ? "" : locationData.no}
+                                    onChange={handleChangeLocation}
+                                    name="no"
                                     type="text"
                                     id={style.to_complete_no}
                                     placeholder="144"
@@ -46,6 +98,9 @@ function PostDes({ increaseStep, setPost }) {
                                     Street
                                     </label>
                                 <input
+                                    value={locationData.street === undefined ? "" : locationData.street}
+                                    onChange={handleChangeLocation}
+                                    name="street"
                                     type="text"
                                     id={style.to_complete_street}
                                     placeholder="Xuân Thủy"
@@ -57,6 +112,9 @@ function PostDes({ increaseStep, setPost }) {
                             >
                                 <label for="to_complete_ward">Ward</label>
                                 <input
+                                    value={locationData.ward === undefined ? "" : locationData.ward}
+                                    onChange={handleChangeLocation}
+                                    name="ward"
                                     type="text"
                                     id={style.to_complete_ward}
                                     placeholder="Dịch Vọng Hậu"
@@ -70,6 +128,9 @@ function PostDes({ increaseStep, setPost }) {
                                     District
                                     </label>
                                 <input
+                                    value={locationData.district === undefined ? "" : locationData.district}
+                                    onChange={handleChangeLocation}
+                                    name="district"
                                     type="text"
                                     id={style.to_complete_district}
                                     placeholder="Cầu Giấy"
@@ -81,6 +142,9 @@ function PostDes({ increaseStep, setPost }) {
                             >
                                 <label for="to_complete_city">City</label>
                                 <input
+                                    value={locationData.city === undefined ? "" : locationData.city}
+                                    onChange={handleChangeLocation}
+                                    name="city"
                                     type="text"
                                     id={style.to_complete_city}
                                     placeholder="Hà Nội"
@@ -94,6 +158,9 @@ function PostDes({ increaseStep, setPost }) {
                         <div className={style.to_complete}>
                             <label for="to_complete_nearby">Nearby</label>
                             <textarea
+                                value={post.nearby === undefined ? "" : post.nearby}
+                                onChange={handleChange}
+                                name="nearby"
                                 id={style.to_complete_nearby}
                                 placeholder="Trường học, bệnh viện,..."
                             ></textarea>
@@ -107,7 +174,12 @@ function PostDes({ increaseStep, setPost }) {
                             id={style.type_detail}
                         >
                             <label for="to_complete_detail">Type</label>
-                            <select id={style.to_complete_detail}>
+                            <select
+                                value={post.type}
+                                onChange={handleChange}
+                                name="type"
+                                id={style.to_complete_detail}
+                            >
                                 <option value="phong_tro">Phòng trọ</option>
                                 <option value="chung_cu_mini">
                                     Chung cư mini
@@ -126,6 +198,9 @@ function PostDes({ increaseStep, setPost }) {
                                 Number of room
                                 </label>
                             <input
+                                value={post.numOfRoom === undefined ? "" : post.numOfRoom}
+                                onChange={handleChange}
+                                name="numOfRoom"
                                 type="text"
                                 id={style.to_complete_room}
                                 placeholder="2"
@@ -140,7 +215,13 @@ function PostDes({ increaseStep, setPost }) {
                             id={style.price_type}
                         >
                             <label for="to_complete_price_type">Type</label>
-                            <select id={style.to_complete_detail}>
+                            <select
+                                value={priceData.category === undefined ? "" : priceData.category}
+
+                                onChange={handleChangePrice}
+                                name="category"
+                                id={style.to_complete_detail}
+                            >
                                 <option value="thang">Tháng</option>
                                 <option value="qui">Quí</option>
                                 <option value="nam">Năm</option>
@@ -152,6 +233,10 @@ function PostDes({ increaseStep, setPost }) {
                                 Price (đồng)
                                 </label>
                             <input
+                                value={priceData.amount === undefined ? "" : priceData.amount}
+
+                                onChange={handleChangePrice}
+                                name="amount"
                                 type="text"
                                 id={style.to_complete_price}
                                 placeholder="1,000,000"
@@ -164,6 +249,10 @@ function PostDes({ increaseStep, setPost }) {
                         <div className={style.to_complete}>
                             <label for="to_complete_area">Area (m2)</label>
                             <input
+                                value={post.size === undefined ? "" : post.size}
+
+                                onChange={handleChange}
+                                name="size"
                                 type="text"
                                 id={style.to_complete_area}
                                 placeholder="50"
@@ -175,7 +264,13 @@ function PostDes({ increaseStep, setPost }) {
                         <div className={style.category_name}>Other</div>
                         <div className={style.to_complete}>
                             <label for="to_complete_other">Other</label>
-                            <select id={style.to_complete_other}>
+                            <select
+
+                                value={post.ownerType}
+                                onChange={handleChange}
+                                name="ownerType"
+                                id={style.to_complete_other}
+                            >
                                 <option value="chung">Chung</option>
                                 <option value="khong_chung">
                                     Không chung chủ

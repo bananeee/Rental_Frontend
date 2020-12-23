@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import style from "./post.amenity.module.css";
 
-function PostAmenity() {
+function PostAmenity({ post, setPost, uploadPost }) {
+
+    const [bathroomData, setBathroomData] = useState({})
+
+    const history = useHistory()
+
+    const handleChange = (e) => {
+        setPost({
+            ...post,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleChangeBathroom = async (e) => {
+        setBathroomData({
+            ...bathroomData,
+            [e.target.name]: e.target.value
+        })
+
+        setPost({
+            ...post,
+            bathroom: bathroomData
+        })
+    }
+
+    const preventSubmit = async (e) => {
+        e.preventDefault()
+        // await createAPost()G
+        history.push('/my_posts')
+    }
+
     return (
         <div id={style.container}>
             <div id={style.amenity}>
@@ -9,7 +40,7 @@ function PostAmenity() {
             </div>
 
             <div className={style.amenity_form}>
-                <form>
+                <form onSubmit={preventSubmit}>
                     <div className={style.category} id={style.bathroom}>
                         <div className={style.category_name}>Bathroom</div>
                         <div
@@ -17,7 +48,12 @@ function PostAmenity() {
                             id={style.bathroom_type}
                         >
                             <label for="to_complete_type">Type</label>
-                            <select id={style.to_complete_type}>
+                            <select
+                                id={style.to_complete_type}
+                                value={bathroomData.category === undefined ? "" : bathroomData.category}
+                                onChange={handleChangeBathroom}
+                                name="category"
+                            >
                                 <option value="kin">Khép kín</option>
                                 <option value="chung">Chung</option>
                             </select>
@@ -27,7 +63,12 @@ function PostAmenity() {
                             id={style.bathroom_water}
                         >
                             <label for="to_complete_water">Water</label>
-                            <select id={style.to_complete_water}>
+                            <select
+                                id={style.to_complete_water}
+                                value={bathroomData.hot === undefined ? "" : bathroomData.hot}
+                                onChange={handleChangeBathroom}
+                                name="hot"
+                            >
                                 <option value="nong">Có nóng lạnh</option>
                                 <option value="lanh">
                                     Không có nóng lạnh
@@ -39,7 +80,12 @@ function PostAmenity() {
                         <div className={style.category_name}>Kitchen</div>
                         <div className={style.to_complete}>
                             <label for="to_complete_kitchen">Kitchen</label>
-                            <select id={style.to_complete_kitchen}>
+                            <select
+                                id={style.to_complete_kitchen}
+                                value={post.kitchen === undefined ? "" : post.kitchen}
+                                onChange={handleChange}
+                                name="kitchen"
+                            >
                                 <option value="rieng">Khu bếp riêng</option>
                                 <option value="chung">Khu bếp chung</option>
                                 <option value="khong_nau_an">
@@ -59,7 +105,12 @@ function PostAmenity() {
                             <label for="to_complete_airconditioner">
                                 Air conditioner
                                 </label>
-                            <select id={style.to_complete_kitchen}>
+                            <select
+                                id={style.to_complete_kitchen}
+                                value={post.airConditioner === undefined ? "" : post.airConditioner}
+                                onChange={handleChange}
+                                name="airConditioner"
+                            >
                                 <option value="co">Có</option>
                                 <option value="khong">Không</option>
                             </select>
@@ -69,7 +120,12 @@ function PostAmenity() {
                         <div className={style.category_name}>Balcony</div>
                         <div className={style.to_complete}>
                             <label for="to_complete_balcony">Balcony</label>
-                            <select id={style.to_complete_balcony}>
+                            <select
+                                id={style.to_complete_balcony}
+                                value={post.balcony === undefined ? "" : post.balcony}
+                                onChange={handleChange}
+                                name="balcony"
+                            >
                                 <option value="co">Có</option>
                                 <option value="khong">Không</option>
                             </select>
@@ -89,7 +145,12 @@ function PostAmenity() {
                             <label for="to_complete_electricity_bill">
                                 Electricity
                                 </label>
-                            <select id={style.to_complete_electricity_bill}>
+                            <select
+                                id={style.to_complete_electricity_bill}
+                                value={post.electric === undefined ? "" : post.electric}
+                                onChange={handleChange}
+                                name="electric"
+                            >
                                 <option value="dan">Giá dân</option>
                                 <option value="thue">Giá thuê</option>
                             </select>
@@ -102,6 +163,9 @@ function PostAmenity() {
                                 Water (đồng/m3)
                                 </label>
                             <input
+                                value={post.water === undefined ? "" : post.water}
+                                onChange={handleChange}
+                                name="water"
                                 type="text"
                                 id={style.to_complete_water_bill}
                                 placeholder="5,000"
@@ -113,6 +177,9 @@ function PostAmenity() {
                         <div className={style.to_complete}>
                             <label for="to_complete_other">Other</label>
                             <input
+                                value={post.otherAmenity === undefined ? "" : post.otherAmenity}
+                                onChange={handleChange}
+                                name="otherAmenity"
                                 type="text"
                                 id={style.to_complete_other}
                                 placeholder="Tủ lạnh/ máy giặt/ giường tủ"
@@ -120,7 +187,7 @@ function PostAmenity() {
                         </div>
                     </div>
                     <div className={style.category} id={style.continue}>
-                        <button id={style.continue_button}>Continue</button>
+                        <button id={style.continue_button} onClick={uploadPost}>Submit</button>
                     </div>
                 </form>
             </div>
