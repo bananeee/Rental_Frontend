@@ -3,6 +3,7 @@ import Nav from '../component/Layout/Nav/Nav'
 import PostAmenity from '../component/Profile/Upload/PostAmenity/PostAmenity'
 import PostDes from '../component/Profile/Upload/PostDes/PostDes'
 import PostImage from '../component/Profile/Upload/PostImage/PostImage'
+import Upload from '../component/Profile/Upload/Upload'
 import UserInfo from '../component/Profile/UserInfo/UserInfo'
 import UserTabMenu from '../component/Profile/UserTabMenu/UserTabMenu'
 
@@ -28,7 +29,7 @@ function Profile({ match }) {
                 <UserTabMenu />
 
                 {match.path === '/profile' && <UserInfo />}
-                {match.path === '/upload' && <PostDes />}
+                {match.path === '/upload' && <Upload />}
                 {match.path === '/my_posts' && <PostAmenity />}
                 {match.path === '/favorite' && <PostImage />}
                 

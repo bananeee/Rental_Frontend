@@ -1,12 +1,10 @@
 #list_container {
     background-color: #f7f8f9;
-    flex: 4;
 }
 
 .container {
     background-color: white;
     margin: 1.5rem;
-
 }
 
 
@@ -21,7 +19,7 @@
 
 .category {
     display: flex;
-    padding-bottom: 15px;
+    padding-bottom: 30px;
 }
 
 .category_name {
@@ -40,6 +38,7 @@
 
 .to_complete {
     margin-right: 30px;
+    margin-top: 10px;
 }
 
 .to_complete > label {

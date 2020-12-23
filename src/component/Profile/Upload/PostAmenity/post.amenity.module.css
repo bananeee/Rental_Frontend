@@ -1,6 +1,5 @@
 #list_container {
   background-color: #f7f8f9;
-  flex: 4;
 }
 
 #container {
@@ -20,7 +19,7 @@
 
 .category {
   display: flex;
-  padding-bottom: 15px;
+  padding-bottom: 30px;
 }
 
 .category_name {
