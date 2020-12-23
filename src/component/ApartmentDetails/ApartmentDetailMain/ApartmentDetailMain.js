@@ -6,7 +6,7 @@ import style from "./apartmentdetail.main.module.css";
 function ApartmentDetailMain({ id }) {
     const [post, setPost] = useState({});
     const [host, setHost] = useState({});
-    const [comments, setHost] = useState({});
+    const [comments, setComments] = useState({});
 
     useEffect(() => {
         const getPostData = async () => {
