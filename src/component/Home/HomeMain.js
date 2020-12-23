@@ -14,7 +14,7 @@ function HomeMain() {
                 </div>
                 <SearchBar />
             </div>
-            <main>
+            <main className={style.homeMain}>
                 <div className={style.list}></div>
 
                 <div className={style.topPlace}></div>
