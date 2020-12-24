@@ -16,7 +16,8 @@ function Nav({ layout }) {
         } else {
             setNavbg({
                 boxShadow: "none",
-                color: "white",
+                backgroundColor: "white",
+                color: "white !important",
             });
         }
     };
@@ -25,7 +26,7 @@ function Nav({ layout }) {
         if (layout === "Home") {
             setNavbg({
                 boxShadow: "none",
-                color: "white",
+                color: "white !important",
             });
             window.addEventListener("scroll", handleScroll);
             return () => {
@@ -49,7 +50,7 @@ function Nav({ layout }) {
                 <div className={style.line}></div>
                 <div className={style.line}></div>
             </label>
-            <div className={style.logo}>NavBar</div>
+            <div className={style.logo}>Housie</div>
             <ul className={style.smallNav}>
                 <li>
                     <NavLink to="/" activeClassName="selected">

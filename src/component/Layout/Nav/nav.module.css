@@ -17,11 +17,16 @@
   box-shadow: 0 -4px 25px -5px rgba(0, 0, 0, 0.274);
   transition: all 1s ease;
   z-index: 100;
+  
 }
 
 .navbar {
   /* color: white; */
-  color: black;
+  color: black !important;
+}
+
+.navbar li a {
+  color: black !important;
 }
 
 .selected {
@@ -31,6 +36,7 @@
 .logo {
   font-size: 1.5rem;
   padding-left: 2.5rem;
+  font-weight: 700;
 }
 
 .smallNav {
@@ -43,6 +49,7 @@
 
 .smallNav a {
   text-decoration: none; /* no underline */
+  margin: 10px;
 }
 
 .burger {

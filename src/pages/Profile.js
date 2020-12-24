@@ -8,6 +8,8 @@ import UserFavorite from '../component/Profile/UserFavorite/UserFavorite'
 import UserInfo from '../component/Profile/UserInfo/UserInfo'
 import UserPost from '../component/Profile/UserPost/UserPost'
 import UserTabMenu from '../component/Profile/UserTabMenu/UserTabMenu'
+import AdminPost from "../component/Profile/AdminPost/AdminPost"
+import AdminHost from "../component/Profile/AdminHost/AdminHost"
 
 function Profile({ match }) {
     useEffect(() => {
@@ -32,8 +34,8 @@ function Profile({ match }) {
 
                 {match.path === '/profile' && <UserInfo />}
                 {match.path === '/upload' && <Upload />}
-                {match.path === '/my_posts' && <UserPost />}
-                {match.path === '/favorite' && <UserFavorite />}
+                {match.path === '/my_posts' && <AdminPost />}
+                {match.path === '/favorite' && <AdminHost />}
                 
             </div>
         </div>
