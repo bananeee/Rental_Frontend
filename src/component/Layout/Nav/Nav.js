@@ -74,7 +74,7 @@ function Nav({ layout }) {
                 </li>
                 <li>
                     <NavLink to="/renter/register" activeClassName="selected">
-                        Sign in
+                        Sign up
                     </NavLink>
                 </li>
                 <li>

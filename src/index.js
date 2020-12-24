@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import axios from 'axios'
 import reportWebVitals from "./reportWebVitals";
-import axios from "axios";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
@@ -17,14 +16,8 @@ axios.defaults.baseURL = "http://localhost:5000/";
 //     "Bearer " + localStorage.getItem("token");
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
-import React from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios'
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-axios.defaults.baseURL = 'http://localhost:3004/'
+axios.defaults.baseURL = 'http://localhost:5000/'
 
 ReactDOM.render(
     <Provider store={store}>

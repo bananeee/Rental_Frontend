@@ -78,7 +78,7 @@ const LoginMain = ({ path }) => {
                         </button>
 
                         <p className={style.message}>
-                            Not registered? <a href="">Sign up</a>
+                            Not registered? <a href="/host/register" style={{color: "red"}}>Sign up</a>
                         </p>
                     </form>
                 </div>

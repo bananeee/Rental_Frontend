@@ -7,8 +7,9 @@ const Headers = {
 };
 
 // user
-export const renterlogin = async (loginData) => {
+export const renterLogin = async (loginData) => {
     try {
+        
         const response = await axios.post("auth/renter/login", loginData);
         return response.data;    
     } catch (error) {
@@ -17,7 +18,7 @@ export const renterlogin = async (loginData) => {
     }
 }
 
-export const hostlogin = async (loginData) => {
+export const hostLogin = async (loginData) => {
     try {
         const response = await axios.post("auth/host/login", loginData);
         return response.data;    

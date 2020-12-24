@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { hostRegister, login } from "../../actions/userAction";
 import style from "./host.register.module.css";
-import M from "materialize-css";
 
 function HostRegister() {
     const [registerData, setRegisterData] = useState({

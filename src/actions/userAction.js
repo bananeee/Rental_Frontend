@@ -10,8 +10,9 @@ import * as api from "../api/index.js";
 
 export const renterLogin = (loginData) => async (dispatch) => {
     try {
-        const resData = await api.renterlogin(loginData);
-
+        const resData = await api.renterLogin(loginData);
+        console.log("adadad");
+        console.log(resData);
 
         localStorage.setItem("token", resData.token);
 
@@ -28,7 +29,8 @@ export const renterLogin = (loginData) => async (dispatch) => {
 
 export const hostLogin = (loginData) => async (dispatch) => {
     try {
-        const resData = await api.hostlogin(loginData);
+        console.log("dai");
+        const resData = await api.hostLogin(loginData);
 
         localStorage.setItem("token", resData.token);
 
