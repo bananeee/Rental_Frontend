@@ -17,6 +17,14 @@ axios.defaults.baseURL = "http://localhost:5000/";
 //     "Bearer " + localStorage.getItem("token");
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
+import React from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios'
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+axios.defaults.baseURL = 'http://localhost:3004/'
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,9 +1,9 @@
-main > div {
-  padding: 3rem 0;
-  margin: 2rem 0;
+.homeMain > div {
+  padding: 3rem 3rem;
+  /* margin: 2rem 0; */
 }
 
-main > div:nth-child(2n) {
+.homeMain > div:nth-child(2n) {
   background-color: #f7f8f9;
   /* background-color: red; */
 }

@@ -1,17 +1,28 @@
 import React, { useState } from 'react'
 import style from './card.module.css'
 import img from '../../../assets/test.jpg'
+import { useHistory } from 'react-router-dom'
 
 function Card({ post }) {
 
     const [love, setLove] = useState(false)
-
+    const history = useHistory()
     // useEffect(() => {
     //     setLove(post.love)
     // }, [])
 
+    const handleCardClick = () => {
+        history.push(`/posts/${post.id}`)
+    }
+
+    const handleHeartClick = (e) => {
+        e.stopPropagation()
+        setLove(!love)
+    }
+
+
     return (
-        <div className={style.card}>
+        <div className={style.card} onClick={handleCardClick}>
             <div className={style.cardPres}>
                 <div className={style.cardPrice}>
                     {post.price}<span>/month</span>
@@ -35,8 +46,8 @@ function Card({ post }) {
                     <i className="fas fa-heart"></i>{post.love}
                 </div>
                 <div className={style.cardHeart}>
-                    
-                    <i onClick={() => setLove(!love)} className={love ? 'fas fa-heart' : 'far fa-heart'}></i>
+
+                    <i onClick={handleHeartClick} className={love ? 'fas fa-heart' : 'far fa-heart'}></i>
                 </div>
             </div>
         </div>

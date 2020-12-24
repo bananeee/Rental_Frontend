@@ -5,7 +5,6 @@ import style from './error.module.css'
 function NotFound() {
     return (
         <div>
-            <Nav />
             <h1>404 Not Found</h1>
         </div>
     )

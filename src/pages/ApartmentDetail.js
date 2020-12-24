@@ -7,9 +7,15 @@ function ApartmentDetail({ match }) {
     return (
         <div>
             <Nav />
-            <ApartmentDetailMain id={match.params.id}/>
-            <Footer />
+            <div style={{
+                paddingTop: "8vh"
+            }}>
+                <ApartmentDetailMain id={match.params.id}
+                />
+                <Footer />
+            </div>
         </div>
+
     )
 }
 

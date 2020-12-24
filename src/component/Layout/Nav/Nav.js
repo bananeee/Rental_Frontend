@@ -28,11 +28,7 @@ function Nav({ layout }) {
     };
 
     useEffect(() => {
-        setLayoutNav(layout)
-    }, [layout]);
-
-    useEffect(() => {
-        if (layoutNav === "Home") {
+        if (layout === "Home") {
             setNavbg({
                 boxShadow: "none",
                 color: "white",
@@ -43,60 +39,50 @@ function Nav({ layout }) {
             };
         } else {
             setNavbg({
-                position: "relative",
-            });
+                position: "fixed",
+                backgroundColor: 'white',
+                color: 'black',
+                boxShadow: '0 -4px 25px -5px rgba(0, 0, 0, 0.274)'
+            })
+
         }
-    }, [layoutNav]);
+    }, [layout]);
 
     return (
-        <nav style={navbg}>
-            {/* <div>Hello {userState.user.role}</div> */}
+        <nav style={navbg} className={style.navbar}>
             <label className={style.burger} tabindex="0">
                 <div className={style.line}></div>
                 <div className={style.line}></div>
                 <div className={style.line}></div>
             </label>
             <div className={style.logo}>NavBar</div>
-            <ul>
-                <NavLink to="/" activeClassName="selected">
-                    <li>Home</li>
-                </NavLink>
-
-                <NavLink to="/post" activeClassName="selected">
-                    <li>Listing</li>
-                </NavLink>
-
-                <NavLink to="/about" activeClassName="selected">
-                    <li>About</li>
-                </NavLink>
-
-                {userState.user === null ? (
+            <ul className={style.smallNav}>
+                <li>
+                    <NavLink to="/" activeClassName="selected">
+                        Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/posts" activeClassName="selected">
+                        Listing
+                    </NavLink>
+                </li>
+                <li>
                     <NavLink to="/renter/login" activeClassName="selected">
-                        <li>Login</li>
+                        Login
                     </NavLink>
-                ) : (
-                    <NavLink
-                        to="#"
-                        activeClassName="selected"
-                        onClick={() => {
-                            localStorage.clear();
-                            dispatch({ type: "LOGOUT" });
-                            history.push("/");
-                        }}>
-                        <li>Logout</li>
+                </li>
+                <li>
+                    <NavLink to="/renter/register" activeClassName="selected">
+                        Sign in
                     </NavLink>
-                )}
-                <NavLink to="/renter/register" activeClassName="selected">
-                    <li>Register</li>
-                </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/host/login" activeClassName="selected">
+                        Become Host
+                    </NavLink>
+                </li>
 
-                <NavLink to="/host/login" activeClassName="selected">
-                    <li>LoginHost</li>
-                </NavLink>
-
-                <NavLink to="/host/register" activeClassName="selected">
-                    <li>RegisterHost</li>
-                </NavLink>
             </ul>
         </nav>
     );
