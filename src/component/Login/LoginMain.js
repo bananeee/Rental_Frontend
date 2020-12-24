@@ -1,15 +1,22 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
+import { hostLogin, renterLogin } from "../../actions/userAction";
 import style from "./login.module.css";
 
-
-const Login = () => {
+const LoginMain = ({ path }) => {
     const [loginData, setloginData] = useState({
         username: "",
         password: "",
     });
+
+    const checkRole = () => {
+        if (path === "/host/login") console.log("host");
+        else if (path === "/renter/login") console.log("renter");
+    };
+
+    checkRole();
 
     const dispatch = useDispatch();
 
@@ -19,20 +26,13 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const resData = await axios.post("http://localhost:5000/renter/signin", loginData);
+            if (path === "/renter/login") {
+                dispatch(renterLogin(loginData));
+            } else {
+                dispatch(hostLogin(loginData));
+            }
             
-            // console.log(resData.data)
-            localStorage.setItem("token", resData.data.token);
-
-            localStorage.setItem("user", resData.data.user);
-
-            dispatch({
-                type: "LOGIN_SUCCESS",
-                payload: resData.data.user,
-            })
-        
             history.push("/");
-
         } catch (error) {
             console.log(error);
         }
@@ -87,4 +87,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginMain;

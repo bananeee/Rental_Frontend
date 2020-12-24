@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 function HomeMain() {
     
-   
     return (
         <div>
             <div className={style.banner}>

@@ -2,6 +2,6 @@ import { combineReducers } from "redux";
 
 import userState from "./authReducer";
 
-// import userRole from "./userRoleReducer";
+import posts from "./postReducer";
 
 export const reducers = combineReducers({ userState });

@@ -10,7 +10,8 @@ function Nav({ layout }) {
     const dispatch = useDispatch();
 
     const userState = useSelector((state) => state.userState);
-    console.log(userState);
+    const [layoutNav, setLayoutNav] = useState(layout)
+    
     const handleScroll = () => {
         if (window.pageYOffset >= 100) {
             setNavbg({
@@ -27,7 +28,11 @@ function Nav({ layout }) {
     };
 
     useEffect(() => {
-        if (layout === "Home") {
+        setLayoutNav(layout)
+    }, [layout]);
+
+    useEffect(() => {
+        if (layoutNav === "Home") {
             setNavbg({
                 boxShadow: "none",
                 color: "white",
@@ -41,7 +46,7 @@ function Nav({ layout }) {
                 position: "relative",
             });
         }
-    }, [layout]);
+    }, [layoutNav]);
 
     return (
         <nav style={navbg}>
@@ -66,7 +71,7 @@ function Nav({ layout }) {
                 </NavLink>
 
                 {userState.user === null ? (
-                    <NavLink to="/login" activeClassName="selected">
+                    <NavLink to="/renter/login" activeClassName="selected">
                         <li>Login</li>
                     </NavLink>
                 ) : (
@@ -81,8 +86,16 @@ function Nav({ layout }) {
                         <li>Logout</li>
                     </NavLink>
                 )}
-                <NavLink to="/host" activeClassName="selected">
-                    <li>Host</li>
+                <NavLink to="/renter/register" activeClassName="selected">
+                    <li>Register</li>
+                </NavLink>
+
+                <NavLink to="/host/login" activeClassName="selected">
+                    <li>LoginHost</li>
+                </NavLink>
+
+                <NavLink to="/host/register" activeClassName="selected">
+                    <li>RegisterHost</li>
                 </NavLink>
             </ul>
         </nav>
