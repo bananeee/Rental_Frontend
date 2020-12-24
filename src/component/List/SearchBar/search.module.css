@@ -20,6 +20,10 @@
   outline: none;
 }
 
+.searchBox select {
+  background-color: white;
+}
+
 .searchBox input:nth-child(1) {
   /* min-width: 40vw; */
 }

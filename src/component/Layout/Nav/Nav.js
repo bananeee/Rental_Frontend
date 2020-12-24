@@ -53,27 +53,27 @@ function Nav({ layout }) {
             <div className={style.logo}>Housie</div>
             <ul className={style.smallNav}>
                 <li>
-                    <NavLink to="/" activeClassName="selected">
+                    <NavLink to="/" >
                         Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/posts" activeClassName="selected">
+                    <NavLink to="/posts" activeClassName={style.selected}>
                         Listing
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/renter/login" activeClassName="selected">
+                    <NavLink to="/renter/login" activeClassName={style.selected}>
                         Login
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/renter/register" activeClassName="selected">
+                    <NavLink to="/renter/register" activeClassName={style.selected}>
                         Sign in
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/host/login" activeClassName="selected">
+                    <NavLink to="/host/login" activeClassName={style.selected}>
                         Become Host
                     </NavLink>
                 </li>

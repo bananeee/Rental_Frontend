@@ -4,10 +4,10 @@ import style from './search.module.css'
 function SearchBar() {
     return (
         <form className={style.searchBox}>
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
+            <select name="" id=""></select>
+            <select name="" id=""></select>
+            <select name="" id=""></select>
+            <select name="" id=""></select>
             <button></button>
         </form>
     )
