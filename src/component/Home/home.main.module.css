@@ -1,6 +1,6 @@
 .homeMain > div {
-  padding: 3rem 0;
-  margin: 2rem 0;
+  padding: 3rem 3rem;
+  /* margin: 2rem 0; */
 }
 
 .homeMain > div:nth-child(2n) {

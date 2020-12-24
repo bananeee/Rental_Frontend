@@ -29,7 +29,7 @@ function PostAmenity({ post, setPost, uploadPost }) {
 
     const preventSubmit = async (e) => {
         e.preventDefault()
-        // await createAPost()G
+        // await createAPost()
         history.push('/my_posts')
     }
 

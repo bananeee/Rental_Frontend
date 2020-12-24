@@ -15,9 +15,9 @@ function HomeMain() {
                 <SearchBar />
             </div>
             <main className={style.homeMain}>
-                <div className={style.list}></div>
+                {/* <div className={style.list}></div> */}
 
-                <div className={style.topPlace}></div>
+                {/* <div className={style.topPlace}></div> */}
 
                 <div className={style.feature}>
                     <div className={style.centerTitle}>

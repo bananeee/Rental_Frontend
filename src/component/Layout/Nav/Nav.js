@@ -38,42 +38,45 @@ function Nav({ layout }) {
                 color: 'black',
                 boxShadow: '0 -4px 25px -5px rgba(0, 0, 0, 0.274)'
             })
-            
+
         }
     }, [layout]);
 
     return (
-        <nav style={navbg}>
+        <nav style={navbg} className={style.navbar}>
             <label className={style.burger} tabindex="0">
                 <div className={style.line}></div>
                 <div className={style.line}></div>
                 <div className={style.line}></div>
             </label>
             <div className={style.logo}>NavBar</div>
-            <ul>
-                <NavLink to="/" activeClassName="selected">
-                    <li>Home</li>
-                </NavLink>
+            <ul className={style.smallNav}>
+                <li>
+                    <NavLink to="/" activeClassName="selected">
+                        Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/posts" activeClassName="selected">
+                        Listing
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/renter/login" activeClassName="selected">
+                        Login
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/renter/register" activeClassName="selected">
+                        Sign in
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/host/login" activeClassName="selected">
+                        Become Host
+                    </NavLink>
+                </li>
 
-                <NavLink to="/post" activeClassName="selected">
-                    <li>Listing</li>
-                </NavLink>
-
-                <NavLink to="/about" activeClassName="selected">
-                    <li>About</li>
-                </NavLink>
-
-                <NavLink to="/login" activeClassName="selected">
-                    <li>Login</li>
-                </NavLink>
-
-                <NavLink to="/host" activeClassName="selected">
-                    <li>Host</li>
-                </NavLink>
-
-                <NavLink to="/detail" activeClassName="selected">
-                    <li>Detail</li>
-                </NavLink>
             </ul>
         </nav>
     );
