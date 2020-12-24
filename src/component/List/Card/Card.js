@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import style from './card.module.css'
 import img from '../../../assets/test.jpg'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 function Card({ post }) {
 
@@ -11,12 +12,27 @@ function Card({ post }) {
     //     setLove(post.love)
     // }, [])
 
-    const handleCardClick = () => {
-        history.push(`/posts/${post.id}`)
+    const handleCardClick =  () => {
+        // try {    
+        //     const data = await axios.get("/posts/" + post._id);
+        //     console.log(data);
+        // } catch (error) {
+        //     console.log(error)
+        // }
+        history.push(`/posts/${post._id}`)
     }
 
-    const handleHeartClick = (e) => {
+    const handleHeartClick = async (e) => {
         e.stopPropagation()
+
+        try {
+            const data = await axios.put("/posts/like/" + post._id,{}, { headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },});
+            // console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
         setLove(!love)
     }
 
@@ -33,7 +49,7 @@ function Card({ post }) {
             </div>
             <div className={style.cardBody}>
                 <h3 className={style.cardTitle}>{post.title}</h3>
-                <p className={style.cardLocation}>{post.location}</p>
+                {/* <p className={style.cardLocation}>{post.location}</p> */}
                 <div className={style.cardAme}>
                     <i className="fas fa-bed"></i>
                     <span>{post.room}</span>
@@ -43,7 +59,7 @@ function Card({ post }) {
                     <span>{post.type}</span>
                 </div>
                 <div className={style.numLove}>
-                    <i className="fas fa-heart"></i>{post.love}
+                    <i className="fas fa-heart"></i>{post.favorite.length}
                 </div>
                 <div className={style.cardHeart}>
 

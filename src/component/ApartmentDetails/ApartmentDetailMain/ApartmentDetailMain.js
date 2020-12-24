@@ -30,14 +30,15 @@ function ApartmentDetailMain({ id }) {
     useEffect(() => {
         const getPostData = async () => {
             try {
-                const resPost = await axios.get(`/post/${id}`);
-                const resHost = await axios.get(`/host/${resPost.data.host}`);
-                const resComment = await axios.get(`/comment?postId=${id}`);
+                const resPost = await axios.get(`/posts/${id}`);
+                // const resHost = await axios.get(`/host/${resPost.data.host}`);
+                // const resComment = await axios.get(`/comment?postId=${id}`);
                 // console.log(resComment.data)
-                setPost(resPost.data);
-                setHost(resHost.data);
-                setComments(resComment.data);
-                console.log(post);
+                console.log(resPost.data.posts);
+                setPost(resPost.data.posts);
+                // setHost(resHost.data);
+                // setComments(resComment.data);
+                // console.log(post);
             } catch (error) {
                 console.log(error);
             }
@@ -69,6 +70,7 @@ function ApartmentDetailMain({ id }) {
     //     if (post) getCommentData(post);
     // }, [post]);
 
+    
     return (
         <main className={style.detailMain}>
             <div className={style.carousel}>
@@ -80,6 +82,9 @@ function ApartmentDetailMain({ id }) {
                             </div>
                         </div>
                     ))}
+                    {/* {
+                        console.log(post.image)
+                    }                     */}
                 </Slider>
             </div>
 
@@ -92,12 +97,12 @@ function ApartmentDetailMain({ id }) {
                                     Home {">"} {post.type} {">"} {post.title}
                                 </div>
                                 <div className={style.title}>{post.title}</div>
-                                <div className={style.location}>
+                                {/* <div className={style.location}>
                                     {post.location}
-                                </div>
+                                </div> */}
                             </div>
                             <div className={style.avatar}>
-                                <img src={host.image} alt="" />
+                                {/* <img src={host.image} alt="" /> */}
                             </div>
                         </div>
                         <div className={style.presDes}>
@@ -198,12 +203,12 @@ function ApartmentDetailMain({ id }) {
                         </div>
                     </div>
                     <LightBox />
-                    <div className={style.commentContainer}>
+                    {/* <div className={style.commentContainer}>
                         <h2>Review</h2>
                         {comments.map((comment, key) => (
                             <Comment key={key} comment={comment} />
                         ))}
-                    </div>
+                    </div> */}
                 </div>
                 <div className={style.forms}>
                     <div className={style.above}>

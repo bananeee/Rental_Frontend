@@ -25,17 +25,17 @@ function PostDes({ increaseStep, setPost, post }) {
         })
     }
 
-    const handleChangePrice = async (e) => {
-        setPriceData({
-            ...priceData,
-            [e.target.name]: e.target.value
-        })
+    // const handleChangePrice = async (e) => {
+    //     setPriceData({
+    //         ...priceData,
+    //         [e.target.name]: e.target.value
+    //     })
 
-        setPost({
-            ...post,
-            price: priceData
-        })
-    }
+    //     setPost({
+    //         ...post,
+    //         price: priceData
+    //     })
+    // }
 
     // useEffect(() => {
     //     setPost({
@@ -216,10 +216,10 @@ function PostDes({ increaseStep, setPost, post }) {
                         >
                             <label for="to_complete_price_type">Type</label>
                             <select
-                                value={priceData.category === undefined ? "" : priceData.category}
+                                // value={priceData.category === undefined ? "" : priceData.category}
 
-                                onChange={handleChangePrice}
-                                name="category"
+                                // onChange={handleChangePrice}
+                                // name="category"
                                 id={style.to_complete_detail}
                             >
                                 <option value="thang">Tháng</option>
@@ -233,10 +233,14 @@ function PostDes({ increaseStep, setPost, post }) {
                                 Price (đồng)
                                 </label>
                             <input
-                                value={priceData.amount === undefined ? "" : priceData.amount}
+                                // value={priceData.amount === undefined ? "" : priceData.amount}
 
-                                onChange={handleChangePrice}
-                                name="amount"
+                                // onChange={handleChangePrice}
+                                // name="amount"
+                                value={post.price === undefined ? "" : post.price}
+
+                                onChange={handleChange}
+                                name="price"
                                 type="text"
                                 id={style.to_complete_price}
                                 placeholder="1,000,000"

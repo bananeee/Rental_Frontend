@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import PostAmenity from './PostAmenity/PostAmenity'
 import PostDes from './PostDes/PostDes'
@@ -13,8 +14,16 @@ function Upload() {
         setStep(prevStep => prevStep + 1)
     }
 
-    const uploadPost = () => {
+    const uploadPost = async () => {
         console.log(post)
+        
+        try {
+            const data = await axios.post("/posts", post, { headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },});
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (

@@ -10,8 +10,10 @@ function Nav({ layout }) {
     const dispatch = useDispatch();
 
     const userState = useSelector((state) => state.userState);
-    const [layoutNav, setLayoutNav] = useState(layout)
-    
+
+    console.log(userState);
+    const [layoutNav, setLayoutNav] = useState(layout);
+
     const handleScroll = () => {
         if (window.pageYOffset >= 100) {
             setNavbg({
@@ -40,13 +42,34 @@ function Nav({ layout }) {
         } else {
             setNavbg({
                 position: "fixed",
-                backgroundColor: 'white',
-                color: 'black',
-                boxShadow: '0 -4px 25px -5px rgba(0, 0, 0, 0.274)'
-            })
-
+                backgroundColor: "white",
+                color: "black",
+                boxShadow: "0 -4px 25px -5px rgba(0, 0, 0, 0.274)",
+            });
         }
     }, [layout]);
+
+    let styleDisappear = {};
+    let styleAppear = {};
+    const updateStyle = () => {
+        if (userState.user !== null) {
+            styleDisappear = {
+                display: "none",
+            };
+            styleAppear = {
+                display: "true",
+            };
+        }  
+        else {
+            styleDisappear = {
+                display: "true",
+            };
+            styleAppear = {
+                display: "none",
+            };
+        }
+    }
+    updateStyle()
 
     return (
         <nav style={navbg} className={style.navbar}>
@@ -67,22 +90,36 @@ function Nav({ layout }) {
                         Listing
                     </NavLink>
                 </li>
-                <li>
+
+                <li
+                    style={styleDisappear}>
                     <NavLink to="/renter/login" activeClassName="selected">
                         Login
                     </NavLink>
                 </li>
-                <li>
+                <li style={styleDisappear}>
                     <NavLink to="/renter/register" activeClassName="selected">
                         Sign up
                     </NavLink>
                 </li>
-                <li>
+                <li style={styleDisappear}>
                     <NavLink to="/host/login" activeClassName="selected">
                         Become Host
                     </NavLink>
                 </li>
+                <li style={styleAppear}>
+                    <NavLink   to="#"
+                        activeClassName="selected"
+                        onClick={() => {
+                            updateStyle();
+                            localStorage.clear();
 
+                            dispatch({ type: "LOGOUT" });
+                            history.push("/");
+                        }} activeClassName="selected">
+                        Log out
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );
