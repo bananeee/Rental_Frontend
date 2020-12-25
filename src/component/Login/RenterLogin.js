@@ -5,18 +5,18 @@ import { Redirect, useHistory } from "react-router-dom";
 import { hostLogin, renterLogin } from "../../actions/userAction";
 import style from "./login.module.css";
 
-const LoginMain = ({ path }) => {
+function RenterLogin({ path }) {
     const [loginData, setloginData] = useState({
         username: "",
         password: "",
     });
 
-    const checkRole = () => {
-        if (path === "/host/login") console.log("host");
-        else if (path === "/renter/login") console.log("renter");
-    };
+    // const checkRole = () => {
+    //     if (path === "/host/login") console.log("host");
+    //     else if (path === "/renter/login") console.log("renter");
+    // };
 
-    checkRole();
+    // checkRole();
 
     const dispatch = useDispatch();
 
@@ -26,12 +26,8 @@ const LoginMain = ({ path }) => {
         e.preventDefault();
 
         try {
-            if (path === "/renter/login") {
-                dispatch(renterLogin(loginData));
-            } else {
-                dispatch(hostLogin(loginData));
-            }
-            
+            dispatch(renterLogin(loginData));
+
             history.push("/");
         } catch (error) {
             console.log(error);
@@ -78,13 +74,16 @@ const LoginMain = ({ path }) => {
                         </button>
 
                         <p className={style.message}>
-                            Not registered? <a href="/host/register" style={{color: "red"}}>Sign up</a>
+                            Not registered?{" "}
+                            <a href="/renter/register" style={{ color: "red" }}>
+                                Sign up
+                            </a>
                         </p>
                     </form>
                 </div>
             </div>
         </div>
     );
-};
+}
 
-export default LoginMain;
+export default RenterLogin;

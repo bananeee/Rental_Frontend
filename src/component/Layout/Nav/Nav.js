@@ -11,7 +11,6 @@ function Nav({ layout }) {
 
     const userState = useSelector((state) => state.userState);
 
-    console.log(userState);
     const [layoutNav, setLayoutNav] = useState(layout);
 
     const handleScroll = () => {
@@ -78,7 +77,7 @@ function Nav({ layout }) {
                 <div className={style.line}></div>
                 <div className={style.line}></div>
             </label>
-            <div className={style.logo}>NavBar</div>
+            <div className={style.logo}>Easy Accomd</div>
             <ul className={style.smallNav}>
                 <li>
                     <NavLink to="/" activeClassName="selected">
@@ -120,6 +119,12 @@ function Nav({ layout }) {
                         Log out
                     </NavLink>
                 </li>
+                <li style={styleAppear}>
+                    <NavLink to="/profile" activeClassName="selected">
+                        Profile
+                    </NavLink>
+                </li>
+                
             </ul>
         </nav>
     );

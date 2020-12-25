@@ -4,4 +4,5 @@ import userState from "./authReducer";
 
 import posts from "./postReducer";
 
-export const reducers = combineReducers({ userState });
+export const reducers = combineReducers({ userState, posts });
+

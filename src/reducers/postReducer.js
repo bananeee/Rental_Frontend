@@ -4,6 +4,7 @@ import {
     UPDATE,
     DELETE,
     LIKE,
+    UNLIKE
 } from "../constants/actionTypes.js";
 
 const posts = [];
@@ -13,17 +14,21 @@ export default (state = posts, action) => {
         case FETCH_ALL:
             return action.payload;
         case LIKE:
-            return posts.map((post) =>
+            return state.map((post) =>
+                post._id === action.payload._id ? action.payload : post
+            );
+        case UNLIKE:
+            return state.map((post) =>
                 post._id === action.payload._id ? action.payload : post
             );
         case CREATE:
-            return [...posts, action.payload];
+            return [...state, action.payload];
         case UPDATE:
-            return posts.map((post) =>
+            return state.map((post) =>
                 post._id === action.payload._id ? action.payload : post
             );
         case DELETE:
-            return posts.filter((post) => post._id !== action.payload);
+            return state.filter((post) => post._id !== action.payload);
         default:
             return state;
     }

@@ -8,7 +8,7 @@ function UserFavorite() {
                 <h2>My Favorite</h2>
             </div>
             <div className={style.container}>
-                <CardContainer/>
+                <CardContainer posts={[]}/>
             </div>
         </div>
     )

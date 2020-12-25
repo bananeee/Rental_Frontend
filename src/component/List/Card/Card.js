@@ -1,73 +1,93 @@
-import React, { useState } from 'react'
-import style from './card.module.css'
-import img from '../../../assets/test.jpg'
-import { useHistory } from 'react-router-dom'
-import axios from 'axios'
+import React, { useState } from "react";
+import style from "./card.module.css";
+import img from "../../../assets/test.jpg";
+import { useHistory } from "react-router-dom";
+import * as api from "../../../api/index.js";
+import { useDispatch } from "react-redux";
+import { likePost, unlikePost } from "../../../actions/postAction";
 
-function Card({ post }) {
+function Card(props) {
+    props = props.post;
 
-    const [love, setLove] = useState(false)
-    const history = useHistory()
-    // useEffect(() => {
-    //     setLove(post.love)
-    // }, [])
+    console.log(props.favorite.includes(localStorage.getItem("user")));
+    const [love, setLove] = useState(
+        props.favorite.includes(localStorage.getItem("user"))
+    );
 
-    const handleCardClick =  () => {
-        // try {    
+    const dispatch = useDispatch();
+
+ 
+    const handleCardClick = (e) => {
+        e.preventDefault();
+        // try {
         //     const data = await axios.get("/posts/" + post._id);
         //     console.log(data);
         // } catch (error) {
         //     console.log(error)
         // }
-        history.push(`/posts/${post._id}`)
-    }
+        // history.push(`/posts/${post._id}`)
+    };
 
     const handleHeartClick = async (e) => {
-        e.stopPropagation()
+        // e.stopPropagation();
 
-        try {
-            const data = await axios.put("/posts/like/" + post._id,{}, { headers: {
-                Authorization: "Bearer " + localStorage.getItem("token"),
-            },});
-            // console.log(data)
-        } catch (error) {
-            console.log(error)
+        if (!love) {
+            dispatch(likePost(props._id));
+        } else {
+            dispatch(unlikePost(props._id));
         }
-        setLove(!love)
-    }
-
+        setLove(!love);
+    };
 
     return (
         <div className={style.card} onClick={handleCardClick}>
             <div className={style.cardPres}>
                 <div className={style.cardPrice}>
-                    {post.price}<span>/month</span>
+                    {props.price}
+                    <span>/month</span>
                 </div>
                 <div className={style.cardImg}>
-                    <img src={post.image[0]} alt="" />
+                    <img src={props.image[0]} alt="" />
                 </div>
             </div>
+
             <div className={style.cardBody}>
-                <h3 className={style.cardTitle}>{post.title}</h3>
-                {/* <p className={style.cardLocation}>{post.location}</p> */}
+                <h3 className={style.cardTitle}>{props.title}</h3>
+
+                <p className={style.cardLocation}>
+                    {props.location.no +
+                        ", " +
+                        props.location.street +
+                        ", " +
+                        props.location.ward +
+                        ", " +
+                        props.location.district +
+                        ", " +
+                        props.location.city}
+                </p>
+
                 <div className={style.cardAme}>
                     <i className="fas fa-bed"></i>
-                    <span>{post.room}</span>
+                    <span>{props.room}</span>
                     <i className="fas fa-shower"></i>
-                    <span>{post.bathroom}</span>
+                    <span>{/* {props.bathroom} */}</span>
                     <i className="fas fa-house"></i>
-                    <span>{post.type}</span>
+                    <span>{props.type}</span>
                 </div>
-                <div className={style.numLove}>
-                    <i className="fas fa-heart"></i>{post.favorite.length}
-                </div>
-                <div className={style.cardHeart}>
 
-                    <i onClick={handleHeartClick} className={love ? 'fas fa-heart' : 'far fa-heart'}></i>
+                <div className={style.numLove}>
+                    <i className="fas fa-heart"></i>
+                    {props.favorite.length}
+                </div>
+
+                <div className={style.cardHeart}>
+                    <i
+                        onClick={handleHeartClick}
+                        className={love ? "fas fa-heart" : "far fa-heart"}></i>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Card
+export default Card;

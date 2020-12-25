@@ -9,7 +9,6 @@
     box-shadow: 0 0 25px -2px rgba(0, 0, 0, 0.185);
 }
 
-
 .cardPres {
     position: relative;
     height: 13rem;
@@ -33,6 +32,11 @@
     font-weight: 500;
 }
 
+.cardAme {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .cardAme span {
     margin-left: 5px;
     margin-right: 15px;
@@ -51,8 +55,15 @@
 }
 
 .cardImg img {
+    opacity: 0.8;
     height: 100%;
     transform: scale(1.1);
+    transition: all 0.4s ease;
+}
+
+.cardImg img:hover {
+    height: 100%;
+    transform: scale(1.25);
 }
 
 .cardBody {
@@ -62,7 +73,7 @@
 }
 
 .cardBody p {
-    margin: 0.5rem 0;
+    margin: 0.6rem 0;
     display: inline;
 }
 
@@ -70,18 +81,12 @@
     margin: 0.25rem 0 0.25rem 0;
 }
 
-.cardHeart i{
+.cardHeart i {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
     font-size: 1.7rem;
     color: #f0384a;
-
 }
 
-
 @media (max-width:)
-
-
-
-

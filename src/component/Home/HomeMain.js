@@ -10,7 +10,7 @@ function HomeMain() {
         <div>
             <div className={style.banner}>
                 <div className={style.quote}>
-                    <h1>Lorem Ipsum is simply dummy text of the p</h1>
+                    <h1 style={{fontSize: "2.5rem"}}>Bạn muốn tìm trọ? Hãy đến với chúng tôi</h1>
                 </div>
                 <SearchBar />
             </div>

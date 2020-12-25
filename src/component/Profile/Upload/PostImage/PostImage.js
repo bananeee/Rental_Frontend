@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import style from "./post.image.module.css";
 import FileBase from "react-file-base64";
 
-function PostImage({  increaseStep, setPost, post }) {
-    // const [postData, setPostData] = useStatete({ selectedFile: "" });
+function PostImage({ increaseStep, setPost, post }) {
+
+    const saveImage = (file) => {
+        setPost({
+            ...post,
+            image: file.map((item) => item.base64)
+        });
+
+    };
+
     return (
         <div className={style.container}>
             <div id={style.image_title}>
@@ -19,14 +27,10 @@ function PostImage({  increaseStep, setPost, post }) {
                             Upload */}
                         <FileBase
                             type="file"
-                            multiple={false}
-                            onDone={({ base64 }) =>
-                                setPost({
-                                    ...post,
-                                    image: [base64],
-                                })
-                            }
+                            multiple={true}
+                            onDone={saveImage}
                         />
+                        Upload
                     </label>
                 </form>
                 <div className={style.category} id={style.continue}>

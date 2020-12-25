@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import { reducers } from "./reducers/index";
 import "./index.css";
 import App from "./App";
+
 axios.defaults.baseURL = "http://localhost:5000/";
 
 // axios.defaults.headers.common["Authorization"] =

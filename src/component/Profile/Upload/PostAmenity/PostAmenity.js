@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import style from "./post.amenity.module.css";
 
+import * as api from "../../../../api/index.js";
+
 function PostAmenity({ post, setPost, uploadPost }) {
 
     const [bathroomData, setBathroomData] = useState({})
@@ -29,8 +31,13 @@ function PostAmenity({ post, setPost, uploadPost }) {
 
     const preventSubmit = async (e) => {
         e.preventDefault()
-        // await createAPost()
-        history.push('/my_posts')
+        try {
+            const data = await api.createPost(post);
+        } catch (error) {
+            console.log(error);
+        }
+        history.push('/posts')
+        
     }
 
     return (
@@ -41,12 +48,14 @@ function PostAmenity({ post, setPost, uploadPost }) {
 
             <div className={style.amenity_form}>
                 <form onSubmit={preventSubmit}>
+
                     <div className={style.category} id={style.bathroom}>
                         <div className={style.category_name}>Bathroom</div>
                         <div
                             className={style.to_complete}
                             id={style.bathroom_type}
                         >
+
                             <label for="to_complete_type">Type</label>
                             <select
                                 id={style.to_complete_type}
@@ -57,6 +66,7 @@ function PostAmenity({ post, setPost, uploadPost }) {
                                 <option value="kin">Khép kín</option>
                                 <option value="chung">Chung</option>
                             </select>
+                            
                         </div>
                         <div
                             className={style.to_complete}

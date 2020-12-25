@@ -2,40 +2,39 @@ import React, { useEffect, useState } from "react";
 import style from "./post.des.module.css";
 
 function PostDes({ increaseStep, setPost, post }) {
-    const [locationData, setLocationData] = useState({})
-    const [priceData, setPriceData] = useState({})
+    const [locationData, setLocationData] = useState({});
+    const [priceData, setPriceData] = useState({});
 
     const handleChange = (e) => {
         setPost({
             ...post,
-            [e.target.name]: e.target.value
-        })
-
-    }
+            [e.target.name]: e.target.value,
+        });
+    };
 
     const handleChangeLocation = async (e) => {
         setLocationData({
             ...locationData,
-            [e.target.name]: e.target.value
-        })
+            [e.target.name]: e.target.value,
+        });
 
         setPost({
             ...post,
-            location: locationData
-        })
-    }
+            location: locationData,
+        });
+    };
 
-    // const handleChangePrice = async (e) => {
-    //     setPriceData({
-    //         ...priceData,
-    //         [e.target.name]: e.target.value
-    //     })
+    const handleChangePrice = async (e) => {
+        setPriceData({
+            ...priceData,
+            [e.target.name]: e.target.value,
+        });
 
-    //     setPost({
-    //         ...post,
-    //         price: priceData
-    //     })
-    // }
+        setPost({
+            ...post,
+            price: priceData,
+        });
+    };
 
     // useEffect(() => {
     //     setPost({
@@ -61,10 +60,13 @@ function PostDes({ increaseStep, setPost, post }) {
                 <form>
                     <div className={style.category} id={style.title}>
                         <div className={style.category_name}>Title</div>
+
                         <div className={style.to_complete}>
                             <label for="title_title">Title</label>
                             <input
-                                value={post.title === undefined ? "" : post.title}
+                                value={
+                                    post.title === undefined ? "" : post.title
+                                }
                                 onChange={handleChange}
                                 name="title"
                                 type="text"
@@ -73,16 +75,20 @@ function PostDes({ increaseStep, setPost, post }) {
                             />
                         </div>
                     </div>
+
                     <div className={style.category} id={style.location}>
                         <div className={style.category_name}>Location</div>
                         <div className={style.wrap_item}>
                             <div
                                 className={style.to_complete}
-                                id={style.location_no}
-                            >
+                                id={style.location_no}>
                                 <label for="to_complete_no">No</label>
                                 <input
-                                    value={locationData.no === undefined ? "" : locationData.no}
+                                    value={
+                                        locationData.no === undefined
+                                            ? ""
+                                            : locationData.no
+                                    }
                                     onChange={handleChangeLocation}
                                     name="no"
                                     type="text"
@@ -92,13 +98,14 @@ function PostDes({ increaseStep, setPost, post }) {
                             </div>
                             <div
                                 className={style.to_complete}
-                                id={style.location_street}
-                            >
-                                <label for="to_complete_street">
-                                    Street
-                                    </label>
+                                id={style.location_street}>
+                                <label for="to_complete_street">Street</label>
                                 <input
-                                    value={locationData.street === undefined ? "" : locationData.street}
+                                    value={
+                                        locationData.street === undefined
+                                            ? ""
+                                            : locationData.street
+                                    }
                                     onChange={handleChangeLocation}
                                     name="street"
                                     type="text"
@@ -108,11 +115,14 @@ function PostDes({ increaseStep, setPost, post }) {
                             </div>
                             <div
                                 className={style.to_complete}
-                                id={style.location_ward}
-                            >
+                                id={style.location_ward}>
                                 <label for="to_complete_ward">Ward</label>
                                 <input
-                                    value={locationData.ward === undefined ? "" : locationData.ward}
+                                    value={
+                                        locationData.ward === undefined
+                                            ? ""
+                                            : locationData.ward
+                                    }
                                     onChange={handleChangeLocation}
                                     name="ward"
                                     type="text"
@@ -122,13 +132,16 @@ function PostDes({ increaseStep, setPost, post }) {
                             </div>
                             <div
                                 className={style.to_complete}
-                                id={style.location_district}
-                            >
+                                id={style.location_district}>
                                 <label for="to_complete_district">
                                     District
-                                    </label>
+                                </label>
                                 <input
-                                    value={locationData.district === undefined ? "" : locationData.district}
+                                    value={
+                                        locationData.district === undefined
+                                            ? ""
+                                            : locationData.district
+                                    }
                                     onChange={handleChangeLocation}
                                     name="district"
                                     type="text"
@@ -138,11 +151,14 @@ function PostDes({ increaseStep, setPost, post }) {
                             </div>
                             <div
                                 className={style.to_complete}
-                                id={style.location_city}
-                            >
+                                id={style.location_city}>
                                 <label for="to_complete_city">City</label>
                                 <input
-                                    value={locationData.city === undefined ? "" : locationData.city}
+                                    value={
+                                        locationData.city === undefined
+                                            ? ""
+                                            : locationData.city
+                                    }
                                     onChange={handleChangeLocation}
                                     name="city"
                                     type="text"
@@ -158,12 +174,13 @@ function PostDes({ increaseStep, setPost, post }) {
                         <div className={style.to_complete}>
                             <label for="to_complete_nearby">Nearby</label>
                             <textarea
-                                value={post.nearby === undefined ? "" : post.nearby}
+                                value={
+                                    post.nearby === undefined ? "" : post.nearby
+                                }
                                 onChange={handleChange}
                                 name="nearby"
                                 id={style.to_complete_nearby}
-                                placeholder="Trường học, bệnh viện,..."
-                            ></textarea>
+                                placeholder="Trường học, bệnh viện,..."></textarea>
                         </div>
                     </div>
 
@@ -171,34 +188,37 @@ function PostDes({ increaseStep, setPost, post }) {
                         <div className={style.category_name}>Type</div>
                         <div
                             className={style.to_complete}
-                            id={style.type_detail}
-                        >
+                            id={style.type_detail}>
+
                             <label for="to_complete_detail">Type</label>
                             <select
                                 value={post.type}
                                 onChange={handleChange}
                                 name="type"
-                                id={style.to_complete_detail}
-                            >
+                                id={style.to_complete_detail}>
                                 <option value="phong_tro">Phòng trọ</option>
+
                                 <option value="chung_cu_mini">
                                     Chung cư mini
-                                    </option>
+                                </option>
+
                                 <option value="nha">Nhà nguyên căn</option>
+
                                 <option value="chung_cu_nguyen_can">
                                     Chung cư nguyên căn
-                                    </option>
+                                </option>
                             </select>
+
                         </div>
-                        <div
-                            className={style.to_complete}
-                            id={style.type_room}
-                        >
-                            <label for="to_complete_room">
-                                Number of room
-                                </label>
+
+                        <div className={style.to_complete} id={style.type_room}>
+                            <label for="to_complete_room">Number of room</label>
                             <input
-                                value={post.numOfRoom === undefined ? "" : post.numOfRoom}
+                                value={
+                                    post.numOfRoom === undefined
+                                        ? ""
+                                        : post.numOfRoom
+                                }
                                 onChange={handleChange}
                                 name="numOfRoom"
                                 type="text"
@@ -212,16 +232,17 @@ function PostDes({ increaseStep, setPost, post }) {
                         <div className={style.category_name}>Price</div>
                         <div
                             className={style.to_complete}
-                            id={style.price_type}
-                        >
+                            id={style.price_type}>
                             <label for="to_complete_price_type">Type</label>
                             <select
-                                // value={priceData.category === undefined ? "" : priceData.category}
-
-                                // onChange={handleChangePrice}
-                                // name="category"
-                                id={style.to_complete_detail}
-                            >
+                                value={
+                                    priceData.category === undefined
+                                        ? ""
+                                        : priceData.category
+                                }
+                                onChange={handleChangePrice}
+                                name="category"
+                                id={style.to_complete_detail}>
                                 <option value="thang">Tháng</option>
                                 <option value="qui">Quí</option>
                                 <option value="nam">Năm</option>
@@ -229,16 +250,14 @@ function PostDes({ increaseStep, setPost, post }) {
                             </select>
                         </div>
                         <div className={style.to_complete} id={style.price}>
-                            <label for="to_complete_price">
-                                Price (đồng)
-                                </label>
+                            <label for="to_complete_price">Price (đồng)</label>
                             <input
-                                // value={priceData.amount === undefined ? "" : priceData.amount}
-
-                                // onChange={handleChangePrice}
-                                // name="amount"
-                                value={post.price === undefined ? "" : post.price}
-
+                                value={priceData.amount === undefined ? "" : priceData.amount}
+                                onChange={handleChangePrice}
+                                name="amount"
+                                value={
+                                    post.price === undefined ? "" : post.price
+                                }
                                 onChange={handleChange}
                                 name="price"
                                 type="text"
@@ -254,7 +273,6 @@ function PostDes({ increaseStep, setPost, post }) {
                             <label for="to_complete_area">Area (m2)</label>
                             <input
                                 value={post.size === undefined ? "" : post.size}
-
                                 onChange={handleChange}
                                 name="size"
                                 type="text"
@@ -269,26 +287,28 @@ function PostDes({ increaseStep, setPost, post }) {
                         <div className={style.to_complete}>
                             <label for="to_complete_other">Other</label>
                             <select
-
                                 value={post.ownerType}
                                 onChange={handleChange}
                                 name="ownerType"
-                                id={style.to_complete_other}
-                            >
+                                id={style.to_complete_other}>
                                 <option value="chung">Chung</option>
                                 <option value="khong_chung">
                                     Không chung chủ
-                                    </option>
+                                </option>
                             </select>
                         </div>
                     </div>
                     <div className={style.category} id={style.continue}>
-                        <button id={style.continue_button} onClick={increaseStep}>Continue</button>
+                        <button
+                            id={style.continue_button}
+                            onClick={increaseStep}>
+                            Continue
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     );
-};
+}
 
 export default PostDes;

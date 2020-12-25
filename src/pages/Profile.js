@@ -10,12 +10,10 @@ import UserPost from '../component/Profile/UserPost/UserPost'
 import UserTabMenu from '../component/Profile/UserTabMenu/UserTabMenu'
 
 function Profile({ match }) {
-    useEffect(() => {
-        console.log(match)
-        return () => {
-            
-        }
-    }, [match])
+    // useEffect(() => {
+    //     return () => {
+    //     }
+    // }, [match])
 
     const style = {
         display: "flex",
@@ -29,7 +27,6 @@ function Profile({ match }) {
             <Nav />
             <div style={style}>
                 <UserTabMenu />
-
                 {match.path === '/profile' && <UserInfo />}
                 {match.path === '/upload' && <Upload />}
                 {match.path === '/my_posts' && <UserPost />}

@@ -3,34 +3,29 @@ import axios from "axios";
 import Card from "../Card/Card";
 import style from "./card.container.module.css";
 import SearchBar from "../SearchBar/SearchBar";
+import * as api from "../../../api/index.js";
+import { getPosts } from "../../../actions/postAction";
+import { useDispatch, useSelector } from "react-redux";
 
-function CardContainer({ posts }) {
-    // const [posts, setPosts] = useState([])
+function CardContainer() {
+    const dispatch = useDispatch();
 
-    // const getPosts = async () => {
-    //     try {
-    //         const res = await axios.get('/posts')
+    const posts = useSelector((state) => state.posts);
 
-    //         console.log(res);
-    //         // setPosts([
-    //         //     ...res
-    //         // ]
-
-    //         // )
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getPosts()
-    // }, [])
+    console.log(posts)
+    
+    useEffect(() => {
+        dispatch(getPosts());
+    }, [dispatch]);
 
     return (
         <div style={{ backgroundColor: "#f7f8f9" }}>
             <div className={style.cardContainer}>
                 {posts.map((post, key) => (
-                    <Card post={post} key={key} />
+                    <Card
+                        post={post}
+                        key={key}
+                    />
                 ))}
             </div>
         </div>
