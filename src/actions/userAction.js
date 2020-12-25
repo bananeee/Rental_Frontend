@@ -31,7 +31,7 @@ export const hostLogin = (loginData) => async (dispatch) => {
 
         localStorage.setItem("token", resData.token);
 
-        localStorage.setItem("user", resData.user);
+        localStorage.setItem("user", resData.user._id);
 
         dispatch({
             type: LOGIN_SUCCESS,

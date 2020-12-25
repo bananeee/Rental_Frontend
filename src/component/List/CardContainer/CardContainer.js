@@ -12,8 +12,6 @@ function CardContainer() {
 
     const posts = useSelector((state) => state.posts);
 
-    console.log(posts)
-    
     useEffect(() => {
         dispatch(getPosts());
     }, [dispatch]);

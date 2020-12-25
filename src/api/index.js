@@ -70,7 +70,6 @@ export const getAPost = async (id) => {
 }
 
 export const createPost = async (data) => {
-
     try {
         const response = await axios.post("/posts", data, Headers);
         return response.data;

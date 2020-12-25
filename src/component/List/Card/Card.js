@@ -9,7 +9,8 @@ import { likePost, unlikePost } from "../../../actions/postAction";
 function Card(props) {
     props = props.post;
 
-    console.log(props.favorite.includes(localStorage.getItem("user")));
+    console.log(props);
+
     const [love, setLove] = useState(
         props.favorite.includes(localStorage.getItem("user"))
     );

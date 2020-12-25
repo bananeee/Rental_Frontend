@@ -11,13 +11,6 @@ function HostLogin({ path }) {
         password: "",
     });
 
-    // const checkRole = () => {
-    //     if (path === "/host/login") console.log("host");
-    //     else if (path === "/renter/login") console.log("renter");
-    // };
-
-    // checkRole();
-
     const dispatch = useDispatch();
 
     const history = useHistory();

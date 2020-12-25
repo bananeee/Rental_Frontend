@@ -15,11 +15,11 @@ function Upload() {
     }
 
     const uploadPost = async () => {
-        try {
-            const response = await api.createPost(post);
-        } catch (error) {
-            console.log(error)
-        }
+        // try {
+        //     const response = await api.createPost(post);
+        // } catch (error) {
+        //     console.log(error)
+        // }
     }
 
     return (
