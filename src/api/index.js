@@ -61,7 +61,17 @@ export const getPosts = async () => {
 
 export const getFavorPosts = async (id) => {
     try {
-        const response = await axios.get("/posts/myfavor/" + id);
+        const response = await axios.get("/posts/myfavor/" + id, Headers);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export const getMyPosts = async (id) => {
+    try {
+        const response = await axios.get("/posts/myposts/" + id, Headers);
         return response.data;
     } catch (error) {
         console.log(error);
