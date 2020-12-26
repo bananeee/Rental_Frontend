@@ -10,11 +10,6 @@ import UserPost from '../component/Profile/UserPost/UserPost'
 import UserTabMenu from '../component/Profile/UserTabMenu/UserTabMenu'
 
 function Profile({ match }) {
-    // useEffect(() => {
-    //     return () => {
-    //     }
-    // }, [match])
-
     const style = {
         display: "flex",
         backgroundColor: "#f7f8f9",

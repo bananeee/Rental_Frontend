@@ -59,6 +59,16 @@ export const getPosts = async () => {
     }
 }
 
+export const getFavorPosts = async (id) => {
+    try {
+        const response = await axios.get("/posts/myfavor/" + id);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 export const getAPost = async (id) => {
     try {
         const response = await axios.get(`/posts/${id}`);

@@ -5,7 +5,8 @@ import {
     DELETE,
     LIKE,
     UNLIKE,
-    CLICK
+    CLICK,
+    FAVOR_POST
 } from "../constants/actionTypes";
 
 import * as api from "../api/index.js";
@@ -15,6 +16,15 @@ export const getPosts = () => async (dispatch) => {
         const data = await api.getPosts();
 
         dispatch({ type: FETCH_ALL, payload: data.post });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+export const getFavorPosts = (id) => async (dispatch) => {
+    try {
+        const data = await api.getFavorPosts(id);
+        dispatch({ type: FAVOR_POST, payload: data.posts });
     } catch (error) {
         console.log(error.message);
     }

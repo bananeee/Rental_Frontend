@@ -5,7 +5,8 @@ import {
     DELETE,
     LIKE,
     UNLIKE,
-    CLICK
+    CLICK,
+    FAVOR_POST
 } from "../constants/actionTypes.js";
 
 const posts = [
@@ -60,8 +61,11 @@ export default (state = posts, action) => {
             return state.filter((post) => post._id !== action.payload);
 
         case CLICK:
-            console.log([action.payload])
             return [action.payload]
+
+        case FAVOR_POST:
+            return [...action.payload]
+            
         default:
             return state;
     }
