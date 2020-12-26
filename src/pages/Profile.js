@@ -30,8 +30,7 @@ function Profile({ match }) {
                 {match.path === '/profile' && <UserInfo />}
                 {match.path === '/upload' && <Upload />}
                 {match.path === '/my_posts' && <UserPost />}
-                {match.path === '/favorite' && <UserFavorite />}
-                
+                {match.path === '/favorite' && <UserFavorite />}       
             </div>
         </div>
     )

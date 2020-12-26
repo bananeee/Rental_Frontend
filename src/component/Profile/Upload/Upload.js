@@ -14,19 +14,11 @@ function Upload() {
         setStep(prevStep => prevStep + 1)
     }
 
-    const uploadPost = async () => {
-        // try {
-        //     const response = await api.createPost(post);
-        // } catch (error) {
-        //     console.log(error)
-        // }
-    }
-
     return (
         <div className={style.upload}>
             {step === 0 && <PostDes increaseStep={nextStep} setPost={setPost} post={post} />}
             {step === 1 && <PostImage increaseStep={nextStep} setPost={setPost} post={post} />}
-            {step === 2 && <PostAmenity uploadPost={uploadPost} setPost={setPost} post={post} />}
+            {step === 2 && <PostAmenity setPost={setPost} post={post} />}
         </div>
     )
 }

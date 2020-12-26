@@ -5,6 +5,7 @@ import {
     DELETE,
     LIKE,
     UNLIKE,
+    CLICK
 } from "../constants/actionTypes";
 
 import * as api from "../api/index.js";
@@ -18,6 +19,17 @@ export const getPosts = () => async (dispatch) => {
         console.log(error.message);
     }
 };
+
+export const getAPost = (id) => async (dispatch) => {
+    try {
+        const data = await api.getAPost(id);
+        console.log(data.posts);
+        dispatch({ type: CLICK, payload: data.posts});
+    } catch (error) {
+        console.log(error.message)
+        
+    }
+}
 
 export const createPost = (post) => async (dispatch) => {
     try {
@@ -56,6 +68,8 @@ export const unlikePost = (id) => async (dispatch) => {
         console.log(error.message);
     }
 };
+
+
 
 // export const deletePost = (id) => async (dispatch) => {
 //   try {
