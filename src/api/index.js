@@ -99,6 +99,15 @@ export const createPost = async (data) => {
     }
 }
 
+export const deletePost = async (id) => {
+    try {
+        const response = await axios.delete("/posts/" + id, Headers);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
 
 export const updatePost = async (id) => {
     try {

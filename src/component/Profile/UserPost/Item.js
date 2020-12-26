@@ -1,7 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../../actions/postAction";
 import style from "./userpost.module.css";
 
 function Item({ post }) {
+
+    const dispatch = useDispatch();
+
+    const handleDelete = (e) => {   
+        e.preventDefault();
+        dispatch(deletePost(post._id));
+    }
     return (
         <tr className={style.itemDetail}>
             <td id="Thumbnail">
@@ -34,7 +43,7 @@ function Item({ post }) {
                 <button>
                     <i className="far fa-pencil-alt"></i>
                 </button>
-                <button>
+                <button onClick={handleDelete}>
                     <i className="far fa-trash"></i>
                 </button>
                 <button>
