@@ -8,14 +8,8 @@ import { getAPost, getPosts } from "../../../actions/postAction";
 import { useDispatch, useSelector } from "react-redux";
 
 function CardContainer() {
-    const dispatch = useDispatch();
-
     const posts = useSelector((state) => state.posts);
-
-    // useEffect(() => {
-    //     dispatch(getPosts());
-    // }, [posts]);
-
+    
     return (
         <div style={{ backgroundColor: "#f7f8f9" }}>
             <div className={style.cardContainer}>

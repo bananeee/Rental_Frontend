@@ -7,8 +7,9 @@ import {
     UNLIKE,
     CLICK,
     FAVOR_POST,
-    MYPOSTS
-} from "../constants/actionTypes.js";
+    MYPOSTS,
+    COMMENT
+} from "../constants/actionTypes.js"
 
 const posts = [
     {
@@ -38,29 +39,29 @@ const posts = [
         },
         comments: [],
     },
-];
+]
 
 export default (state = posts, action) => {
     switch (action.type) {
         case FETCH_ALL:
-            return action.payload;
+            return action.payload
         case LIKE:
             return state.map((post) =>
                 post._id === action.payload._id ? action.payload : post
-            );
+            )
         case UNLIKE:
             return state.map((post) =>
                 post._id === action.payload._id ? action.payload : post
-            );
+            )
         case CREATE:
-            return [...state, action.payload];
+            return [...state, action.payload]
             
         case UPDATE:
             return state.map((post) =>
                 post._id === action.payload._id ? action.payload : post
-            );
+            )
         case DELETE:
-            return state.filter((post) => post._id !== action.payload);
+            return state.filter((post) => post._id !== action.payload)
 
         case CLICK:
             return [action.payload]
@@ -70,7 +71,10 @@ export default (state = posts, action) => {
             
         case MYPOSTS:
             return [...action.payload]
+
+        case COMMENT:
+            return [action.payload]
         default:
-            return state;
+            return state
     }
-};
+}

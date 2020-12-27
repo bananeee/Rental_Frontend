@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./post.des.module.css";
 
-function PostDes({ increaseStep, setPost, post }) {
+function PostDes({ increaseStep, setPost, post, id }) {
     const [locationData, setLocationData] = useState({});
     const [priceData, setPriceData] = useState({});
 
@@ -35,20 +35,6 @@ function PostDes({ increaseStep, setPost, post }) {
             price: priceData,
         });
     };
-
-    // useEffect(() => {
-    //     setPost({
-    //         ...post,
-    //         location: locationData
-    //     })
-    // }, [locationData])
-
-    // useEffect(() => {
-    //     setPriceData({
-    //         ...post,
-    //         price: priceData
-    //     })
-    // }, [priceData])
 
     return (
         <div className={style.container}>

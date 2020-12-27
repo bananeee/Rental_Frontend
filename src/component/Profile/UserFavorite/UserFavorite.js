@@ -6,9 +6,7 @@ import { getFavorPosts } from '../../../actions/postAction';
 function UserFavorite() {
 
     const dispatch = useDispatch();
-
-    const posts = useSelector((state) => state.posts);
-
+    
     useEffect(() => {
         dispatch(getFavorPosts(localStorage.getItem("user")));
     }, []);

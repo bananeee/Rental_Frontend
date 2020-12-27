@@ -7,17 +7,19 @@ function Comment({ comment }) {
         <div className={style.commentContainer}>
             <div>
                 <div className={style.avatar}>
-                    <img src={comment.avatar} alt="" />
+                    <img src={comment.commentedBy.image} alt="" />
                 </div>
             </div>
             <div className={style.commentContent}>
-                <div className={style.userName}>{comment.userName}</div>
+                <div className={style.userName}>{comment.commentedBy.username}</div>
+
                 <div className={style.date}>
                     <i class="fal fa-calendar-alt"></i>
-                    {comment.date}
+                    {/* {comment.date} */}
                 </div>
+
                 <div className={style.description}>
-                    {comment.content}
+                    {comment.text}
                 </div>
             </div>
         </div>
