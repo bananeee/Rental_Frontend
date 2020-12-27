@@ -56,15 +56,15 @@ function Card(props) {
                 <h3 className={style.cardTitle}>{props.title}</h3>
 
                 <p className={style.cardLocation}>
-                    {props.location.no +
+                    {props.no +
                         ", " +
-                        props.location.street +
+                        props.street +
                         ", " +
-                        props.location.ward +
+                        props.ward +
                         ", " +
-                        props.location.district +
+                        props.district +
                         ", " +
-                        props.location.city}
+                        props.city}
                 </p>
 
                 <div className={style.cardAme}>

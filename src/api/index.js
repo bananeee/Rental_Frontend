@@ -48,7 +48,6 @@ export const hostRegister = async (registerData) => {
     }
 };
 
-// post
 export const getPosts = async () => {
     try {
         const response = await axios.get("/posts");
@@ -58,6 +57,18 @@ export const getPosts = async () => {
         return null;
     }
 }
+
+
+export const getPostsByQuery = async (params) => {
+    try {
+        const response = await axios.get("/posts", { params });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 
 export const getAPost = async (id) => {
     try {

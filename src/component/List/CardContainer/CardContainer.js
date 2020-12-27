@@ -14,7 +14,7 @@ function CardContainer() {
 
     useEffect(() => {
         dispatch(getPosts());
-    }, [dispatch]);
+    }, []);
 
     return (
         <div style={{ backgroundColor: "#f7f8f9" }}>

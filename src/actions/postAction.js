@@ -12,7 +12,15 @@ import * as api from "../api/index.js";
 export const getPosts = () => async (dispatch) => {
     try {
         const data = await api.getPosts();
+        dispatch({ type: FETCH_ALL, payload: data.post });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
 
+export const getPostsByQuery = (params) => async (dispatch) => {
+    try {
+        const data = await api.getPostsByQuery(params);
         dispatch({ type: FETCH_ALL, payload: data.post });
     } catch (error) {
         console.log(error.message);

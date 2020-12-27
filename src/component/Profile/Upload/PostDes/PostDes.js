@@ -252,9 +252,9 @@ function PostDes({ increaseStep, setPost, post }) {
                         <div className={style.to_complete} id={style.price}>
                             <label for="to_complete_price">Price (đồng)</label>
                             <input
-                                value={priceData.amount === undefined ? "" : priceData.amount}
-                                onChange={handleChangePrice}
-                                name="amount"
+                                // value={priceData.amount === undefined ? "" : priceData.amount}
+                                // onChange={handleChangePrice}
+                                // name="amount"
                                 value={
                                     post.price === undefined ? "" : post.price
                                 }
