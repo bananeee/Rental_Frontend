@@ -46,7 +46,7 @@ function PostAmenity({ post, setPost, uploadPost }) {
             </div>
 
             <div className={style.amenity_form}>
-                <form>
+                <form >
                     <div className={style.category} id={style.bathroom}>
                         <div className={style.category_name}>Bathroom</div>
                         <div

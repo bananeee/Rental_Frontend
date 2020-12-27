@@ -5,6 +5,9 @@ import {
     DELETE,
     LIKE,
     UNLIKE,
+    CLICK,
+    FAVOR_POST,
+    MYPOSTS
 } from "../constants/actionTypes";
 
 import * as api from "../api/index.js";
@@ -26,6 +29,35 @@ export const getPostsByQuery = (params) => async (dispatch) => {
         console.log(error.message);
     }
 };
+
+export const getFavorPosts = (id) => async (dispatch) => {
+    try {
+        const data = await api.getFavorPosts(id);
+        dispatch({ type: FAVOR_POST, payload: data.posts });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+export const getMyPosts = (id) => async (dispatch) => {
+    try {
+        const data = await api.getMyPosts(id);
+        dispatch({ type: MYPOSTS, payload: data.posts });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+export const getAPost = (id) => async (dispatch) => {
+    try {
+        const data = await api.getAPost(id);
+        console.log(data.posts);
+        dispatch({ type: CLICK, payload: data.posts});
+    } catch (error) {
+        console.log(error.message)
+        
+    }
+}
 
 export const createPost = (post) => async (dispatch) => {
     try {
@@ -65,12 +97,13 @@ export const unlikePost = (id) => async (dispatch) => {
     }
 };
 
-// export const deletePost = (id) => async (dispatch) => {
-//   try {
-//     await await api.deletePost(id);
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    const data = await api.deletePost(id);
 
-//     dispatch({ type: DELETE, payload: id });
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
+    dispatch({ type: DELETE, payload: id });
+
+  } catch (error) {
+    console.log(error.message);
+  }
+};

@@ -4,10 +4,41 @@ import {
     UPDATE,
     DELETE,
     LIKE,
-    UNLIKE
+    UNLIKE,
+    CLICK,
+    FAVOR_POST,
+    MYPOSTS
 } from "../constants/actionTypes.js";
 
-const posts = [];
+const posts = [
+    {
+        image: [],
+        favorite: [],
+        pending: false,
+        title: "",
+        location: {
+            no: "",
+            street: "",
+            ward: "",
+            district: "",
+            city: "",
+        },
+        nearby: "",
+        type: "",
+        numOfRoom: 0,
+        price: 0,
+        size: 0,
+        ownerType: "",
+        kitchen: "",
+        water: 0,
+        otherAmenity: "",
+        postedBy: {
+            username: "",
+            phoneNumber: "",
+        },
+        comments: [],
+    },
+];
 
 export default (state = posts, action) => {
     switch (action.type) {
@@ -23,12 +54,22 @@ export default (state = posts, action) => {
             );
         case CREATE:
             return [...state, action.payload];
+            
         case UPDATE:
             return state.map((post) =>
                 post._id === action.payload._id ? action.payload : post
             );
         case DELETE:
             return state.filter((post) => post._id !== action.payload);
+
+        case CLICK:
+            return [action.payload]
+
+        case FAVOR_POST:
+            return [...action.payload]
+            
+        case MYPOSTS:
+            return [...action.payload]
         default:
             return state;
     }
