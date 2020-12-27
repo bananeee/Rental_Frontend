@@ -7,7 +7,7 @@ function Item({ post }) {
 
     const dispatch = useDispatch();
 
-    const handleDelete = (e) => {   
+    const handleDelete = (e) => {
         e.preventDefault();
         dispatch(deletePost(post._id));
     }
@@ -17,15 +17,15 @@ function Item({ post }) {
                 <img src={post.image[0]} alt="Failure" />
             </td>
             <td id="address">
-                {post.location.no +
+                {post.no +
                     ", " +
-                    post.location.street +
+                    post.street +
                     ", " +
-                    post.location.ward +
+                    post.ward +
                     ", " +
-                    post.location.district +
+                    post.district +
                     ", " +
-                    post.location.city}
+                    post.city}
             </td>
             <td id="type">{post.type}</td>
 

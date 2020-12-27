@@ -19,6 +19,8 @@ function SearchBar() {
 
     const posts = useSelector((state) => state.posts);
 
+    const history = useHistory()
+
     useEffect(() => {
         console.log(posts)
     }, [posts]);
@@ -31,6 +33,7 @@ function SearchBar() {
         }
         console.log(data)
         dispatch(getPostsByQuery(data));
+        // history.push('/posts?find')
     };
 
 

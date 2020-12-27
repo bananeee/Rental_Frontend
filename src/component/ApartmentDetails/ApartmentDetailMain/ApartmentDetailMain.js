@@ -78,15 +78,15 @@ function ApartmentDetailMain({ id }) {
                                 <div className={style.title}>
                                     {posts[0].title}
                                 </div>
-                                {posts[0].location.no +
+                                {posts[0].no +
                                     ", " +
-                                    posts[0].location.street +
+                                    posts[0].street +
                                     ", " +
-                                    posts[0].location.ward +
+                                    posts[0].ward +
                                     ", " +
-                                    posts[0].location.district +
+                                    posts[0].district +
                                     ", " +
-                                    posts[0].location.city}
+                                    posts[0].city}
                             </div>
                             {/* <div className={style.avatar}>
                                  <img src={host.image} alt="" /> 
