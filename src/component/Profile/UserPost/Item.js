@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { deletePost } from "../../../actions/postAction";
 import style from "./userpost.module.css";
 
@@ -7,9 +8,18 @@ function Item({ post }) {
 
     const dispatch = useDispatch();
 
+    const history = useHistory();
+
     const handleDelete = (e) => {   
         e.preventDefault();
         dispatch(deletePost(post._id));
+    }
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+
+        history.push("/upload" + post._id);
+
     }
     return (
         <tr className={style.itemDetail}>
@@ -40,7 +50,7 @@ function Item({ post }) {
             </td>
 
             <td id="actions">
-                <button>
+                <button onClick={handleUpdate}>
                     <i className="far fa-pencil-alt"></i>
                 </button>
                 <button onClick={handleDelete}>

@@ -5,9 +5,7 @@ import Comment from "../Comment/Comment";
 import Slider from "react-slick";
 import LightBox from "../LightBox/LightBox";
 import { useDispatch, useSelector } from "react-redux";
-import { getAPost, likePost, unlikePost } from "../../../actions/postAction";
-
-import * as api from "../../../api/index.js";
+import { commentPost, getAPost, likePost, unlikePost } from "../../../actions/postAction";
 
 function ApartmentDetailMain({ id }) {
     const dispatch = useDispatch();
@@ -17,6 +15,12 @@ function ApartmentDetailMain({ id }) {
     const [love, setLove] = useState(
         posts[0].favorite.includes(localStorage.getItem("user"))
     );
+
+    const [text, setText] = useState("");
+
+    const handleText = (e) => {
+        setText(e.target.value);
+    }
 
     useEffect(() => {
         dispatch(getAPost(id));
@@ -47,9 +51,14 @@ function ApartmentDetailMain({ id }) {
         setLove(!love);
     };
 
+    const handleComment = async (e) => {
+        e.preventDefault();
+        setText("");
+
+        dispatch(commentPost( posts[0]._id, { text: e.target[0].value }));
+    };
     return (
         <main className={style.detailMain}>
-            {console.log(love)}
             <div className={style.carousel}>
                 <Slider {...settings}>
                     {posts[0].image.map((im, key) => (
@@ -188,12 +197,21 @@ function ApartmentDetailMain({ id }) {
                         </div>
                     </div>
                     <LightBox />
+
                     <div className={style.commentContainer}>
                         <h2>Review</h2>
                         {posts[0].comments.map((comment, key) => (
                             <Comment key={key} comment={comment} />
                         ))}
                     </div>
+
+                    <form onSubmit={handleComment}>
+                        <input 
+                            type="text" 
+                            onChange={handleText}
+                            value={text}
+                            placeholder="Add a comment ..." />
+                    </form>
                 </div>
 
                 <div className={style.forms}>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./post.image.module.css";
 import FileBase from "react-file-base64";
 
-function PostImage({ increaseStep, setPost, post }) {
+function PostImage({ increaseStep, setPost, post, id }) {
 
     const saveImage = (file) => {
         setPost({

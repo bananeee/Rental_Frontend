@@ -6,9 +6,7 @@ import { getFavorPosts } from '../../../actions/postAction';
 function UserFavorite() {
     
     const dispatch = useDispatch();
-
-    const posts = useSelector((state) => state.posts);
-
+    
     useEffect(() => {
         dispatch(getFavorPosts(localStorage.getItem("user")));
     }, []);
@@ -19,7 +17,7 @@ function UserFavorite() {
                 <h2>My Favorite</h2>
             </div>
             <div className={style.container}>
-                <CardContainer posts={posts}/>
+                <CardContainer />
             </div>
         </div>
     )

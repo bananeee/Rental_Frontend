@@ -7,7 +7,8 @@ import {
     UNLIKE,
     CLICK,
     FAVOR_POST,
-    MYPOSTS
+    MYPOSTS,
+    COMMENT,
 } from "../constants/actionTypes";
 
 import * as api from "../api/index.js";
@@ -44,12 +45,11 @@ export const getAPost = (id) => async (dispatch) => {
     try {
         const data = await api.getAPost(id);
         console.log(data.posts);
-        dispatch({ type: CLICK, payload: data.posts});
+        dispatch({ type: CLICK, payload: data.posts });
     } catch (error) {
-        console.log(error.message)
-        
+        console.log(error.message);
     }
-}
+};
 
 export const createPost = (post) => async (dispatch) => {
     try {
@@ -90,12 +90,21 @@ export const unlikePost = (id) => async (dispatch) => {
 };
 
 export const deletePost = (id) => async (dispatch) => {
-  try {
-    const data = await api.deletePost(id);
+    try {
+        const data = await api.deletePost(id);
 
-    dispatch({ type: DELETE, payload: id });
+        dispatch({ type: DELETE, payload: id });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
 
-  } catch (error) {
-    console.log(error.message);
-  }
+export const commentPost = (id, comment) => async (dispatch) => {
+    try {
+        const data = await api.commentPost(id, comment);
+
+        dispatch({ type: COMMENT, payload: data});
+    } catch (error) {
+        console.log(error)
+    }
 };

@@ -7,7 +7,8 @@ import * as api from "../../../api/index.js";
 import { getAPost, getPosts } from "../../../actions/postAction";
 import { useDispatch, useSelector } from "react-redux";
 
-function CardContainer({ posts }) {
+function CardContainer() {
+    const posts = useSelector((state) => state.posts);
     
     return (
         <div style={{ backgroundColor: "#f7f8f9" }}>
