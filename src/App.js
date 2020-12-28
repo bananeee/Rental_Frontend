@@ -31,6 +31,7 @@ function App() {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/upload" component={Profile} />
           <Route exact path="/upload/:id" component={Profile} />
+          <Route exact path="/upload" component={Profile} />
           <Route exact path="/my_posts" component={Profile} />
           <Route exact path="/favorite" component={Profile} />
 
