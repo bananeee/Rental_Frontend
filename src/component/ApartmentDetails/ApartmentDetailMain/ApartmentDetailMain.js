@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import Carousel from "react-bootstrap/Carousel";
-
 import style from "./apartmentdetail.main.module.css";
 import Comment from "../Comment/Comment";
 import Slider from "react-slick";
 import LightBox from "../LightBox/LightBox";
 import ReadMoreReact from "read-more-react";
+import { useDispatch, useSelector } from "react-redux";
+import { commentPost, getAPost, likePost, unlikePost } from "../../../actions/postAction";
 
 function ApartmentDetailMain({ id }) {
-    const [post, setPost] = useState({
-        image: [],
-    });
-    const [host, setHost] = useState({});
-    const [comments, setComments] = useState([]);
+    const dispatch = useDispatch();
+
+    let posts = useSelector((state) => state.posts);
+
+    const [love, setLove] = useState(
+        posts[0].favorite.includes(localStorage.getItem("user"))
+    );
+
+    const [text, setText] = useState("");
+
+    const handleText = (e) => {
+        setText(e.target.value);
+    }
+
+    useEffect(() => {
+        dispatch(getAPost(id));
+    }, []);
+
     const settings = {
         dots: true,
         infinite: true,
@@ -28,69 +41,40 @@ function ApartmentDetailMain({ id }) {
         // centerPadding: '100px',
     };
 
-    const [favorite, setFavorite] = useState({});
-    const handleFavoriteClick = async (e) => {
-        setFavorite(!favorite);
-        console.log("1");
+    // const [favorite, setFavorite] = useState({});
+    // const handleFavoriteClick = async (e) => {
+    //     setFavorite(!favorite);
+    //     console.log("1");
+    // };
+
+    const handleHeartClick = async (e) => {
+        e.preventDefault();
+
+        if (!love) {
+            dispatch(likePost(id));
+        } else {
+            dispatch(unlikePost(id));
+        }
+        setLove(!love);
     };
 
-    useEffect(() => {
-        const getPostData = async () => {
-            try {
-                const resPost = await axios.get(`/posts/${id}`);
-                // const resHost = await axios.get(`/host/${resPost.data.host}`);
-                // const resComment = await axios.get(`/comment?postId=${id}`);
-                // console.log(resComment.data)
-                console.log(resPost.data.posts);
-                setPost(resPost.data.posts);
-                // setHost(resHost.data);
-                // setComments(resComment.data);
-                // console.log(post);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getPostData();
-    }, []);
+    const handleComment = async (e) => {
+        e.preventDefault();
+        setText("");
 
-    // useEffect(() => {
-    //     const getHostData = async () => {
-    //         try {
-    //             const resHost = await axios.get(`/host/${post.host}`);
-    //             setHost(resHost.data);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     if (post) getHostData(post);
-    // }, [post]);
-
-    // useEffect(() => {
-    //     const getCommentData = async () => {
-    //         try {
-    //             const resComments = await axios.get(`/comment/${post.id}`);
-    //             setComments(resComments.data);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     if (post) getCommentData(post);
-    // }, [post]);
-
+        dispatch(commentPost( posts[0]._id, { text: e.target[0].value }));
+    };
     return (
         <main className={style.detailMain}>
             <div className={style.carousel}>
                 <Slider {...settings}>
-                    {post.image.map((im, key) => (
+                    {posts[0].image.map((im, key) => (
                         <div className={style.displayItem}>
                             <div key={key}>
                                 <img src={im} alt="" />
                             </div>
                         </div>
                     ))}
-                    {/* {
-                        console.log(post.image)
-                    }                     */}
                 </Slider>
             </div>
 
@@ -100,39 +84,56 @@ function ApartmentDetailMain({ id }) {
                         <div className={style.contentTitle}>
                             <div>
                                 <div className={style.breadcrumb}>
-                                    Home {">"} {post.type} {">"} {post.title}
+                                    <a href="/">Home</a>
+                                    {" > "}
+                                    <a href="#">{posts[0].type}</a>
+                                    {" > "}
+                                    <a href="#">{posts[0].title}</a>
                                 </div>
-                                <div className={style.title}>{post.title}</div>
-                                {/* <div className={style.location}>
-                                    {post.location}
-                                </div> */}
+
+                                <div className={style.title}>
+                                    {posts[0].title}
+                                </div>
+                                {posts[0].no +
+                                    ", " +
+                                    posts[0].street +
+                                    ", " +
+                                    posts[0].ward +
+                                    ", " +
+                                    posts[0].district +
+                                    ", " +
+                                    posts[0].city}
                             </div>
-                            <div className={style.avatar}>
-                                {/* <img src={host.image} alt="" /> */}
-                            </div>
+                            {/* <div className={style.avatar}>
+                                 <img src={host.image} alt="" /> 
+                            </div> */}
                         </div>
                         <div className={style.presDes}>
                             <div className={style.noBorderLeft}>
                                 <i className="fa fa-usd-circle"></i>
                                 <span>Price</span>
-                                <b>{post.price}</b>
+                                <b>{posts[0].price}</b>
                             </div>
+
                             <div className={style.noBorderLeft}>
                                 <i className="fas fa-home-alt"></i>
                                 <span>Type</span>
-                                <b>{post.type}</b>
+                                <b>{posts[0].type}</b>
                             </div>
+
                             <div className={style.noBorderLeft}>
                                 <i className="fas fa-square"></i>
                                 <span>Size</span>
-                                <b>{post.size}</b>
+                                <b>{posts[0].size}</b>
                             </div>
+
                             <div className={style.noBorderLeft}>
                                 <i className="fas fa-warehouse-alt"></i>
                                 <span>Room</span>
-                                <b>{post.room}</b>
+                                <b>{posts[0].numOfRoom}</b>
                             </div>
                         </div>
+
                         <div className={style.description}>
                             <header>
                                 <h2>About this listing</h2>
@@ -165,48 +166,42 @@ function ApartmentDetailMain({ id }) {
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
@@ -214,13 +209,23 @@ function ApartmentDetailMain({ id }) {
                         </div>
                     </div>
                     <LightBox />
-                    {/* <div className={style.commentContainer}>
+
+                    <div className={style.commentContainer}>
                         <h2>Review</h2>
-                        {comments.map((comment, key) => (
+                        {posts[0].comments.map((comment, key) => (
                             <Comment key={key} comment={comment} />
                         ))}
-                    </div> */}
+                    </div>
+
+                    <form onSubmit={handleComment}>
+                        <input 
+                            type="text" 
+                            onChange={handleText}
+                            value={text}
+                            placeholder="Add a comment ..." />
+                    </form>
                 </div>
+
                 <div className={style.forms}>
                     <div className={style.above}>
                         <div className={style.formsTitle}>
@@ -231,22 +236,25 @@ function ApartmentDetailMain({ id }) {
                             <div className={style.pricesAreas}>
                                 <div>
                                     <i className="fa fa-money-bill-wave"></i>
-                                    <sup>$</sup>455<sub>/month</sub>
+                                    <sup>$</sup>
+                                    {posts[0].price}
+                                    <sub>/month</sub>
                                 </div>
+
                                 <div>
                                     <i className="fa fa-chart-area"></i>
-                                    35m<sup>2</sup>
+                                    {posts[0].size}m<sup>2</sup>
                                 </div>
                             </div>
 
                             <div className={style.name}>
                                 <i className="fa fa-user"></i>
-                                Host: Nguyen Duc Quoc Dai
+                                Host: {posts[0].postedBy.username}
                             </div>
 
                             <div className={style.phone}>
                                 <i className="fa fa-phone"></i>
-                                Phone: 0366684576
+                                Phone: {posts[0].postedBy.phoneNumber}
                             </div>
 
                             <div>
@@ -257,8 +265,8 @@ function ApartmentDetailMain({ id }) {
                     </div>
                     <div className={style.bottom}>
                         <div
-                            className={favorite ? style.added : style.removed}
-                            onClick={handleFavoriteClick}
+                            className={love ? style.added : style.removed}
+                            onClick={handleHeartClick}
                         >
                             <i className="fa fa-heart"></i>
                             Add to Favorite

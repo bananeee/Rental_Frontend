@@ -3,13 +3,16 @@ import style from "./card.module.css";
 import img from "../../../assets/test.jpg";
 import { useHistory } from "react-router-dom";
 import * as api from "../../../api/index.js";
-import { useDispatch } from "react-redux";
-import { likePost, unlikePost } from "../../../actions/postAction";
+import { useDispatch, useSelector } from "react-redux";
+import { getAPost, likePost, unlikePost } from "../../../actions/postAction";
 
 function Card(props) {
-    props = props.post;
 
-    console.log(props);
+    const post = useSelector((state) => state);
+
+    const history = useHistory();
+    
+    props = props.post;
 
     const [love, setLove] = useState(
         props.favorite.includes(localStorage.getItem("user"))
@@ -17,20 +20,16 @@ function Card(props) {
 
     const dispatch = useDispatch();
 
- 
-    const handleCardClick = (e) => {
+
+    const handleCardClick = async (e) => {
         e.preventDefault();
-        // try {
-        //     const data = await axios.get("/posts/" + post._id);
-        //     console.log(data);
-        // } catch (error) {
-        //     console.log(error)
-        // }
-        // history.push(`/posts/${post._id}`)
+        e.stopPropagation();
+        history.push("/posts/" + props._id);
+
     };
 
     const handleHeartClick = async (e) => {
-        // e.stopPropagation();
+        e.preventDefault();
 
         if (!love) {
             dispatch(likePost(props._id));
@@ -56,15 +55,15 @@ function Card(props) {
                 <h3 className={style.cardTitle}>{props.title}</h3>
 
                 <p className={style.cardLocation}>
-                    {props.location.no +
+                    {props.no +
                         ", " +
-                        props.location.street +
+                        props.street +
                         ", " +
-                        props.location.ward +
+                        props.ward +
                         ", " +
-                        props.location.district +
+                        props.district +
                         ", " +
-                        props.location.city}
+                        props.city}
                 </p>
 
                 <div className={style.cardAme}>

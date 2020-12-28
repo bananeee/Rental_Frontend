@@ -11,3 +11,9 @@ export const UPDATE = "UPDATE";
 export const DELETE = "DELETE";
 export const LIKE = "LIKE" ;
 export const UNLIKE = "UNLIKE" ;
+export const CLICK = "CLICK" ;
+export const FAVOR_POST = "FAVOR_POST" ;
+export const MYPOSTS = "MYPOSTS" ;
+export const COMMENT = "COMMENT";
+
+

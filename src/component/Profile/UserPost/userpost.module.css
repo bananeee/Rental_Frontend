@@ -12,7 +12,7 @@
 .header {
     padding: 2rem;
     border-bottom: 1px dotted rgb(218, 215, 215);
-} 
+}
 
 .header h3 {
     margin-bottom: 1rem;
@@ -43,17 +43,15 @@
     text-align: center;
 }
 
-.title th{
+.title th {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    
 }
 
-.itemDetail td{
+.itemDetail td {
     border-top: 1px dotted rgb(218, 215, 215);
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    
 }
 
 .status {
@@ -78,4 +76,38 @@
 
 .itemDetail button:focus {
     outline: none;
+}
+
+.itemDetail img {
+    width: 110px;
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 1045px) {
+    .description tr {
+        display: block;
+    }
+    .description td {
+        display: block;
+    }
+    .description thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    .description td {
+        position: relative;
+        padding-left: 50%;
+    }
+    .description td::before {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        margin-right: 100px;
+        width: 45%;
+        font-weight: 700;
+        content: attr(id);
+        text-transform: capitalize;
+    }
 }

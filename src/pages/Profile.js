@@ -10,11 +10,6 @@ import UserPost from '../component/Profile/UserPost/UserPost'
 import UserTabMenu from '../component/Profile/UserTabMenu/UserTabMenu'
 
 function Profile({ match }) {
-    // useEffect(() => {
-    //     return () => {
-    //     }
-    // }, [match])
-
     const style = {
         display: "flex",
         backgroundColor: "#f7f8f9",
@@ -28,10 +23,9 @@ function Profile({ match }) {
             <div style={style}>
                 <UserTabMenu />
                 {match.path === '/profile' && <UserInfo />}
-                {match.path === '/upload' && <Upload />}
+                {match.path === '/upload/:id' && <Upload id={match.params.id} />}
                 {match.path === '/my_posts' && <UserPost />}
-                {match.path === '/favorite' && <UserFavorite />}
-                
+                {match.path === '/favorite' && <UserFavorite />}       
             </div>
         </div>
     )

@@ -4,9 +4,9 @@ import style from "./post.amenity.module.css";
 
 import * as api from "../../../../api/index.js";
 import { useDispatch } from "react-redux";
-import { createPost } from "../../../../actions/postAction";
+import { createPost, deletePost, updatePost } from "../../../../actions/postAction";
 
-function PostAmenity({ post, setPost, uploadPost }) {
+function PostAmenity({ post, setPost, uploadPost, id }) {
     const [bathroomData, setBathroomData] = useState({});
 
     const history = useHistory();
@@ -34,8 +34,12 @@ function PostAmenity({ post, setPost, uploadPost }) {
 
     const preventSubmit = async (e) => {
         e.preventDefault();
-        
-        dispatch(createPost(post));        
+
+        if (!id) {
+            dispatch(createPost(post));
+        } else {
+            dispatch(updatePost(id, post));
+        }
         history.push("/posts");
     };
 
@@ -66,6 +70,7 @@ function PostAmenity({ post, setPost, uploadPost }) {
                                 <option value="chung">Chung</option>
                             </select>
                         </div>
+
                         <div
                             className={style.to_complete}
                             id={style.bathroom_water}>
@@ -84,6 +89,7 @@ function PostAmenity({ post, setPost, uploadPost }) {
                             </select>
                         </div>
                     </div>
+
                     <div className={style.category} id={style.kitchen}>
                         <div className={style.category_name}>Kitchen</div>
                         <div className={style.to_complete}>
@@ -127,6 +133,7 @@ function PostAmenity({ post, setPost, uploadPost }) {
                             </select>
                         </div>
                     </div>
+
                     <div className={style.category} id={style.balcony}>
                         <div className={style.category_name}>Balcony</div>
                         <div className={style.to_complete}>
@@ -145,6 +152,7 @@ function PostAmenity({ post, setPost, uploadPost }) {
                             </select>
                         </div>
                     </div>
+
                     <div
                         className={style.category}
                         id={style.electricity_water_bill}>

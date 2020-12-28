@@ -9,24 +9,23 @@ const Headers = {
 // user
 export const renterLogin = async (loginData) => {
     try {
-        
         const response = await axios.post("auth/renter/login", loginData);
-        return response.data;    
+        return response.data;
     } catch (error) {
         console.log(error);
         return null;
     }
-}
+};
 
 export const hostLogin = async (loginData) => {
     try {
         const response = await axios.post("auth/host/login", loginData);
-        return response.data;    
+        return response.data;
     } catch (error) {
         console.log(error);
         return null;
     }
-}
+};
 
 export const renterRegister = async (registerData) => {
     try {
@@ -48,7 +47,6 @@ export const hostRegister = async (registerData) => {
     }
 };
 
-// post
 export const getPosts = async () => {
     try {
         const response = await axios.get("/posts");
@@ -57,7 +55,38 @@ export const getPosts = async () => {
         console.log(error);
         return null;
     }
+};
+
+
+export const getPostsByQuery = async (params) => {
+    try {
+        const response = await axios.get("/posts", { params });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
 }
+
+export const getFavorPosts = async (id) => {
+    try {
+        const response = await axios.get("/posts/myfavor/" + id, Headers);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
+
+export const getMyPosts = async (id) => {
+    try {
+        const response = await axios.get("/posts/myposts/" + id, Headers);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
 
 export const getAPost = async (id) => {
     try {
@@ -67,7 +96,7 @@ export const getAPost = async (id) => {
         console.log(error);
         return null;
     }
-}
+};
 
 export const createPost = async (data) => {
     try {
@@ -77,48 +106,55 @@ export const createPost = async (data) => {
         console.log(error);
         return null;
     }
-}
+};
 
-
-export const updatePost = async (id) => {
+export const deletePost = async (id) => {
     try {
-        const response = await axios.put(`/posts/${id}`, Headers);
+        const response = await axios.delete("/posts/" + id, Headers);
         return response.data;
     } catch (error) {
         console.log(error);
         return null;
     }
-}
+};
 
-export const commentPost = async (id, data) => {
+export const updatePost = async (id, data) => {
     try {
-        
-        const response = await  axios.put(`/posts/comment/${id}`, data, Headers);
-        return response.data;   
+        const response = await axios.put(`/posts/${id}`, data, Headers);
+        return response.data;
     } catch (error) {
         console.log(error);
         return null;
-        
     }
-}
+};
+
+export const commentPost = async (id, data) => {
+    try {
+
+        const response = await axios.put(`/posts/comment/${id}`, data, Headers);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
 
 export const likePost = async (id) => {
     try {
         const response = await axios.put(`/posts/like/${id}`, {}, Headers);
-        return response.data;   
+        return response.data;
     } catch (error) {
         console.log(error);
         return null;
-        
     }
-}
+};
 
 export const unlikePost = async (id) => {
     try {
         const response = await axios.put(`/posts/unlike/${id}`, {}, Headers);
-        return response.data;   
+        return response.data;
     } catch (error) {
         console.log(error);
-        return null
+        return null;
     }
-}
+};
