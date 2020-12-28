@@ -8,7 +8,9 @@ import * as api from "../../../api/index.js";
 
 function Upload({ id }) {
     const [step, setStep] = useState(0)
-    const [post, setPost] = useState({})
+    const [post, setPost] = useState({
+        image: [],
+    })
 
     const nextStep = () => {
         setStep(prevStep => prevStep + 1)

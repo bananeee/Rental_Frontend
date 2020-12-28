@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPostsByQuery } from '../../../actions/postAction'
+import { useParams } from 'react-router-dom'
 
 function SearchBar() {
 
@@ -14,16 +15,14 @@ function SearchBar() {
     const [searchField, setSearchField] = useState({})
 
     const { register, handleSubmit } = useForm({})
-
     const dispatch = useDispatch();
-
     const posts = useSelector((state) => state.posts);
-
     const history = useHistory()
+    const params = useParams({});
 
-    useEffect(() => {
-        console.log(posts)
-    }, [posts]);
+    // useEffect(() => {
+    //     console.log(posts)
+    // }, [posts]);
 
     const onSubmit = (data) => {
         for (const propName in data) {
@@ -31,9 +30,9 @@ function SearchBar() {
                 delete data[propName];
             }
         }
-        console.log(data)
+        // console.log(data)
         dispatch(getPostsByQuery(data));
-        history.push('/posts?find')
+        history.push('/posts')
     };
 
 
@@ -60,7 +59,6 @@ function SearchBar() {
             setCityId(-1)
         else
             setCityId(city.find(c => c.province_name === e.target.value).province_id)
-        console.log(cityId)
         // handleInputChange(e)
     }
 
@@ -92,7 +90,7 @@ function SearchBar() {
     // }
 
     return (
-        <form className={style.searchBox}>
+        <form className={style.searchBox} onSubmit={handleSubmit(onSubmit)} >
             <select name="city" id="" onChange={handleCityChange} ref={register}>
                 <option value="">Tỉnh/Thành phố</option>
                 {city.map((c, key) => <option key={key} value={c.province_name}>{c.province_name}</option>)}
@@ -123,7 +121,7 @@ function SearchBar() {
                     color: "white",
                     fontSize: "1.25rem"
                 }}
-                onClick={handleSubmit(onSubmit)}>Tìm kiếm</button>
+                type="submit">Tìm kiếm</button>
         </form>
     )
 }
