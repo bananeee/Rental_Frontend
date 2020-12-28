@@ -7,11 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAPost, likePost, unlikePost } from "../../../actions/postAction";
 
 function Card(props) {
-
     const post = useSelector((state) => state);
 
     const history = useHistory();
-    
+
     props = props.post;
 
     const [love, setLove] = useState(
@@ -20,16 +19,15 @@ function Card(props) {
 
     const dispatch = useDispatch();
 
-
     const handleCardClick = async (e) => {
         e.preventDefault();
         e.stopPropagation();
         history.push("/posts/" + props._id);
-
     };
 
     const handleHeartClick = async (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
         if (!love) {
             dispatch(likePost(props._id));
@@ -40,8 +38,8 @@ function Card(props) {
     };
 
     return (
-        <div className={style.card} onClick={handleCardClick}>
-            <div className={style.cardPres}>
+        <div className={style.card}>
+            <div className={style.cardPres} onClick={handleCardClick}>
                 <div className={style.cardPrice}>
                     {props.price}
                     <span>/month</span>
@@ -52,7 +50,9 @@ function Card(props) {
             </div>
 
             <div className={style.cardBody}>
-                <h3 className={style.cardTitle}>{props.title}</h3>
+                <h3 className={style.cardTitle}>
+                    <span onClick={handleCardClick}>{props.title}</span>
+                </h3>
 
                 <p className={style.cardLocation}>
                     {props.no +

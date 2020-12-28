@@ -70,12 +70,12 @@ function NavLogout({ layout }) {
 
                 <li>
                     <NavLink
-                        to="#"
+                        to="/"
                         activeClassName="selected"
                         onClick={() => {
                             localStorage.clear();
                             dispatch({ type: "LOGOUT" });
-                            history.push("/");
+                            // history.push("/");
                         }}
                         activeClassName="selected">
                         Log out

@@ -38,6 +38,7 @@ const Chat = ({ location }) => {
     useEffect(() => {
         socket.on("message", (message) => {
             console.log(message);
+            
             setMessages((messages) => [...messages, message]);
         });
 

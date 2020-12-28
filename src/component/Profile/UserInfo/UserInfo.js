@@ -6,13 +6,22 @@ import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
 
 import * as api from "../../../api/index";
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+  
 
 function UserInfo() {
     const [userInfo, setUserInfo] = useState({
         phoneNumber: "",
-        image: "https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png",
+        image:
+            "https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png",
         fullName: "",
         no: "",
         street: "",
@@ -23,12 +32,12 @@ function UserInfo() {
         facebook: "",
         instagram: "",
         twitter: "",
-    })
+    });
 
     const dispatch = useDispatch();
 
     const history = useHistory();
-    
+
     const [city, setCity] = useState([]);
 
     const [district, setDistrict] = useState([]);
@@ -101,8 +110,18 @@ function UserInfo() {
     };
 
     const handleSubmit = () => {
-        console.log(userInfo)
+        setOpen(true);
         api.updateRenter(localStorage.getItem("user"), userInfo);
+    };
+
+    const [open, setOpen] = useState(false);
+
+    const handleClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setOpen(false);
     };
 
     return (
@@ -187,7 +206,7 @@ function UserInfo() {
                     <div className={style.content_box}>
                         <label for="bio">Bio</label>
                         <textarea
-                            style ={{ resize: "vertical", width: "212%"}}
+                            style={{ resize: "vertical", width: "212%" }}
                             value={
                                 userInfo.bio === undefined ? "" : userInfo.bio
                             }
@@ -413,6 +432,12 @@ function UserInfo() {
                     </div>
                 </div>
             </div>
+
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    Save successfully !
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

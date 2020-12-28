@@ -81,6 +81,12 @@
     margin: 0.25rem 0 0.25rem 0;
 }
 
+.cardTitle span:hover {
+    color: rgb(128, 128, 128);
+    /* color: #f0384a; */
+    cursor: pointer;
+}
+
 .cardHeart i {
     position: absolute;
     bottom: 1rem;
@@ -88,5 +94,3 @@
     font-size: 1.7rem;
     color: #f0384a;
 }
-
-@media (max-width:)
