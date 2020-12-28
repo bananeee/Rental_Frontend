@@ -47,6 +47,31 @@ export const hostRegister = async (registerData) => {
     }
 };
 
+export const updateRenter = async (id, userData) => {
+    try {
+        const response = await axios.put("/renter/" + id, userData, Headers);
+        return response.data;
+        
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export const getRenterInfo = async (id) => {
+    try {
+        const response = await axios.get("renter/" + id, Headers);
+        return response.data;
+        
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+
+
+// Posts
 export const getPosts = async () => {
     try {
         const response = await axios.get("/posts");

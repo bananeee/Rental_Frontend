@@ -24,6 +24,7 @@ function Profile({ match }) {
                 <UserTabMenu />
                 {match.path === '/profile' && <UserInfo />}
                 {match.path === '/upload/:id' && <Upload id={match.params.id} />}
+                {match.path === '/upload' && <Upload />}
                 {match.path === '/my_posts' && <UserPost />}
                 {match.path === '/favorite' && <UserFavorite />}       
             </div>

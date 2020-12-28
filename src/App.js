@@ -11,6 +11,9 @@ import Profile from './pages/Profile';
 import Upload from './component/Profile/Upload/Upload';
 import UserPost from './component/Profile/UserPost/UserPost';
 import UserFavorite from './component/Profile/UserFavorite/UserFavorite';
+import Join from './component/Socket/Join/Join';
+
+import Chat from "./component/Socket/Chat/Chat";
 
 
 function App() {
@@ -26,9 +29,14 @@ function App() {
           <Route exact path="/renter/register" component={Register} />
           <Route exact path="/host/register" component={Register} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/upload" component={Profile} />
           <Route exact path="/upload/:id" component={Profile} />
           <Route exact path="/my_posts" component={Profile} />
           <Route exact path="/favorite" component={Profile} />
+
+          <Route exact path="/join" component={Join} />
+          <Route exact path="/chat" component={Chat} />
+          
           <Route component={NotFound}/>
         </Switch>
       </div>
