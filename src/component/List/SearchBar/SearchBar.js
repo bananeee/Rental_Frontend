@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import style from "./search.module.css";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { getPostsByQuery } from "../../../actions/postAction";
+import React, { useEffect, useState } from 'react'
+import style from './search.module.css'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { getPostsByQuery } from '../../../actions/postAction'
+import { useParams } from 'react-router-dom'
 
 function SearchBar() {
     const [city, setCity] = useState([]);
@@ -12,17 +13,20 @@ function SearchBar() {
     const [cityId, setCityId] = useState(-1);
     const [searchField, setSearchField] = useState({});
 
-    const { register, handleSubmit } = useForm({});
+    const [city, setCity] = useState([])
+    const [district, setDistrict] = useState([])
+    const [cityId, setCityId] = useState(-1)
+    const [searchField, setSearchField] = useState({})
 
+    const { register, handleSubmit } = useForm({})
     const dispatch = useDispatch();
-
     const posts = useSelector((state) => state.posts);
+    const history = useHistory()
+    const params = useParams({});
 
-    const history = useHistory();
-
-    useEffect(() => {
-        console.log(posts);
-    }, [posts]);
+    // useEffect(() => {
+    //     console.log(posts)
+    // }, [posts]);
 
     const onSubmit = (data) => {
         for (const propName in data) {
@@ -30,9 +34,9 @@ function SearchBar() {
                 delete data[propName];
             }
         }
-        console.log(data);
+        // console.log(data)
         dispatch(getPostsByQuery(data));
-        // history.push('/posts?find')
+        history.push('/posts')
     };
 
     const getCityData = async () => {
@@ -60,10 +64,7 @@ function SearchBar() {
     const handleCityChange = async (e) => {
         if (e.target.value === "") setCityId(-1);
         else
-            setCityId(
-                city.find((c) => c.province_name === e.target.value).province_id
-            );
-        console.log(cityId);
+            setCityId(city.find(c => c.province_name === e.target.value).province_id)
         // handleInputChange(e)
     };
 
@@ -95,43 +96,8 @@ function SearchBar() {
     // }
 
     return (
-        // <form className={style.searchBox}>
-        //     <select name="searchField[location].city" id="" onChange={handleCityChange}>
-        //         {city.map((c, key) => <option key={key} value={c.province_id}>{c.province_name}</option>)}
-        //     </select>
-        //     <select name="searchField[location].district" id="" onChange={handleInputChange}>
-        //         {district.map((d, key) => <option key={key} value={d.district_id}>{d.district_name}</option>)}
-        //     </select>
-        //     <select name="price" id="" onChange={handleInputChange}>
-        //         <option value="1000">Dưới 1 triệu</option>
-        //         <option value="2000">2 triệu</option>
-        //         <option value="3000">3 triệu</option>
-        //         <option value="4000">4 triệu</option>
-        //         <option value="5000">5 triệu</option>
-        //     </select>
-        //     <select name="size" id="" onChange={handleInputChange}>
-        //         <option value="10">Dưới 20 m2</option>
-        //         <option value="20">20 m2</option>
-        //         <option value="30">30 m2</option>
-        //         <option value="40">40 m2</option>
-        //         <option value="50">50 m2</option>
-        //     </select>
-        //     <button
-        //         className={style.btnSearch}
-        //         style={{
-        //             color: "white",
-        //             fontSize: "1.25rem"
-        //         }}
-        //         onClick={submit}>Tìm kiếm</button>
-        // </form>
-
-        <form className={style.searchBox}>
-            <select
-                name="city"
-                id=""
-                onChange={handleCityChange}
-                ref={register}
-            >
+        <form className={style.searchBox} onSubmit={handleSubmit(onSubmit)} >
+            <select name="city" id="" onChange={handleCityChange} ref={register}>
                 <option value="">Tỉnh/Thành phố</option>
                 {city.map((c, key) => (
                     <option key={key} value={c.province_name}>
@@ -169,10 +135,7 @@ function SearchBar() {
                     color: "white",
                     fontSize: "1.25rem",
                 }}
-                onClick={handleSubmit(onSubmit)}
-            >
-                Tìm kiếm
-            </button>
+                type="submit">Tìm kiếm</button>
         </form>
     );
 }

@@ -3,19 +3,37 @@ import style from "./post.image.module.css";
 import FileBase from "react-file-base64";
 
 function PostImage({ increaseStep, setPost, post, id }) {
-
     const saveImage = (file) => {
+        let term = post.image
+        term.push(...file.map((item) => item.base64))
+
         setPost({
             ...post,
-            image: file.map((item) => item.base64)
+            image: term
         });
-
     };
+
+    // console.log(post.image);
 
     return (
         <div className={style.container}>
             <div id={style.image_title}>
                 <h2>Image</h2>
+            </div>
+
+            <div className={style.uploadedImg}>
+                {
+                    post.image.map((img, key) => (
+                        <div className={style.prImg}>
+                            {/* <button className={style.clsBtn}> */}
+                            <i class="far fa-times"></i>
+                            {/* </button> */}
+                            {/* <div className={style.imgCtn}> */}
+                            {/* </div> */}
+                            <img src={img} alt="" />
+                        </div>
+                    ))
+                }
             </div>
 
             <div className={style.image_upload_area}>

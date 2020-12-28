@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function CardContainer() {
     const posts = useSelector((state) => state.posts);
+    // console.log(posts);
     
     return (
         <div style={{ backgroundColor: "#f7f8f9" }}>
