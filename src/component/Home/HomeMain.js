@@ -106,7 +106,7 @@ function HomeMain() {
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    WpRentals has increased our booking requests
+                                    Easy Accomd has increased our booking requests
                                     10 times more than our older website. Thank
                                     you for the amazing work!
                                 </p>
@@ -127,7 +127,7 @@ function HomeMain() {
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    WpRentals has increased our booking requests
+                                    Easy Accomd has increased our booking requests
                                     10 times more than our older website. Thank
                                     you for the amazing work!
                                 </p>
@@ -148,7 +148,7 @@ function HomeMain() {
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    WpRentals has increased our booking requests
+                                    Easy Accomd has increased our booking requests
                                     10 times more than our older website. Thank
                                     you for the amazing work!
                                 </p>
@@ -169,7 +169,7 @@ function HomeMain() {
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    WpRentals has increased our booking requests
+                                    Easy Accomd has increased our booking requests
                                     10 times more than our older website. Thank
                                     you for the amazing work!
                                 </p>
@@ -190,7 +190,7 @@ function HomeMain() {
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    WpRentals has increased our booking requests
+                                    Easy Accomd has increased our booking requests
                                     10 times more than our older website. Thank
                                     you for the amazing work!
                                 </p>
@@ -211,7 +211,7 @@ function HomeMain() {
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    WpRentals has increased our booking requests
+                                    Easy Accomd has increased our booking requests
                                     10 times more than our older website. Thank
                                     you for the amazing work!
                                 </p>

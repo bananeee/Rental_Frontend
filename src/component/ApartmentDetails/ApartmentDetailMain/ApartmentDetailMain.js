@@ -6,6 +6,7 @@ import style from "./apartmentdetail.main.module.css";
 import Comment from "../Comment/Comment";
 import Slider from "react-slick";
 import LightBox from "../LightBox/LightBox";
+import ReadMoreReact from "read-more-react";
 
 function ApartmentDetailMain({ id }) {
     const [post, setPost] = useState({
@@ -25,6 +26,12 @@ function ApartmentDetailMain({ id }) {
         accessibility: true,
         // centerMode: true,
         // centerPadding: '100px',
+    };
+
+    const [favorite, setFavorite] = useState({});
+    const handleFavoriteClick = async (e) => {
+        setFavorite(!favorite);
+        console.log("1");
     };
 
     useEffect(() => {
@@ -70,7 +77,6 @@ function ApartmentDetailMain({ id }) {
     //     if (post) getCommentData(post);
     // }, [post]);
 
-    
     return (
         <main className={style.detailMain}>
             <div className={style.carousel}>
@@ -132,19 +138,24 @@ function ApartmentDetailMain({ id }) {
                                 <h2>About this listing</h2>
                             </header>
                             <div className={style.paragraph}>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Morbi est quam, volutpat et
-                                arcu eu, pharetra congue augue. Integer vel nibh
-                                eu eros interdum commodo. Vivamus finibus
-                                fringilla libero, id consectetur purus
-                                sollicitudin vel. Proin dapibus ante et pharetra
-                                luctus. Ut lacinia ante ut nunc pellentesque
-                                auctor. Proin laoreet erat sed ornare molestie.
-                                Fusce vehicula ut nulla facilisis vulputate.
-                                Quisque vel purus ac lectus tempus viverra.
-                                Maecenas at sem at erat pellentesque hendrerit
-                                nec in massa. Vestibulum nec lacinia dui, a
-                                congue ex. Vivamus ac ultri
+                                <ReadMoreReact
+                                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                        Donec volutpat lorem vehicula consectetur egestas. 
+                                        Praesent sodales nisi id quam tincidunt, nec facilisis est dapibus. 
+                                        Fusce ut leo nisl. Sed fermentum auctor ante eget ultrices. Praesent pharetra orci a est porttitor, 
+                                        quis commodo eros condimentum. Integer tempus accumsan mattis. Phasellus sit amet leo volutpat nisl 
+                                        luctus pellentesque ultrices quis massa. Nulla in leo eleifend, accumsan ligula sit amet, aliquet metus. 
+                                        Curabitur eleifend ut diam a tempus. Praesent quis tincidunt velit. In quis ex blandit turpis dignissim 
+                                        tristique. Integer dignissim dolor risus, in rhoncus eros ullamcorper et. Suspendisse tincidunt purus id 
+                                        feugiat aliquet. Etiam molestie orci in risus efficitur auctor. Fusce varius convallis odio, et porta leo 
+                                        mollis eu. Vestibulum tincidunt, nunc a elementum maximus, risus augue fringilla nibh, a faucibus urna augue 
+                                        nec nulla. Pellentesque imperdiet, lectus vitae venenatis euismod, felis est tempor sapien, vel ornare felis 
+                                        dolor eget nisl. Aliquam vel auctor purus. Phasellus euismod ultrices nisl non auctor. Suspendisse in sapien ex. Sed non pharetra risus. Aliquam erat volutpat. Aliquam erat volutpat. Nullam maximus velit ac cursus suscipit. Phasellus vel sagittis sem. Duis interdum tempus blandit. Nunc faucibus et arcu quis vestibulum. Nam egestas in velit eget suscipit. Nunc iaculis tincidunt nulla non luctus. Sed massa ex, iaculis non sollicitudin at, faucibus vel nunc."
+                                    min={500}
+                                    ideal={700}
+                                    max={1000}
+                                    readMoreText="read more"
+                                />
                             </div>
                         </div>
 
@@ -245,7 +256,10 @@ function ApartmentDetailMain({ id }) {
                         </div>
                     </div>
                     <div className={style.bottom}>
-                        <div>
+                        <div
+                            className={favorite ? style.added : style.removed}
+                            onClick={handleFavoriteClick}
+                        >
                             <i className="fa fa-heart"></i>
                             Add to Favorite
                         </div>
