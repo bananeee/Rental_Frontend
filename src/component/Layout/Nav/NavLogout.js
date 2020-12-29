@@ -9,7 +9,6 @@ function NavLogout({ layout }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
-
     const [layoutNav, setLayoutNav] = useState(layout);
 
     const handleScroll = () => {
@@ -47,9 +46,9 @@ function NavLogout({ layout }) {
         }
     }, [layout]);
 
-
     return (
         <nav style={navbg} className={style.navbar}>
+
             <label className={style.burger} tabindex="0">
                 <div className={style.line}></div>
                 <div className={style.line}></div>

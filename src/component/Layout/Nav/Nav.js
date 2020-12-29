@@ -9,7 +9,9 @@ import NavLogout from "./NavLogout";
 function Nav({ layout }) {
     const userState = useSelector((state) => state.userState);
     return (
-        <div>{userState.user === null ? <NavLogin /> : <NavLogout />}</div>
+        <div>
+            {userState.user === null ? <NavLogin /> : <NavLogout />}
+        </div>
     );
 }
 

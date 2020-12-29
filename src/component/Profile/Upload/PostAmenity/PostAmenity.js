@@ -35,7 +35,9 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
     const preventSubmit = async (e) => {
         e.preventDefault();
 
+        
         if (!id) {
+            console.log(post)
             dispatch(createPost(post));
         } else {
             dispatch(updatePost(id, post));

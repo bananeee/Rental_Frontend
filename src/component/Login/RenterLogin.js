@@ -28,6 +28,7 @@ function RenterLogin({ path }) {
         try {
             dispatch(renterLogin(loginData));
 
+            console.log(localStorage.getItem("token"))
             history.push("/");
         } catch (error) {
             console.log(error);

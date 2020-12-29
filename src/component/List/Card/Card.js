@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./card.module.css";
 import img from "../../../assets/test.jpg";
 import { useHistory } from "react-router-dom";
@@ -16,6 +16,10 @@ function Card(props) {
     const [love, setLove] = useState(
         props.favorite.includes(localStorage.getItem("user"))
     );
+
+    useEffect(() => {
+        setLove(props.favorite.includes(localStorage.getItem("user")))
+    });
 
     const dispatch = useDispatch();
 

@@ -17,6 +17,8 @@ export const renterLogin = (loginData) => async (dispatch) => {
 
         localStorage.setItem("user", resData.user._id);
 
+        localStorage.setItem("role", resData.role);
+
         dispatch({
             type: LOGIN_SUCCESS,
             payload: resData,
@@ -33,6 +35,8 @@ export const hostLogin = (loginData) => async (dispatch) => {
         localStorage.setItem("token", resData.token);
 
         localStorage.setItem("user", resData.user._id);
+
+        localStorage.setItem("role", resData.role);
 
         dispatch({
             type: LOGIN_SUCCESS,

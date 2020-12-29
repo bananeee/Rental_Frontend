@@ -14,7 +14,7 @@ import * as api from "../../../api/index";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
+}
   
 
 function UserInfo() {
@@ -32,6 +32,7 @@ function UserInfo() {
         facebook: "",
         instagram: "",
         twitter: "",
+        favorite: []
     });
 
     const dispatch = useDispatch();
@@ -45,9 +46,10 @@ function UserInfo() {
     const [cityId, setCityId] = useState(-1);
 
     useEffect(async () => {
-        const data = await api.getRenterInfo(localStorage.getItem("user"));
+        const data = await api.getUserInfo(localStorage.getItem("user"));
+
+        // console.log(data)
         setUserInfo(data);
-        console.log(data);
         getCityData();
     }, []);
 
@@ -111,7 +113,7 @@ function UserInfo() {
 
     const handleSubmit = () => {
         setOpen(true);
-        api.updateRenter(localStorage.getItem("user"), userInfo);
+        api.updateInfoUser(localStorage.getItem("user"), userInfo);
     };
 
     const [open, setOpen] = useState(false);
@@ -126,6 +128,7 @@ function UserInfo() {
 
     return (
         <div className={style.userInfo}>
+            {console.log(userInfo)}
             <div className={style.category} id={style.photo}>
                 <div className={style.title} id={style.title_photo}>
                     <h3>Photo</h3>

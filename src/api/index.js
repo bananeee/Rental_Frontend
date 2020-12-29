@@ -6,20 +6,10 @@ const Headers = {
     },
 };
 
-// user
+// ------------------------------- Renter -------------------------------
 export const renterLogin = async (loginData) => {
     try {
         const response = await axios.post("auth/renter/login", loginData);
-        return response.data;
-    } catch (error) {
-        console.log(error);
-        return null;
-    }
-};
-
-export const hostLogin = async (loginData) => {
-    try {
-        const response = await axios.post("auth/host/login", loginData);
         return response.data;
     } catch (error) {
         console.log(error);
@@ -37,6 +27,17 @@ export const renterRegister = async (registerData) => {
     }
 };
 
+// ------------------------------- Host -------------------------------
+export const hostLogin = async (loginData) => {
+    try {
+        const response = await axios.post("auth/host/login", loginData);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
+
 export const hostRegister = async (registerData) => {
     try {
         const response = await axios.post("auth/host/register", registerData);
@@ -47,31 +48,42 @@ export const hostRegister = async (registerData) => {
     }
 };
 
-export const updateRenter = async (id, userData) => {
+export const updateInfoUser = async (id, userData) => {
     try {
-        const response = await axios.put("/renter/" + id, userData, Headers);
+        const response = await axios.put(
+            "/" + localStorage.getItem("role") + "/" + id,
+            userData,
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            }
+        );
         return response.data;
-        
     } catch (error) {
         console.log(error);
         return null;
     }
-}
+};
 
-export const getRenterInfo = async (id) => {
+export const getUserInfo = async (id) => {
     try {
-        const response = await axios.get("renter/" + id, Headers);
+        const response = await axios.get(
+            "/" + localStorage.getItem("role") + "/" + id,
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            }
+        );
         return response.data;
-        
     } catch (error) {
         console.log(error);
         return null;
     }
-}
+};
 
-
-
-// Posts
+// ------------------------------- Posts -------------------------------
 export const getPosts = async () => {
     try {
         const response = await axios.get("/posts");
@@ -82,7 +94,6 @@ export const getPosts = async () => {
     }
 };
 
-
 export const getPostsByQuery = async (params) => {
     try {
         const response = await axios.get("/posts", { params });
@@ -91,11 +102,15 @@ export const getPostsByQuery = async (params) => {
         console.log(error);
         return null;
     }
-}
+};
 
 export const getFavorPosts = async (id) => {
     try {
-        const response = await axios.get("/posts/myfavor/" + id, Headers);
+        const response = await axios.get("/posts/myfavor/" + id, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        });
         return response.data;
     } catch (error) {
         console.log(error);
@@ -105,7 +120,11 @@ export const getFavorPosts = async (id) => {
 
 export const getMyPosts = async (id) => {
     try {
-        const response = await axios.get("/posts/myposts/" + id, Headers);
+        const response = await axios.get("/posts/myposts/" + id, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        });
         return response.data;
     } catch (error) {
         console.log(error);
@@ -125,7 +144,11 @@ export const getAPost = async (id) => {
 
 export const createPost = async (data) => {
     try {
-        const response = await axios.post("/posts", data, Headers);
+        const response = await axios.post("/posts", data, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        });
         return response.data;
     } catch (error) {
         console.log(error);
@@ -135,7 +158,11 @@ export const createPost = async (data) => {
 
 export const deletePost = async (id) => {
     try {
-        const response = await axios.delete("/posts/" + id, Headers);
+        const response = await axios.delete("/posts/" + id, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        });
         return response.data;
     } catch (error) {
         console.log(error);
@@ -145,7 +172,11 @@ export const deletePost = async (id) => {
 
 export const updatePost = async (id, data) => {
     try {
-        const response = await axios.put(`/posts/${id}`, data, Headers);
+        const response = await axios.put(`/posts/${id}`, data, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        });
         return response.data;
     } catch (error) {
         console.log(error);
@@ -155,8 +186,11 @@ export const updatePost = async (id, data) => {
 
 export const commentPost = async (id, data) => {
     try {
-
-        const response = await axios.put(`/posts/comment/${id}`, data, Headers);
+        const response = await axios.put(`/posts/comment/${id}`, data, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        });
         return response.data;
     } catch (error) {
         console.log(error);
@@ -166,7 +200,15 @@ export const commentPost = async (id, data) => {
 
 export const likePost = async (id) => {
     try {
-        const response = await axios.put(`/posts/like/${id}`, {}, Headers);
+        const response = await axios.put(
+            `/posts/like/${id}`,
+            {},
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            }
+        );
         return response.data;
     } catch (error) {
         console.log(error);
@@ -176,7 +218,15 @@ export const likePost = async (id) => {
 
 export const unlikePost = async (id) => {
     try {
-        const response = await axios.put(`/posts/unlike/${id}`, {}, Headers);
+        const response = await axios.put(
+            `/posts/unlike/${id}`,
+            {},
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            }
+        );
         return response.data;
     } catch (error) {
         console.log(error);
