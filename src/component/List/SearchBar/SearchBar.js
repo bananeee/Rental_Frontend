@@ -13,11 +13,6 @@ function SearchBar() {
     const [cityId, setCityId] = useState(-1);
     const [searchField, setSearchField] = useState({});
 
-    const [city, setCity] = useState([])
-    const [district, setDistrict] = useState([])
-    const [cityId, setCityId] = useState(-1)
-    const [searchField, setSearchField] = useState({})
-
     const { register, handleSubmit } = useForm({})
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.posts);

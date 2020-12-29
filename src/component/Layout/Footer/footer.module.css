@@ -7,6 +7,11 @@ footer {
 
 }
 
+.footerCenter a {
+  text-decoration: none;
+  color: #f0384a;
+}
+
 footer > * {
   max-width: 300px;
 }
@@ -60,7 +65,19 @@ footer > * {
 
 .footerIcon * {
     font-size: 1.25rem;
-    margin-right: 1rem;
+    margin-right: 2rem;
+    transition: all 0.2s ease-out 0s;
+    position: relative;
+    /* color: #ffffff; */
+    z-index: 100;
+    font-size: 1.2rem;
+}
+
+.footerIcon *:hover {
+  color: #fd3c4f;
+  text-shadow: 0 0 25px 5px rgb(255, 255, 255);
+  text-shadow: 3px 3px rgba(0, 0, 0, 0.24);
+  z-index: 1000;
 }
 
 

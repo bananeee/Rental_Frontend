@@ -13,6 +13,16 @@ function PostImage({ increaseStep, setPost, post, id }) {
         });
     };
 
+    const removeImage = (key) => {
+        let term = post.image
+        term.splice(key, 1)
+        setPost({
+            ...post,
+            image: term
+        });
+        console.log(post);
+    }
+
     // console.log(post.image);
 
     return (
@@ -26,7 +36,7 @@ function PostImage({ increaseStep, setPost, post, id }) {
                     post.image.map((img, key) => (
                         <div className={style.prImg}>
                             {/* <button className={style.clsBtn}> */}
-                            <i class="far fa-times"></i>
+                            <i class="fad fa-backspace" onClick={() => removeImage(key)}></i>
                             {/* </button> */}
                             {/* <div className={style.imgCtn}> */}
                             {/* </div> */}

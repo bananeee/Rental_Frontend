@@ -29,6 +29,11 @@
     background-color: #f0384a;
 }
 
+.searchBox button:hover {
+    background-color: #ff4f60;
+    cursor: pointer;
+}
+
 .searchBox * {
     font-size: 0.9rem;
 }
@@ -37,9 +42,7 @@
     padding: 0.5rem;
 }
 
-.btnSearch:hover {
-    opacity: 0.8;
-}
+
 
 @media (max-width: 838px) and (min-width: 636px) {
     .searchBox input:nth-child(1) {

@@ -45,7 +45,8 @@ function RenterLogin({ path }) {
             <div className={style.bg_opacity}>
                 <div className={style.login_container}>
                     <form className={style.login_form} onSubmit={handleSubmit}>
-                        <p className={style.title}>Log In</p>
+                        <h1 className={style.title}>Log In</h1>
+                        <p className={style.type}>as Renter</p>
 
                         <label for="username">Username</label>
                         <input
@@ -72,10 +73,14 @@ function RenterLogin({ path }) {
                         <button>
                             <h2>Log in</h2>
                         </button>
-
                         <p className={style.message}>
+                            You are host?{" "}
+                            <a href="/host/login">
+                                Log in
+                            </a>
+                            |
                             Not registered?{" "}
-                            <a href="/renter/register" style={{ color: "red" }}>
+                            <a href="/renter/register">
                                 Sign up
                             </a>
                         </p>

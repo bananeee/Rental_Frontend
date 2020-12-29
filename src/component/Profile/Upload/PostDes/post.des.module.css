@@ -1,17 +1,15 @@
-
 .container {
     background-color: white;
     margin: 1.5rem;
 }
 
+.description_form {
+    padding: 2rem;
+}
 
 #description {
     padding: 2rem;
     border-bottom: 1px dotted rgb(218, 215, 215);
-}
-
-.description_form {
-    padding: 2rem;
 }
 
 .category {
@@ -24,18 +22,13 @@
     min-width: 20%;
 }
 
-#location > .wrap_item {
+.wrap_item {
     display: flex;
     flex-wrap: wrap;
 }
 
-#title > .to_complete > input {
-    width: 530px;
-}
-
 .to_complete {
     margin-right: 30px;
-    margin-top: 10px;
 }
 
 .to_complete > label {
@@ -48,17 +41,16 @@
 .to_complete > input,
 .to_complete > select,
 .to_complete > textarea {
-  width: 250px;
-  height: 40px;
-  padding: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  color: rgba(29, 28, 28, 0.733);
-  border-radius: 4px;
-  border: 1px solid #ced4da;
-  background-color: white;
+    width: 250px;
+    height: 42px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(29, 28, 28, 0.733);
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background-color: white;
 }
-
 
 .to_complete > input,
 .to_complete > select,

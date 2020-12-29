@@ -16,6 +16,7 @@
 .uploadedImg {
   display: flex;
   flex-wrap: wrap;
+  padding: 1rem;
 }
 
 .prImg {
@@ -36,11 +37,13 @@
   color: #f0384a;
   font-size: 1.5rem;
   transition: all 0.2s ease;
+
 }
 
 .uploadedImg i:hover {
   transform: scale(1.2);
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.158);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.329);
+  cursor: pointer;
   /* color: #dc3545; */
 }
 

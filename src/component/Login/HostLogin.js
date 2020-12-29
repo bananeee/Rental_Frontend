@@ -39,7 +39,7 @@ function HostLogin({ path }) {
                 <div className={style.login_container}>
                     <form className={style.login_form} onSubmit={handleSubmit}>
                         <p className={style.title}>Log In</p>
-
+                        <p className={style.type}>as Host</p>
                         <label for="username">Username</label>
                         <input
                             type="text"
@@ -67,8 +67,13 @@ function HostLogin({ path }) {
                         </button>
 
                         <p className={style.message}>
+                            You are renter?{" "}
+                            <a href="/renter/login">
+                                Log in
+                            </a>
+                            |
                             Not registered?{" "}
-                            <a href="/host/register" style={{ color: "red" }}>
+                            <a href="/host/register">
                                 Sign up
                             </a>
                         </p>

@@ -6,7 +6,12 @@ import Slider from "react-slick";
 import LightBox from "../LightBox/LightBox";
 import ReadMoreReact from "read-more-react";
 import { useDispatch, useSelector } from "react-redux";
-import { commentPost, getAPost, likePost, unlikePost } from "../../../actions/postAction";
+import {
+    commentPost,
+    getAPost,
+    likePost,
+    unlikePost,
+} from "../../../actions/postAction";
 
 function ApartmentDetailMain({ id }) {
     const dispatch = useDispatch();
@@ -21,7 +26,7 @@ function ApartmentDetailMain({ id }) {
 
     const handleText = (e) => {
         setText(e.target.value);
-    }
+    };
 
     useEffect(() => {
         dispatch(getAPost(id));
@@ -62,7 +67,7 @@ function ApartmentDetailMain({ id }) {
         e.preventDefault();
         setText("");
 
-        dispatch(commentPost( posts[0]._id, { text: e.target[0].value }));
+        dispatch(commentPost(posts[0]._id, { text: e.target[0].value }));
     };
     return (
         <main className={style.detailMain}>
@@ -94,15 +99,18 @@ function ApartmentDetailMain({ id }) {
                                 <div className={style.title}>
                                     {posts[0].title}
                                 </div>
-                                {posts[0].no +
-                                    ", " +
-                                    posts[0].street +
-                                    ", " +
-                                    posts[0].ward +
-                                    ", " +
-                                    posts[0].district +
-                                    ", " +
-                                    posts[0].city}
+                                <i className="fas fa-map-marker-alt"></i>
+                                <span>
+                                    {posts[0].no +
+                                        ", " +
+                                        posts[0].street +
+                                        ", " +
+                                        posts[0].ward +
+                                        ", " +
+                                        posts[0].district +
+                                        ", " +
+                                        posts[0].city}
+                                </span>
                             </div>
                             {/* <div className={style.avatar}>
                                  <img src={host.image} alt="" /> 
@@ -166,42 +174,48 @@ function ApartmentDetailMain({ id }) {
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
@@ -215,15 +229,16 @@ function ApartmentDetailMain({ id }) {
                         {posts[0].comments.map((comment, key) => (
                             <Comment key={key} comment={comment} />
                         ))}
+                        <form onSubmit={handleComment}>
+                            <input
+                                type="text"
+                                onChange={handleText}
+                                value={text}
+                                placeholder="Add a comment..."
+                                className={style.commentArea}
+                            />
+                        </form>
                     </div>
-
-                    <form onSubmit={handleComment}>
-                        <input 
-                            type="text" 
-                            onChange={handleText}
-                            value={text}
-                            placeholder="Add a comment ..." />
-                    </form>
                 </div>
 
                 <div className={style.forms}>
@@ -235,8 +250,8 @@ function ApartmentDetailMain({ id }) {
                         <div className={style.formBody}>
                             <div className={style.pricesAreas}>
                                 <div>
-                                    <i className="fa fa-money-bill-wave"></i>
-                                    <sup>$</sup>
+                                    <i className="fa fa-dollar-sign"></i>
+                                    <sup></sup>
                                     {posts[0].price}
                                     <sub>/month</sub>
                                 </div>

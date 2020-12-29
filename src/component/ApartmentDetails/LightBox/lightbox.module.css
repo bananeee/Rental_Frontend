@@ -5,6 +5,7 @@
     grid-row-gap: 2px;
 }
 
+
 .image {
     max-width: 300px;
     max-height: 300px;
@@ -12,9 +13,11 @@
     height: 100%;
     object-fit: cover;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.4s;
 }
 
-img:hover {
+.image:hover {
     /* opacity: 0.65; */
+    transform: scale(1.1);
+    transition: all 0.6s ease;
 }
