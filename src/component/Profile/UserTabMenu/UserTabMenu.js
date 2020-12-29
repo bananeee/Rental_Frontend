@@ -23,22 +23,35 @@ function UserTabMenu() {
             </div>
 
             <div className={style.dashboard}>
-                <NavLink to="/profile" activeClassName={style.selected} >
+                {localStorage.getItem('role') !== null && localStorage.getItem('role') !== 'admin' && (<NavLink to="/profile" activeClassName={style.selected} >
                     <i className="fas fa-user"></i>
                     <span>My Profile</span>
-                </NavLink>
-                <NavLink exact={true} to="/upload" activeClassName={style.selected} >
+                </NavLink>)}
+
+                {localStorage.getItem('role') === 'host' && (<NavLink exact={true} to="/upload" activeClassName={style.selected} >
                     <i className="fas fa-user"></i>
                     <span>Upload</span>
-                </NavLink>
-                <NavLink exact={true} to="/my_posts" activeClassName={style.selected} >
+                </NavLink>)}
+
+                {localStorage.getItem('role') === 'host' && (<NavLink exact={true} to="/my_posts" activeClassName={style.selected} >
                     <i className="fas fa-user"></i>
                     <span>My Post</span>
-                </NavLink>
-                <NavLink exact={true} to="/favorite" activeClassName={style.selected} >
+                </NavLink>)}
+
+                {localStorage.getItem('role') === 'renter' && (<NavLink exact={true} to="/favorite" activeClassName={style.selected} >
                     <i className="fas fa-user"></i>
                     <span>My Favorite</span>
-                </NavLink>
+                </NavLink>)}
+
+                {localStorage.getItem('role') === 'admin' && (<NavLink exact={true} to="/approve/host" activeClassName={style.selected} >
+                    <i className="fas fa-user"></i>
+                    <span>Approve host</span>
+                </NavLink>)}
+
+                {localStorage.getItem('role') === 'admin' && (<NavLink exact={true} to="/approve/post" activeClassName={style.selected} >
+                    <i className="fas fa-user"></i>
+                    <span>Approve post</span>
+                </NavLink>)}
 
             </div>
         </div>

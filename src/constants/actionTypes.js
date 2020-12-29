@@ -16,4 +16,6 @@ export const FAVOR_POST = "FAVOR_POST" ;
 export const MYPOSTS = "MYPOSTS" ;
 export const COMMENT = "COMMENT";
 
+export const APPROVE_POST= "APPROVE_POST";
+
 

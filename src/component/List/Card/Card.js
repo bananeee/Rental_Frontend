@@ -11,7 +11,7 @@ function Card(props) {
     const post = useSelector((state) => state);
 
     const history = useHistory();
-    
+
     props = props.post;
 
     const [love, setLove] = useState(
@@ -30,6 +30,7 @@ function Card(props) {
 
     const handleHeartClick = async (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
         if (!love) {
             dispatch(likePost(props._id));

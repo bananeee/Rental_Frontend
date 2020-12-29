@@ -9,6 +9,7 @@ import {
     FAVOR_POST,
     MYPOSTS,
     COMMENT,
+    APPROVE_POST,
 } from "../constants/actionTypes";
 
 import * as api from "../api/index.js";
@@ -112,6 +113,15 @@ export const commentPost = (id, comment) => async (dispatch) => {
         const data = await api.commentPost(id, comment);
 
         dispatch({ type: COMMENT, payload: data});
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+export const approvePost = (id) => async (dispatch) => {
+    try {
+        const data = await api.approvePost(id);
+        dispatch({ type: APPROVE_POST, payload: id});
     } catch (error) {
         console.log(error)
     }

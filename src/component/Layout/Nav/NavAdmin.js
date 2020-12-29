@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import style from "./nav.module.css";
 
-function NavLogout({ layout }) {
+function NavAdmin({ layout }) {
     const [navbg, setNavbg] = useState({});
     const history = useHistory();
     const dispatch = useDispatch();
@@ -83,8 +83,8 @@ function NavLogout({ layout }) {
                 </li>
 
                 <li>
-                    <NavLink to="/profile" activeClassName="selected">
-                        Profile
+                    <NavLink to="/approve/post" activeClassName="selected">
+                        Approve
                     </NavLink>
                 </li>
             </ul>
@@ -92,4 +92,4 @@ function NavLogout({ layout }) {
     );
 }
 
-export default NavLogout;
+export default NavAdmin;
