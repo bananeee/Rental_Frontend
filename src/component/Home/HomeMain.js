@@ -5,12 +5,13 @@ import style from "./home.main.module.css";
 import { useSelector } from "react-redux";
 
 function HomeMain() {
-    
     return (
         <div>
             <div className={style.banner}>
                 <div className={style.quote}>
-                    <h1 style={{fontSize: "2.5rem"}}>Bạn muốn tìm trọ? Hãy đến với chúng tôi</h1>
+                    <h1 style={{ fontSize: "2.5rem" }}>
+                        Bạn muốn tìm trọ? Hãy đến với chúng tôi
+                    </h1>
                 </div>
                 <SearchBar />
             </div>
@@ -106,9 +107,9 @@ function HomeMain() {
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    Easy Accomd has increased our booking requests
-                                    10 times more than our older website. Thank
-                                    you for the amazing work!
+                                    Fast reservations, high quality services.
+                                    The bathroom is a little bigger then i
+                                    thought which suprises me. Amazing, good job
                                 </p>
                                 <div className={style.star}>
                                     <i class="fas fa-star"></i>
@@ -123,13 +124,34 @@ function HomeMain() {
                         <div className={style.commentItem}>
                             <div className={style.commentHeader}>
                                 <div className={style.commentAvatar}></div>
-                                <h4>Jay Simon</h4>
+                                <h4>Bruno</h4>
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    Easy Accomd has increased our booking requests
-                                    10 times more than our older website. Thank
-                                    you for the amazing work!
+                                    Easy Accomd has increased our booking
+                                    requests 10 times more than our older
+                                    website. Thank you for the amazing work!
+                                </p>
+                                <div className={style.star}>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={style.commentItem}>
+                            <div className={style.commentHeader}>
+                                <div className={style.commentAvatar}></div>
+                                <h4>Marcus Rashford</h4>
+                            </div>
+                            <div className={style.commentContent}>
+                                <p>
+                                    Wonderful sight-seeing. The price is pretty
+                                    high yet it is still worthwhile. Highly
+                                    recommend for those who are looking for a
+                                    place of long-term living
                                 </p>
                                 <div className={style.star}>
                                     <i class="fas fa-star"></i>
@@ -144,13 +166,34 @@ function HomeMain() {
                         <div className={style.commentItem}>
                             <div className={style.commentHeader}>
                                 <div className={style.commentAvatar}></div>
-                                <h4>Jay Simon</h4>
+                                <h4>David de Gea</h4>
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    Easy Accomd has increased our booking requests
-                                    10 times more than our older website. Thank
-                                    you for the amazing work!
+                                    Easy Accomd has increased our booking
+                                    requests 10 times more than our older
+                                    website. Thank you for the amazing work!
+                                </p>
+                                <div className={style.star}>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={style.commentItem}>
+                            <div className={style.commentHeader}>
+                                <div className={style.commentAvatar}></div>
+                                <h4>Edison Cavani</h4>
+                            </div>
+                            <div className={style.commentContent}>
+                                <p>
+                                    Fast reservations, high quality services.
+                                    The bathroom is a little bigger then i
+                                    thought which suprises me. Amazing, good
+                                    job!
                                 </p>
                                 <div className={style.star}>
                                     <i class="fas fa-star"></i>
@@ -165,55 +208,14 @@ function HomeMain() {
                         <div className={style.commentItem}>
                             <div className={style.commentHeader}>
                                 <div className={style.commentAvatar}></div>
-                                <h4>Jay Simon</h4>
+                                <h4>Martial</h4>
                             </div>
                             <div className={style.commentContent}>
                                 <p>
-                                    Easy Accomd has increased our booking requests
-                                    10 times more than our older website. Thank
-                                    you for the amazing work!
-                                </p>
-                                <div className={style.star}>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={style.commentItem}>
-                            <div className={style.commentHeader}>
-                                <div className={style.commentAvatar}></div>
-                                <h4>Jay Simon</h4>
-                            </div>
-                            <div className={style.commentContent}>
-                                <p>
-                                    Easy Accomd has increased our booking requests
-                                    10 times more than our older website. Thank
-                                    you for the amazing work!
-                                </p>
-                                <div className={style.star}>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={style.commentItem}>
-                            <div className={style.commentHeader}>
-                                <div className={style.commentAvatar}></div>
-                                <h4>Jay Simon</h4>
-                            </div>
-                            <div className={style.commentContent}>
-                                <p>
-                                    Easy Accomd has increased our booking requests
-                                    10 times more than our older website. Thank
-                                    you for the amazing work!
+                                    Wonderful sight-seeing. The price is pretty
+                                    high yet it is still worthwhile. Highly
+                                    recommend for those who are looking for a
+                                    place of long-term living
                                 </p>
                                 <div className={style.star}>
                                     <i class="fas fa-star"></i>

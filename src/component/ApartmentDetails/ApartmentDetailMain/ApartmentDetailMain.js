@@ -147,24 +147,15 @@ function ApartmentDetailMain({ id }) {
                                 <h2>About this listing</h2>
                             </header>
                             <div className={style.paragraph}>
-                                <ReadMoreReact
-                                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                        Donec volutpat lorem vehicula consectetur egestas. 
-                                        Praesent sodales nisi id quam tincidunt, nec facilisis est dapibus. 
-                                        Fusce ut leo nisl. Sed fermentum auctor ante eget ultrices. Praesent pharetra orci a est porttitor, 
-                                        quis commodo eros condimentum. Integer tempus accumsan mattis. Phasellus sit amet leo volutpat nisl 
-                                        luctus pellentesque ultrices quis massa. Nulla in leo eleifend, accumsan ligula sit amet, aliquet metus. 
-                                        Curabitur eleifend ut diam a tempus. Praesent quis tincidunt velit. In quis ex blandit turpis dignissim 
-                                        tristique. Integer dignissim dolor risus, in rhoncus eros ullamcorper et. Suspendisse tincidunt purus id 
-                                        feugiat aliquet. Etiam molestie orci in risus efficitur auctor. Fusce varius convallis odio, et porta leo 
-                                        mollis eu. Vestibulum tincidunt, nunc a elementum maximus, risus augue fringilla nibh, a faucibus urna augue 
-                                        nec nulla. Pellentesque imperdiet, lectus vitae venenatis euismod, felis est tempor sapien, vel ornare felis 
-                                        dolor eget nisl. Aliquam vel auctor purus. Phasellus euismod ultrices nisl non auctor. Suspendisse in sapien ex. Sed non pharetra risus. Aliquam erat volutpat. Aliquam erat volutpat. Nullam maximus velit ac cursus suscipit. Phasellus vel sagittis sem. Duis interdum tempus blandit. Nunc faucibus et arcu quis vestibulum. Nam egestas in velit eget suscipit. Nunc iaculis tincidunt nulla non luctus. Sed massa ex, iaculis non sollicitudin at, faucibus vel nunc."
-                                    min={500}
-                                    ideal={700}
-                                    max={1000}
-                                    readMoreText="read more"
-                                />
+                                {posts[0].description !== undefined && (
+                                    <ReadMoreReact
+                                        text={posts[0].description}
+                                        min={0}
+                                        ideal={500}
+                                        max={1000}
+                                        readMoreText="read more"
+                                    />
+                                )}
                             </div>
                         </div>
 
@@ -176,48 +167,48 @@ function ApartmentDetailMain({ id }) {
                                         className="fa fa-angle-right"
                                         aria-hidden="true"
                                     ></i>
-                                    ID:
-                                    <b>123</b>
+                                    Owner Type:
+                                    <b>{posts[0].ownerType}</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
                                         aria-hidden="true"
                                     ></i>
-                                    ID:
-                                    <b>123</b>
+                                    Kitchen:
+                                    <b>{posts[0].kitchen}</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
                                         aria-hidden="true"
                                     ></i>
-                                    ID:
-                                    <b>123</b>
+                                    Air Condition:
+                                    <b>{posts[0].airCondition}.</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
                                         aria-hidden="true"
                                     ></i>
-                                    ID:
-                                    <b>123</b>
+                                    Balcony:
+                                    <b>{posts[0].balcony}</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
                                         aria-hidden="true"
                                     ></i>
-                                    ID:
-                                    <b>123</b>
+                                    Water:
+                                    <b>{posts[0].water}</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
                                         aria-hidden="true"
                                     ></i>
-                                    ID:
-                                    <b>123</b>
+                                    Electricity:
+                                    <b>{posts[0].electric}</b>
                                 </li>
                             </ul>
                         </div>
@@ -229,15 +220,17 @@ function ApartmentDetailMain({ id }) {
                         {posts[0].comments.map((comment, key) => (
                             <Comment key={key} comment={comment} />
                         ))}
-                        <form onSubmit={handleComment}>
-                            <input
-                                type="text"
-                                onChange={handleText}
-                                value={text}
-                                placeholder="Add a comment..."
-                                className={style.commentArea}
-                            />
-                        </form>
+                        {localStorage.getItem("role") === "renter" && (
+                            <form onSubmit={handleComment}>
+                                <input
+                                    type="text"
+                                    onChange={handleText}
+                                    value={text}
+                                    placeholder="Add a comment..."
+                                    className={style.commentArea}
+                                />
+                            </form>
+                        )}
                     </div>
                 </div>
 

@@ -18,7 +18,7 @@ function Card(props) {
     );
 
     useEffect(() => {
-        setLove(props.favorite.includes(localStorage.getItem("user")))
+        setLove(props.favorite.includes(localStorage.getItem("user")));
     });
 
     const dispatch = useDispatch();
@@ -84,11 +84,14 @@ function Card(props) {
                     {props.favorite.length}
                 </div>
 
-                <div className={style.cardHeart}>
-                    <i
-                        onClick={handleHeartClick}
-                        className={love ? "fas fa-heart" : "far fa-heart"}></i>
-                </div>
+                {localStorage.getItem("role") === "renter" && (
+                    <div className={style.cardHeart}>
+                        <i
+                            onClick={handleHeartClick}
+                            className={love ? "fas fa-heart" : "far fa-heart"}
+                        ></i>
+                    </div>
+                )}
             </div>
         </div>
     );

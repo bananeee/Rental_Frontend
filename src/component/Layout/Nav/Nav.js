@@ -11,7 +11,7 @@ function Nav({ layout }) {
     const userState = useSelector((state) => state.userState);
     return (
         <div>
-            {userState.user === null && <NavLogin />}
+            {localStorage.getItem("role") === null && <NavLogin />}
             {localStorage.getItem("role") === "renter" && <NavLogout />}
             {localStorage.getItem("role") === "host" && <NavLogout />}
             {localStorage.getItem("role") === "admin" && <NavAdmin />}
