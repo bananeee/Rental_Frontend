@@ -266,12 +266,13 @@ export const approveHost = async (id) => {
 
 export const getHosts = async (params) => {
     try {
-        const response = await axios.get("/hosts", {
+        const response = await axios.get("/host", {
             params,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),
             },
         });
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.log(error);

@@ -68,8 +68,8 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
                                 }
                                 onChange={handleChangeBathroom}
                                 name="category">
-                                <option value="kin">Khép kín</option>
-                                <option value="chung">Chung</option>
+                                <option value="Khép kín">Khép kín</option>
+                                <option value="Chung">Chung</option>
                             </select>
                         </div>
 
@@ -86,8 +86,8 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
                                 }
                                 onChange={handleChangeBathroom}
                                 name="hot">
-                                <option value="nong">Có nóng lạnh</option>
-                                <option value="lanh">Không có nóng lạnh</option>
+                                <option value="Nóng">Có nóng lạnh</option>
+                                <option value="Lạnh">Không có nóng lạnh</option>
                             </select>
                         </div>
                     </div>
@@ -105,9 +105,9 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
                                 }
                                 onChange={handleChange}
                                 name="kitchen">
-                                <option value="rieng">Khu bếp riêng</option>
-                                <option value="chung">Khu bếp chung</option>
-                                <option value="khong_nau_an">
+                                <option value="Riêng">Khu bếp riêng</option>
+                                <option value="Chung">Khu bếp chung</option>
+                                <option value="Không nấu ăn">
                                     Không nấu ăn
                                 </option>
                             </select>
@@ -130,8 +130,8 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
                                 }
                                 onChange={handleChange}
                                 name="airConditioner">
-                                <option value="co">Có</option>
-                                <option value="khong">Không</option>
+                                <option value="Có">Có</option>
+                                <option value="Không">Không</option>
                             </select>
                         </div>
                     </div>
@@ -149,8 +149,8 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
                                 }
                                 onChange={handleChange}
                                 name="balcony">
-                                <option value="co">Có</option>
-                                <option value="khong">Không</option>
+                                <option value="Có">Có</option>
+                                <option value="Không">Không</option>
                             </select>
                         </div>
                     </div>
@@ -176,8 +176,8 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
                                 }
                                 onChange={handleChange}
                                 name="electric">
-                                <option value="dan">Giá dân</option>
-                                <option value="thue">Giá thuê</option>
+                                <option value="Giá dân">Giá dân</option>
+                                <option value="Giá thuê">Giá thuê</option>
                             </select>
                         </div>
                         <div
