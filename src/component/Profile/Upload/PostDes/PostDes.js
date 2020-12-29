@@ -1,9 +1,47 @@
 import React, { useEffect, useState } from "react";
+import axios from 'axios'
 import style from "./post.des.module.css";
 
 function PostDes({ increaseStep, setPost, post, id }) {
-    const [locationData, setLocationData] = useState({});
-    const [priceData, setPriceData] = useState({});
+    // const [locationData, setLocationData] = useState({});
+
+    // const [priceData, setPriceData] = useState({});
+
+    const [city, setCity] = useState([]);
+
+    const [district, setDistrict] = useState([]);
+
+    const [cityId, setCityId] = useState(-1);
+
+    useEffect(() => {
+        getCityData();
+    }, []);
+
+    useEffect(() => {
+        getDistrictData();
+    }, [cityId]);
+
+    const getCityData = async () => {
+        try {
+            const response = await axios.get(
+                "https://vapi.vnappmob.com/api/province"
+            );
+            setCity(response.data.results);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getDistrictData = async () => {
+        try {
+            const response = await axios.get(
+                "https://vapi.vnappmob.com/api/province/district/" + cityId
+            );
+            setDistrict(response.data.results);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handleChange = (e) => {
         setPost({
@@ -12,29 +50,39 @@ function PostDes({ increaseStep, setPost, post, id }) {
         });
     };
 
-    const handleChangeLocation = async (e) => {
-        setLocationData({
-            ...locationData,
-            [e.target.name]: e.target.value,
-        });
-
-        setPost({
-            ...post,
-            location: locationData,
-        });
+    const handleCityChange = async (e) => {
+        if (e.target.value === "") setCityId(-1);
+        else {
+            setCityId(
+                city.find((c) => c.province_name === e.target.value).province_id
+            );
+            handleChange(e);
+        }
     };
 
-    const handleChangePrice = async (e) => {
-        setPriceData({
-            ...priceData,
-            [e.target.name]: e.target.value,
-        });
+    // const handleChangeLocation = async (e) => {
+    //     setLocationData({
+    //         ...locationData,
+    //         [e.target.name]: e.target.value,
+    //     });
 
-        setPost({
-            ...post,
-            price: priceData,
-        });
-    };
+    //     setPost({
+    //         ...post,
+    //         location: locationData,
+    //     });
+    // };
+
+    // const handleChangePrice = async (e) => {
+    //     setPriceData({
+    //         ...priceData,
+    //         [e.target.name]: e.target.value,
+    //     });
+
+    //     setPost({
+    //         ...post,
+    //         price: priceData,
+    //     });
+    // };
 
     return (
         <div className={style.container}>
@@ -71,11 +119,11 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 <label for="to_complete_no">No</label>
                                 <input
                                     value={
-                                        locationData.no === undefined
+                                        post.no === undefined
                                             ? ""
-                                            : locationData.no
+                                            : post.no
                                     }
-                                    onChange={handleChangeLocation}
+                                    onChange={handleChange}
                                     name="no"
                                     type="text"
                                     id={style.to_complete_no}
@@ -88,11 +136,11 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 <label for="to_complete_street">Street</label>
                                 <input
                                     value={
-                                        locationData.street === undefined
+                                        post.street === undefined
                                             ? ""
-                                            : locationData.street
+                                            : post.street
                                     }
-                                    onChange={handleChangeLocation}
+                                    onChange={handleChange}
                                     name="street"
                                     type="text"
                                     id={style.to_complete_street}
@@ -105,11 +153,11 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 <label for="to_complete_ward">Ward</label>
                                 <input
                                     value={
-                                        locationData.ward === undefined
+                                        post.ward === undefined
                                             ? ""
-                                            : locationData.ward
+                                            : post.ward
                                     }
-                                    onChange={handleChangeLocation}
+                                    onChange={handleChange}
                                     name="ward"
                                     type="text"
                                     id={style.to_complete_ward}
@@ -122,35 +170,73 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 <label for="to_complete_district">
                                     District
                                 </label>
-                                <input
+                                <select
+                                    name="district"
+                                    className={style.type_in}
+                                    id={style.district}
                                     value={
-                                        locationData.district === undefined
+                                        post.district === undefined
                                             ? ""
-                                            : locationData.district
+                                            : post.district
                                     }
-                                    onChange={handleChangeLocation}
+                                    onChange={handleChange}>
+                                    <option value="">Quận/Huyện</option>
+                                    {district.map((d, key) => (
+                                        <option
+                                            key={key}
+                                            value={d.district_name}>
+                                            {d.district_name}
+                                        </option>
+                                    ))}
+                                </select>
+                                {/* <input
+                                    value={
+                                        post.district === undefined
+                                            ? ""
+                                            : post.district
+                                    }
+                                    onChange={handleChange}
                                     name="district"
                                     type="text"
                                     id={style.to_complete_district}
                                     placeholder="Cầu Giấy"
-                                />
+                                /> */}
                             </div>
                             <div
                                 className={style.to_complete}
                                 id={style.location_city}>
                                 <label for="to_complete_city">City</label>
-                                <input
+                                <select
+                                    name="city"
                                     value={
-                                        locationData.city === undefined
+                                        post.city === undefined
                                             ? ""
-                                            : locationData.city
+                                            : post.city
                                     }
-                                    onChange={handleChangeLocation}
+                                    className={style.type_in}
+                                    id={style.city}
+                                    onChange={handleCityChange}>
+                                    <option value="">Tỉnh/Thành phố</option>
+                                    {city.map((c, key) => (
+                                        <option
+                                            key={key}
+                                            value={c.province_name}>
+                                            {c.province_name}
+                                        </option>
+                                    ))}
+                                </select>
+                                {/* <input
+                                    value={
+                                        post.city === undefined
+                                            ? ""
+                                            : post.city
+                                    }
+                                    onChange={handleCityChange}
                                     name="city"
                                     type="text"
                                     id={style.to_complete_city}
                                     placeholder="Hà Nội"
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>
@@ -175,7 +261,6 @@ function PostDes({ increaseStep, setPost, post, id }) {
                         <div
                             className={style.to_complete}
                             id={style.type_detail}>
-
                             <label for="to_complete_detail">Type</label>
                             <select
                                 value={post.type}
@@ -194,7 +279,6 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                     Chung cư nguyên căn
                                 </option>
                             </select>
-
                         </div>
 
                         <div className={style.to_complete} id={style.type_room}>
@@ -216,7 +300,7 @@ function PostDes({ increaseStep, setPost, post, id }) {
 
                     <div className={style.category} id={style.price}>
                         <div className={style.category_name}>Price</div>
-                        <div
+                        {/* <div
                             className={style.to_complete}
                             id={style.price_type}>
                             <label for="to_complete_price_type">Type</label>
@@ -234,7 +318,7 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 <option value="nam">Năm</option>
                                 <option value="other">Other</option>
                             </select>
-                        </div>
+                        </div> */}
                         <div className={style.to_complete} id={style.price}>
                             <label for="to_complete_price">Price (đồng)</label>
                             <input
@@ -256,7 +340,7 @@ function PostDes({ increaseStep, setPost, post, id }) {
                     <div className={style.category} id={style.area}>
                         <div className={style.category_name}>Area</div>
                         <div className={style.to_complete}>
-                            <label for="to_complete_area">Area (m2)</label>
+                            <label for="to_complete_area">Area (m<sup>2</sup>)</label>
                             <input
                                 value={post.size === undefined ? "" : post.size}
                                 onChange={handleChange}

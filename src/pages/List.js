@@ -9,6 +9,7 @@ function List() {
     return (
         <div>
             <Nav />
+
             <div style={{
                 paddingTop: "8vh",
                 backgroundColor: "#f7f8f9"

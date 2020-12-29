@@ -1,6 +1,7 @@
 #container {
     background-color: white;
     margin: 1.5rem;
+    flex: 2;
 }
 
 .amenity_form {
@@ -26,18 +27,18 @@
     margin-right: 30px;
 }
 
-.to_complete > label {
+.to_complete>label {
     font-weight: 700;
     color: rgba(36, 36, 36, 0.733);
     padding-bottom: 6px;
     font-size: 15px;
 }
 
-.to_complete > input,
-.to_complete > select,
-.to_complete > textarea {
+.to_complete>input,
+.to_complete>select,
+.to_complete>textarea {
     width: 250px;
-    height: 40px;
+    height: 42px;
     padding: 10px;
     font-size: 15px;
     font-weight: 500;
@@ -47,14 +48,14 @@
     background-color: white;
 }
 
-.to_complete > input,
-.to_complete > select,
-.to_complete > textarea {
+.to_complete>input,
+.to_complete>select,
+.to_complete>textarea {
     outline: 1px solid 1px;
     outline-color: rgba(250, 141, 177, 0.658);
 }
 
-.to_complete > * {
+.to_complete>* {
     display: block;
 }
 

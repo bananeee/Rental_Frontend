@@ -25,15 +25,17 @@
 }
 
 .selected {
-    color: green;
+    color: #f0384a !important;
 }
 
 .logo {
     font-size: 1.5rem;
     padding-left: 2.5rem;
+    font-weight: 700;
 }
 
 .smallNav {
+    position: relative;
     width: 40%;
     display: flex;
     flex-direction: row;
@@ -43,7 +45,33 @@
 
 .smallNav a {
     text-decoration: none;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.705);
     /* no underline */
+}
+
+.smallNav a:hover {
+    color: #f0384a;
+}
+/* .smallNav a:hover {
+    border-top: 1px solid red;
+} */
+
+.smallNav .hostButton {
+    background-color: #dc3545;  
+    padding: 0.6rem;
+    border-radius: 4px;
+    color: white;
+}
+
+.smallNav .hostButton:hover {
+    color: white;
+    background-color: #f0384acb;
+}
+
+.hostSelected {
+    color: white;
+    background-color: #f0384acb;
 }
 
 .burger {
@@ -60,7 +88,6 @@
     /* transition: transform 0.4s ease-out; */
 }
 
-
 /* #nav-check:checked ~ .smallNav {
       transform: translateX(0);
     } */
@@ -69,7 +96,7 @@
     pointer-events: none;
 }
 
-.burger:focus~.smallNav {
+.burger:focus ~ .smallNav {
     transform: translateX(0);
 }
 
@@ -106,7 +133,7 @@
         box-shadow: 5px 10px 25px -9px rgba(0, 0, 0, 0.301);
         padding: 1rem 0.5rem 1rem 1rem;
     }
-    .smallNav>li {
+    .smallNav > li {
         margin: 1rem 0;
         padding: 1rem 0;
         width: 87%;

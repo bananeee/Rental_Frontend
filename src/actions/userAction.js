@@ -4,6 +4,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
+    SENDINFO
 } from "../constants/actionTypes.js";
 
 import * as api from "../api/index.js";

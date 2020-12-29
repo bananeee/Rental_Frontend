@@ -9,7 +9,6 @@ function NavLogout({ layout }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
-
     const [layoutNav, setLayoutNav] = useState(layout);
 
     const handleScroll = () => {
@@ -47,9 +46,9 @@ function NavLogout({ layout }) {
         }
     }, [layout]);
 
-
     return (
         <nav style={navbg} className={style.navbar}>
+
             <label className={style.burger} tabindex="0">
                 <div className={style.line}></div>
                 <div className={style.line}></div>
@@ -58,32 +57,45 @@ function NavLogout({ layout }) {
             <div className={style.logo}>Easy Accomd</div>
             <ul className={style.smallNav}>
                 <li>
-                    <NavLink to="/" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/"
+                        activeClassName={style.selected}
+                    >
                         Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/posts" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/posts"
+                        activeClassName={style.selected}
+                    >
                         Listing
                     </NavLink>
                 </li>
 
                 <li>
                     <NavLink
-                        to="/"
-                        activeClassName="selected"
+                        exact={true}
+                        to="/#"
+                        activeClassName={style.selected}
                         onClick={() => {
                             localStorage.clear();
                             dispatch({ type: "LOGOUT" });
-                            // history.push("/");
                         }}
-                        activeClassName="selected">
+                  
+                    >
                         Log out
                     </NavLink>
                 </li>
 
                 <li>
-                    <NavLink to="/profile" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/profile"
+                        activeClassName={style.selected}
+                    >
                         Profile
                     </NavLink>
                 </li>

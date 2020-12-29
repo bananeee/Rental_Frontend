@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./card.module.css";
 import img from "../../../assets/test.jpg";
 import { useHistory } from "react-router-dom";
@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAPost, likePost, unlikePost } from "../../../actions/postAction";
 
 function Card(props) {
-
     const post = useSelector((state) => state);
 
     const history = useHistory();
@@ -18,14 +17,16 @@ function Card(props) {
         props.favorite.includes(localStorage.getItem("user"))
     );
 
-    const dispatch = useDispatch();
+    useEffect(() => {
+        setLove(props.favorite.includes(localStorage.getItem("user")))
+    });
 
+    const dispatch = useDispatch();
 
     const handleCardClick = async (e) => {
         e.preventDefault();
         e.stopPropagation();
         history.push("/posts/" + props._id);
-
     };
 
     const handleHeartClick = async (e) => {
@@ -41,11 +42,11 @@ function Card(props) {
     };
 
     return (
-        <div className={style.card} onClick={handleCardClick}>
-            <div className={style.cardPres}>
+        <div className={style.card}>
+            <div className={style.cardPres} onClick={handleCardClick}>
                 <div className={style.cardPrice}>
                     {props.price}
-                    <span>/month</span>
+                    <span>đ/month</span>
                 </div>
                 <div className={style.cardImg}>
                     <img src={props.image[0]} alt="" />
@@ -53,7 +54,9 @@ function Card(props) {
             </div>
 
             <div className={style.cardBody}>
-                <h3 className={style.cardTitle}>{props.title}</h3>
+                <h3 className={style.cardTitle}>
+                    <span onClick={handleCardClick}>{props.title}</span>
+                </h3>
 
                 <p className={style.cardLocation}>
                     {props.no +

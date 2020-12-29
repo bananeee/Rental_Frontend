@@ -8,11 +8,10 @@ import { getPostsByQuery } from '../../../actions/postAction'
 import { useParams } from 'react-router-dom'
 
 function SearchBar() {
-
-    const [city, setCity] = useState([])
-    const [district, setDistrict] = useState([])
-    const [cityId, setCityId] = useState(-1)
-    const [searchField, setSearchField] = useState({})
+    const [city, setCity] = useState([]);
+    const [district, setDistrict] = useState([]);
+    const [cityId, setCityId] = useState(-1);
+    const [searchField, setSearchField] = useState({});
 
     const { register, handleSubmit } = useForm({})
     const dispatch = useDispatch();
@@ -35,40 +34,42 @@ function SearchBar() {
         history.push('/posts')
     };
 
-
     const getCityData = async () => {
         try {
-            const response = await axios.get("https://vapi.vnappmob.com/api/province")
-            setCity(response.data.results)
+            const response = await axios.get(
+                "https://vapi.vnappmob.com/api/province"
+            );
+            setCity(response.data.results);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 
     const getDistrictData = async () => {
         try {
-            const response = await axios.get("https://vapi.vnappmob.com/api/province/district/" + cityId)
-            setDistrict(response.data.results)
+            const response = await axios.get(
+                "https://vapi.vnappmob.com/api/province/district/" + cityId
+            );
+            setDistrict(response.data.results);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 
     const handleCityChange = async (e) => {
-        if (e.target.value === "")
-            setCityId(-1)
+        if (e.target.value === "") setCityId(-1);
         else
             setCityId(city.find(c => c.province_name === e.target.value).province_id)
         // handleInputChange(e)
-    }
+    };
 
     useEffect(() => {
-        getCityData()
-    }, [])
+        getCityData();
+    }, []);
 
     useEffect(() => {
-        getDistrictData()
-    }, [cityId])
+        getDistrictData();
+    }, [cityId]);
 
     // const handleInputChange = async (e) => {
     //     setSearchField({
@@ -93,11 +94,19 @@ function SearchBar() {
         <form className={style.searchBox} onSubmit={handleSubmit(onSubmit)} >
             <select name="city" id="" onChange={handleCityChange} ref={register}>
                 <option value="">Tỉnh/Thành phố</option>
-                {city.map((c, key) => <option key={key} value={c.province_name}>{c.province_name}</option>)}
+                {city.map((c, key) => (
+                    <option key={key} value={c.province_name}>
+                        {c.province_name}
+                    </option>
+                ))}
             </select>
             <select name="district" id="" ref={register}>
                 <option value="">Quận/Huyện</option>
-                {district.map((d, key) => <option key={key} value={d.district_name}>{d.district_name}</option>)}
+                {district.map((d, key) => (
+                    <option key={key} value={d.district_name}>
+                        {d.district_name}
+                    </option>
+                ))}
             </select>
             <select name="price" id="" ref={register}>
                 <option value="">Giá tiền</option>
@@ -119,11 +128,11 @@ function SearchBar() {
                 className={style.btnSearch}
                 style={{
                     color: "white",
-                    fontSize: "1.25rem"
+                    fontSize: "1.25rem",
                 }}
                 type="submit">Tìm kiếm</button>
         </form>
-    )
+    );
 }
 
-export default SearchBar
+export default SearchBar;

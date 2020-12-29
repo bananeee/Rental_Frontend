@@ -13,12 +13,16 @@ import UserPost from './component/Profile/UserPost/UserPost';
 import UserFavorite from './component/Profile/UserFavorite/UserFavorite';
 import AdminHost from './component/Profile/AdminHost/AdminHost';
 import AdminPost from './component/Profile/AdminPost/AdminPost';
+import Join from './component/Socket/Join/Join';
+
+import Chat from "./component/Socket/Chat/Chat";
 
 
 function App() {
   return (
     <Router>
       <div className="App">
+
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/posts" component={List} />
@@ -35,6 +39,8 @@ function App() {
           {localStorage.getItem('role') === 'renter' && <Route exact path="/favorite" component={Profile} />}
           {localStorage.getItem('role') === 'admin' && <Route exact path="/approve/host" component={Profile} />}
           {localStorage.getItem('role') === 'admin' && <Route exact path="/approve/post" component={Profile} />}
+          <Route exact path="/join" component={Join} />
+          <Route exact path="/chat" component={Chat} />
           <Route component={NotFound} />
         </Switch>
       </div>

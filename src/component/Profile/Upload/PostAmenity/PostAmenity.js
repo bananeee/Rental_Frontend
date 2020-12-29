@@ -35,7 +35,9 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
     const preventSubmit = async (e) => {
         e.preventDefault();
 
+        
         if (!id) {
+            console.log(post)
             dispatch(createPost(post));
         } else {
             dispatch(updatePost(id, post));
@@ -182,7 +184,7 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
                             className={style.to_complete}
                             id={style.water_bill}>
                             <label for="to_complete_water_bill">
-                                Water (đồng/m3)
+                                Water (đồng/m<sup>3</sup>)
                             </label>
                             <input
                                 value={

@@ -5,7 +5,7 @@ import FileBase from "react-file-base64";
 function PostImage({ increaseStep, setPost, post, id }) {
     const saveImage = (file) => {
         let term = post.image
-        term.push(...file.map((item) => item.base64))
+        term.unshift(...file.map((item) => item.base64))
 
         setPost({
             ...post,
@@ -13,20 +13,36 @@ function PostImage({ increaseStep, setPost, post, id }) {
         });
     };
 
-    // console.log(post.image);
+    const handleDelete = (key) => {
 
+        let term = post.image.filter((img, index) => index !== key);
+        if (term.length === 0) {
+            term = ["https://www.level10martialarts.com/wp-content/uploads/2017/04/default-image.jpg"]
+        }
+        setPost({
+            ...post,
+            image: term
+        })
+
+        
+
+    }
     return (
         <div className={style.container}>
             <div id={style.image_title}>
                 <h2>Image</h2>
             </div>
 
-            <div className={style.uploadedImg}>
+            <div className={style.uploadedImg} >
+                {console.log(post.image)}
                 {
+                    
                     post.image.map((img, key) => (
-                        <div className={style.prImg}>
+                        <div className={style.prImg}  >
                             {/* <button className={style.clsBtn}> */}
-                            <i class="far fa-times"></i>
+                            <i className="fad fa-backspace" onClick={() => {
+                            handleDelete(key);
+                        }}></i>
                             {/* </button> */}
                             {/* <div className={style.imgCtn}> */}
                             {/* </div> */}
