@@ -5,12 +5,16 @@ import { useHistory } from "react-router-dom";
 import style from "./nav.module.css";
 import NavLogin from "./NavLogin";
 import NavLogout from "./NavLogout";
+import NavAdmin from "./NavAdmin";
 
 function Nav({ layout }) {
     const userState = useSelector((state) => state.userState);
     return (
         <div>
-            {userState.user === null ? <NavLogin /> : <NavLogout />}
+            {userState.user === null && <NavLogin />}
+            {localStorage.getItem("role") === "renter" && <NavLogout />}
+            {localStorage.getItem("role") === "host" && <NavLogout />}
+            {localStorage.getItem("role") === "admin" && <NavAdmin />}
         </div>
     );
 }

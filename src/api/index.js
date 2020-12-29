@@ -27,6 +27,16 @@ export const renterRegister = async (registerData) => {
     }
 };
 
+export const adminLogin = async (loginData) => {
+    try {
+        const response = await axios.post("auth/admin", loginData);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
+
 // ------------------------------- Host -------------------------------
 export const hostLogin = async (loginData) => {
     try {
@@ -233,3 +243,39 @@ export const unlikePost = async (id) => {
         return null;
     }
 };
+
+export const approvePost = async (id) => {
+    try {
+        const response = await axios.put(`/admin/approve/posts/${id}`, {}, Headers);
+        return response.data;
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
+export const approveHost = async (id) => {
+    try {
+        const response = await axios.put(`/admin/approve/hosts/${id}`, {}, Headers);
+        return response.data;
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
+export const getHosts = async (params) => {
+    try {
+        const response = await axios.get("/host", {
+            params,
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

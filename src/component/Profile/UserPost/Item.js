@@ -10,7 +10,7 @@ function Item({ post }) {
 
     const history = useHistory();
 
-    const handleDelete = (e) => {   
+    const handleDelete = (e) => {
         e.preventDefault();
         dispatch(deletePost(post._id));
     }
@@ -18,7 +18,7 @@ function Item({ post }) {
     const handleUpdate = (e) => {
         e.preventDefault();
 
-        history.push("/upload" + post._id);
+        history.push("/upload/" + post._id);
 
     }
     return (

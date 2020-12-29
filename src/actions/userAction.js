@@ -47,6 +47,23 @@ export const hostLogin = (loginData) => async (dispatch) => {
     }
 };
 
+export const adminLogin = (loginData) => async (dispatch) => {
+    try {
+        const resData = await api.adminLogin(loginData);
+
+        localStorage.setItem("token", resData.token);
+
+        localStorage.setItem("role", resData.role);
+
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: resData,
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
 export const renterRegister = (registerData) => async (dispatch) => {
     try {
         

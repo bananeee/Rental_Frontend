@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 import Nav from '../component/Layout/Nav/Nav'
+import NotFound from '../component/NotFound/NotFound'
+import AdminHost from '../component/Profile/AdminHost/AdminHost'
+import AdminPost from '../component/Profile/AdminPost/AdminPost'
 import PostAmenity from '../component/Profile/Upload/PostAmenity/PostAmenity'
 import PostDes from '../component/Profile/Upload/PostDes/PostDes'
 import PostImage from '../component/Profile/Upload/PostImage/PostImage'
@@ -22,11 +25,13 @@ function Profile({ match }) {
             <Nav />
             <div style={style}>
                 <UserTabMenu />
-                {match.path === '/profile' && <UserInfo />}
-                {match.path === '/upload/:id' && <Upload id={match.params.id} />}
-                {match.path === '/upload' && <Upload />}
-                {match.path === '/my_posts' && <UserPost />}
-                {match.path === '/favorite' && <UserFavorite />}       
+                {localStorage.getItem('role') !== 'admin' && match.path === '/profile' && <UserInfo />}
+                {localStorage.getItem('role') === 'host' && match.path === '/upload/:id' && <Upload id={match.params.id} />}
+                {localStorage.getItem('role') === 'host' && match.path === '/upload' && <Upload />}
+                {localStorage.getItem('role') === 'host' && match.path === '/my_posts' && <UserPost />}
+                {localStorage.getItem('role') === 'renter' && match.path === '/favorite' && <UserFavorite />}
+                {localStorage.getItem('role') === 'admin' && match.path === '/approve/host' && <AdminHost />}
+                {localStorage.getItem('role') === 'admin' && match.path === '/approve/post' && <AdminPost />}
             </div>
         </div>
     )

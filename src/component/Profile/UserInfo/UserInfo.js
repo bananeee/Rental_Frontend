@@ -49,7 +49,7 @@ function UserInfo() {
         const data = await api.getUserInfo(localStorage.getItem("user"));
 
         // console.log(data)
-        setUserInfo(data);
+        setUserInfo({ ...userInfo, ...data});
         getCityData();
     }, []);
 
@@ -349,9 +349,9 @@ function UserInfo() {
                         <label for="phone">Phone</label>
                         <input
                             value={
-                                userInfo.phone === undefined
+                                userInfo.phoneNumber === undefined
                                     ? ""
-                                    : userInfo.phone
+                                    : userInfo.phoneNumber
                             }
                             onChange={handleChange}
                             name="phone"

@@ -267,15 +267,15 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 onChange={handleChange}
                                 name="type"
                                 id={style.to_complete_detail}>
-                                <option value="phong_tro">Phòng trọ</option>
+                                <option value="Phòng trọ">Phòng trọ</option>
 
-                                <option value="chung_cu_mini">
+                                <option value="Chung cư mini">
                                     Chung cư mini
                                 </option>
 
-                                <option value="nha">Nhà nguyên căn</option>
+                                <option value="Nhà nguyên căn">Nhà nguyên căn</option>
 
-                                <option value="chung_cu_nguyen_can">
+                                <option value="Chung cư nguyên căn">
                                     Chung cư nguyên căn
                                 </option>
                             </select>
@@ -361,8 +361,8 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 onChange={handleChange}
                                 name="ownerType"
                                 id={style.to_complete_other}>
-                                <option value="chung">Chung</option>
-                                <option value="khong_chung">
+                                <option value="Chung">Chung</option>
+                                <option value="Không chung">
                                     Không chung chủ
                                 </option>
                             </select>

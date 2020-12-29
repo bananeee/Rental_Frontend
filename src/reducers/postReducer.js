@@ -8,7 +8,8 @@ import {
     CLICK,
     FAVOR_POST,
     MYPOSTS,
-    COMMENT
+    COMMENT,
+    APPROVE_POST
 } from "../constants/actionTypes.js"
 
 const posts = [
@@ -55,8 +56,9 @@ export default (state = posts, action) => {
             )
         case CREATE:
             return [...state, action.payload]
-            
+
         case UPDATE:
+
             return state.map((post) =>
                 post._id === action.payload._id ? action.payload : post
             )
@@ -68,12 +70,16 @@ export default (state = posts, action) => {
 
         case FAVOR_POST:
             return [...action.payload]
-            
+
         case MYPOSTS:
             return [...action.payload]
 
         case COMMENT:
             return [action.payload]
+
+        case APPROVE_POST:
+            return state.filter((post) => post._id !== action.payload)
+
         default:
             return state
     }
