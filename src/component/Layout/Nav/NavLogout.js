@@ -57,32 +57,45 @@ function NavLogout({ layout }) {
             <div className={style.logo}>Easy Accomd</div>
             <ul className={style.smallNav}>
                 <li>
-                    <NavLink to="/" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/"
+                        activeClassName={style.selected}
+                    >
                         Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/posts" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/posts"
+                        activeClassName={style.selected}
+                    >
                         Listing
                     </NavLink>
                 </li>
 
                 <li>
                     <NavLink
-                        to="/"
-                        activeClassName="selected"
+                        exact={true}
+                        to="/#"
+                        activeClassName={style.selected}
                         onClick={() => {
                             localStorage.clear();
                             dispatch({ type: "LOGOUT" });
-                            // history.push("/");
                         }}
-                        activeClassName="selected">
+                  
+                    >
                         Log out
                     </NavLink>
                 </li>
 
                 <li>
-                    <NavLink to="/profile" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/profile"
+                        activeClassName={style.selected}
+                    >
                         Profile
                     </NavLink>
                 </li>

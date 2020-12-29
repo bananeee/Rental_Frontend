@@ -32,6 +32,7 @@
     color: white;
     background-color: #dc3546b9;
     border: 1px solid #dc3546b9;
+    cursor: pointer;
 }
 
 .header button:focus {
@@ -72,6 +73,7 @@
     color: white;
     background-color: #dc3546b9;
     border: 1px solid #dc3546b9;
+    cursor: pointer;
 }
 
 .itemDetail button:focus {

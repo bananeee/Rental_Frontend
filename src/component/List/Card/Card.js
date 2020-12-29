@@ -46,7 +46,7 @@ function Card(props) {
             <div className={style.cardPres} onClick={handleCardClick}>
                 <div className={style.cardPrice}>
                     {props.price}
-                    <span>/month</span>
+                    <span>đ/month</span>
                 </div>
                 <div className={style.cardImg}>
                     <img src={props.image[0]} alt="" />

@@ -28,15 +28,15 @@ function UserTabMenu() {
                     <span>My Profile</span>
                 </NavLink>
                 <NavLink exact={true} to="/upload" activeClassName={style.selected} >
-                    <i className="fas fa-user"></i>
+                    <i className="fas fa-file-plus"></i>
                     <span>Upload</span>
                 </NavLink>
                 <NavLink exact={true} to="/my_posts" activeClassName={style.selected} >
-                    <i className="fas fa-user"></i>
+                    <i className="fas fa-folder"></i>
                     <span>My Post</span>
                 </NavLink>
                 <NavLink exact={true} to="/favorite" activeClassName={style.selected} >
-                    <i className="fas fa-user"></i>
+                    <i className="fas fa-heart"></i>
                     <span>My Favorite</span>
                 </NavLink>
 

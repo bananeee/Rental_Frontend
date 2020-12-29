@@ -340,7 +340,7 @@ function PostDes({ increaseStep, setPost, post, id }) {
                     <div className={style.category} id={style.area}>
                         <div className={style.category_name}>Area</div>
                         <div className={style.to_complete}>
-                            <label for="to_complete_area">Area (m2)</label>
+                            <label for="to_complete_area">Area (m<sup>2</sup>)</label>
                             <input
                                 value={post.size === undefined ? "" : post.size}
                                 onChange={handleChange}

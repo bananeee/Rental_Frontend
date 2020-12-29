@@ -4,13 +4,13 @@
     flex: 1;
 }
 
+.description_form {
+    padding: 2rem;
+}
+
 #description {
     padding: 2rem;
     border-bottom: 1px dotted rgb(218, 215, 215);
-}
-
-.description_form {
-    padding: 2rem;
 }
 
 .category {
@@ -23,7 +23,7 @@
     min-width: 20%;
 }
 
-#location>.wrap_item {
+.wrap_item {
     display: flex;
     flex-wrap: wrap;
 }
@@ -32,9 +32,11 @@
     width: 530px;
 }
 
+
+/* iefseoifsofi */
+
 .to_complete {
     margin-right: 30px;
-    margin-top: 10px;
 }
 
 .to_complete>label {
@@ -48,7 +50,7 @@
 .to_complete>select,
 .to_complete>textarea {
     width: 250px;
-    height: 40px;
+    height: 42px;
     padding: 10px;
     font-size: 15px;
     font-weight: 500;

@@ -40,7 +40,7 @@ function PostImage({ increaseStep, setPost, post, id }) {
                     post.image.map((img, key) => (
                         <div className={style.prImg}  >
                             {/* <button className={style.clsBtn}> */}
-                            <i class="far fa-times" onClick={() => {
+                            <i className="fad fa-backspace" onClick={() => {
                             handleDelete(key);
                         }}></i>
                             {/* </button> */}

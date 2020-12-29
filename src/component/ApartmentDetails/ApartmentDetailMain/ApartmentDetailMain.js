@@ -4,8 +4,14 @@ import style from "./apartmentdetail.main.module.css";
 import Comment from "../Comment/Comment";
 import Slider from "react-slick";
 import LightBox from "../LightBox/LightBox";
+import ReadMoreReact from "read-more-react";
 import { useDispatch, useSelector } from "react-redux";
-import { commentPost, getAPost, likePost, unlikePost } from "../../../actions/postAction";
+import {
+    commentPost,
+    getAPost,
+    likePost,
+    unlikePost,
+} from "../../../actions/postAction";
 
 function ApartmentDetailMain({ id }) {
     const dispatch = useDispatch();
@@ -20,7 +26,7 @@ function ApartmentDetailMain({ id }) {
 
     const handleText = (e) => {
         setText(e.target.value);
-    }
+    };
 
     useEffect(() => {
         dispatch(getAPost(id));
@@ -40,6 +46,12 @@ function ApartmentDetailMain({ id }) {
         // centerPadding: '100px',
     };
 
+    // const [favorite, setFavorite] = useState({});
+    // const handleFavoriteClick = async (e) => {
+    //     setFavorite(!favorite);
+    //     console.log("1");
+    // };
+
     const handleHeartClick = async (e) => {
         e.preventDefault();
 
@@ -55,7 +67,7 @@ function ApartmentDetailMain({ id }) {
         e.preventDefault();
         setText("");
 
-        dispatch(commentPost( posts[0]._id, { text: e.target[0].value }));
+        dispatch(commentPost(posts[0]._id, { text: e.target[0].value }));
     };
     return (
         <main className={style.detailMain}>
@@ -87,15 +99,18 @@ function ApartmentDetailMain({ id }) {
                                 <div className={style.title}>
                                     {posts[0].title}
                                 </div>
-                                {posts[0].no +
-                                    ", " +
-                                    posts[0].street +
-                                    ", " +
-                                    posts[0].ward +
-                                    ", " +
-                                    posts[0].district +
-                                    ", " +
-                                    posts[0].city}
+                                <i className="fas fa-map-marker-alt"></i>
+                                <span>
+                                    {posts[0].no +
+                                        ", " +
+                                        posts[0].street +
+                                        ", " +
+                                        posts[0].ward +
+                                        ", " +
+                                        posts[0].district +
+                                        ", " +
+                                        posts[0].city}
+                                </span>
                             </div>
                             {/* <div className={style.avatar}>
                                  <img src={host.image} alt="" /> 
@@ -132,19 +147,24 @@ function ApartmentDetailMain({ id }) {
                                 <h2>About this listing</h2>
                             </header>
                             <div className={style.paragraph}>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Morbi est quam, volutpat et
-                                arcu eu, pharetra congue augue. Integer vel nibh
-                                eu eros interdum commodo. Vivamus finibus
-                                fringilla libero, id consectetur purus
-                                sollicitudin vel. Proin dapibus ante et pharetra
-                                luctus. Ut lacinia ante ut nunc pellentesque
-                                auctor. Proin laoreet erat sed ornare molestie.
-                                Fusce vehicula ut nulla facilisis vulputate.
-                                Quisque vel purus ac lectus tempus viverra.
-                                Maecenas at sem at erat pellentesque hendrerit
-                                nec in massa. Vestibulum nec lacinia dui, a
-                                congue ex. Vivamus ac ultri
+                                <ReadMoreReact
+                                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                        Donec volutpat lorem vehicula consectetur egestas. 
+                                        Praesent sodales nisi id quam tincidunt, nec facilisis est dapibus. 
+                                        Fusce ut leo nisl. Sed fermentum auctor ante eget ultrices. Praesent pharetra orci a est porttitor, 
+                                        quis commodo eros condimentum. Integer tempus accumsan mattis. Phasellus sit amet leo volutpat nisl 
+                                        luctus pellentesque ultrices quis massa. Nulla in leo eleifend, accumsan ligula sit amet, aliquet metus. 
+                                        Curabitur eleifend ut diam a tempus. Praesent quis tincidunt velit. In quis ex blandit turpis dignissim 
+                                        tristique. Integer dignissim dolor risus, in rhoncus eros ullamcorper et. Suspendisse tincidunt purus id 
+                                        feugiat aliquet. Etiam molestie orci in risus efficitur auctor. Fusce varius convallis odio, et porta leo 
+                                        mollis eu. Vestibulum tincidunt, nunc a elementum maximus, risus augue fringilla nibh, a faucibus urna augue 
+                                        nec nulla. Pellentesque imperdiet, lectus vitae venenatis euismod, felis est tempor sapien, vel ornare felis 
+                                        dolor eget nisl. Aliquam vel auctor purus. Phasellus euismod ultrices nisl non auctor. Suspendisse in sapien ex. Sed non pharetra risus. Aliquam erat volutpat. Aliquam erat volutpat. Nullam maximus velit ac cursus suscipit. Phasellus vel sagittis sem. Duis interdum tempus blandit. Nunc faucibus et arcu quis vestibulum. Nam egestas in velit eget suscipit. Nunc iaculis tincidunt nulla non luctus. Sed massa ex, iaculis non sollicitudin at, faucibus vel nunc."
+                                    min={500}
+                                    ideal={700}
+                                    max={1000}
+                                    readMoreText="read more"
+                                />
                             </div>
                         </div>
 
@@ -154,42 +174,48 @@ function ApartmentDetailMain({ id }) {
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"></i>
+                                        aria-hidden="true"
+                                    ></i>
                                     ID:
                                     <b>123</b>
                                 </li>
@@ -203,15 +229,16 @@ function ApartmentDetailMain({ id }) {
                         {posts[0].comments.map((comment, key) => (
                             <Comment key={key} comment={comment} />
                         ))}
+                        <form onSubmit={handleComment}>
+                            <input
+                                type="text"
+                                onChange={handleText}
+                                value={text}
+                                placeholder="Add a comment..."
+                                className={style.commentArea}
+                            />
+                        </form>
                     </div>
-
-                    <form onSubmit={handleComment}>
-                        <input 
-                            type="text" 
-                            onChange={handleText}
-                            value={text}
-                            placeholder="Add a comment ..." />
-                    </form>
                 </div>
 
                 <div className={style.forms}>
@@ -223,8 +250,8 @@ function ApartmentDetailMain({ id }) {
                         <div className={style.formBody}>
                             <div className={style.pricesAreas}>
                                 <div>
-                                    <i className="fa fa-money-bill-wave"></i>
-                                    <sup>$</sup>
+                                    <i className="fa fa-dollar-sign"></i>
+                                    <sup></sup>
                                     {posts[0].price}
                                     <sub>/month</sub>
                                 </div>
@@ -251,8 +278,11 @@ function ApartmentDetailMain({ id }) {
                             </div>
                         </div>
                     </div>
-                    <div className={style.bottom} onClick={handleHeartClick}>
-                        <div>
+                    <div className={style.bottom}>
+                        <div
+                            className={love ? style.added : style.removed}
+                            onClick={handleHeartClick}
+                        >
                             <i className="fa fa-heart"></i>
                             Add to Favorite
                         </div>

@@ -46,7 +46,6 @@ function NavLogin({ layout }) {
         }
     }, [layout]);
 
-
     return (
         <nav style={navbg} className={style.navbar}>
             <label className={style.burger} tabindex="0">
@@ -57,28 +56,49 @@ function NavLogin({ layout }) {
             <div className={style.logo}>Easy Accomd</div>
             <ul className={style.smallNav}>
                 <li>
-                    <NavLink to="/" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/"
+                        activeClassName={style.selected}
+                    >
                         Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/posts" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/posts"
+                        activeClassName={style.selected}
+                    >
                         Listing
                     </NavLink>
                 </li>
 
                 <li>
-                    <NavLink to="/renter/login" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/renter/login"
+                        activeClassName={style.selected}
+                    >
                         Login
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/renter/register" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/renter/register"
+                        activeClassName={style.selected}
+                    >
                         Sign up
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/host/login" activeClassName="selected">
+                    <NavLink
+                        exact={true}
+                        to="/host/login"
+                        activeClassName={style.hostSelected}
+                        className={style.hostButton}
+                    >   
                         Become Host
                     </NavLink>
                 </li>

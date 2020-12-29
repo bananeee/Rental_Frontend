@@ -54,7 +54,7 @@ function RenterRegister() {
                             <h1>Create an account</h1>
                             <p>
                                 Already have an account?{" "}
-                                <a href="/login">Log in</a>
+                                <a href="/renter/login">Log in</a>
                             </p>
 
                             <label for="phone">Phone number</label>
