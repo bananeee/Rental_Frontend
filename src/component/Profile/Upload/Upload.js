@@ -12,7 +12,9 @@ function Upload({ id }) {
     const [step, setStep] = useState(0);
 
     const [post, setPost] = useState({
-        image: ["https://www.level10martialarts.com/wp-content/uploads/2017/04/default-image.jpg"],
+        image: [
+            "https://www.level10martialarts.com/wp-content/uploads/2017/04/default-image.jpg",
+        ],
         favorite: [],
         pending: false,
         title: "Title",
@@ -41,6 +43,10 @@ function Upload({ id }) {
         setStep((prevStep) => prevStep + 1);
     };
 
+    const preStep = () => {
+        setStep((prevStep) => prevStep - 1);
+    };
+
     return (
         <div className={style.upload}>
             {step === 0 && (
@@ -54,17 +60,22 @@ function Upload({ id }) {
             {step === 1 && (
                 <PostImage
                     increaseStep={nextStep}
+                    decreaseStep={preStep}
                     setPost={setPost}
                     post={post}
                     id={id}
                 />
             )}
             {step === 2 && (
-                <PostAmenity setPost={setPost} post={post} id={id} />
+                <PostAmenity
+                    setPost={setPost}
+                    decreaseStep={preStep}
+                    post={post}
+                    id={id}
+                />
             )}
 
-            
-            <div className={style.preview} >
+            <div className={style.preview}>
                 <Card post={post} />
             </div>
         </div>

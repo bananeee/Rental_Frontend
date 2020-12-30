@@ -22,6 +22,10 @@ function ApartmentDetailMain({ id }) {
         posts[0].favorite.includes(localStorage.getItem("user"))
     );
 
+    useEffect(() => {
+        setLove(posts[0].favorite.includes(localStorage.getItem("user")));
+    });
+
     const [text, setText] = useState("");
 
     const handleText = (e) => {
@@ -30,7 +34,7 @@ function ApartmentDetailMain({ id }) {
 
     useEffect(() => {
         dispatch(getAPost(id));
-    }, []);
+    }, [love]);
 
     const settings = {
         dots: true,
@@ -45,12 +49,6 @@ function ApartmentDetailMain({ id }) {
         // centerMode: true,
         // centerPadding: '100px',
     };
-
-    // const [favorite, setFavorite] = useState({});
-    // const handleFavoriteClick = async (e) => {
-    //     setFavorite(!favorite);
-    //     console.log("1");
-    // };
 
     const handleHeartClick = async (e) => {
         e.preventDefault();
@@ -174,70 +172,68 @@ function ApartmentDetailMain({ id }) {
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                                 <li>
                                     <i
                                         className="fa fa-angle-right"
-                                        aria-hidden="true"
-                                    ></i>
+                                        aria-hidden="true"></i>
                                     ID:
                                     <b>123</b>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <LightBox />
+
+                    <LightBox images={posts[0].image} />
 
                     <div className={style.commentContainer}>
                         <h2>Review</h2>
                         {posts[0].comments.map((comment, key) => (
                             <Comment key={key} comment={comment} />
                         ))}
-                        <form onSubmit={handleComment}>
-                            <input
-                                type="text"
-                                onChange={handleText}
-                                value={text}
-                                placeholder="Add a comment..."
-                                className={style.commentArea}
-                            />
-                        </form>
+
+                        {localStorage.getItem("role") === "renter" && (
+                            <form onSubmit={handleComment}>
+                                <input
+                                    type="text"
+                                    onChange={handleText}
+                                    value={text}
+                                    placeholder="Add a comment..."
+                                    className={style.commentArea}
+                                />
+                            </form>
+                        )}
                     </div>
                 </div>
 
@@ -279,15 +275,15 @@ function ApartmentDetailMain({ id }) {
                         </div>
                     </div>
                     <div className={style.bottom}>
-                        <div
-                            className={love ? style.added : style.removed}
-                            onClick={handleHeartClick}
-                        >
-                            <i className="fa fa-heart"></i>
-                            Add to Favorite
-                        </div>
+                        {localStorage.getItem("role") === "renter" && (
+                            <div
+                                className={love ? style.added : style.removed}
+                                onClick={handleHeartClick}>
+                                <i className="fa fa-heart"></i>
+                                Add to Favorite
+                            </div>
+                        )}
                     </div>
-
                     <div className={style.listIcons}>
                         <div className={style.icons}>
                             <i className="fab fa-twitter"></i>

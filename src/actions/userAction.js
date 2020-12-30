@@ -4,7 +4,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    SENDINFO
+    SENDINFO,
 } from "../constants/actionTypes.js";
 
 import * as api from "../api/index.js";
@@ -13,16 +13,23 @@ export const renterLogin = (loginData) => async (dispatch) => {
     try {
         const resData = await api.renterLogin(loginData);
 
-        localStorage.setItem("token", resData.token);
+        if (resData !== null) {
+            localStorage.setItem("token", resData.token);
 
-        localStorage.setItem("user", resData.user._id);
+            localStorage.setItem("user", resData.user._id);
 
-        localStorage.setItem("role", resData.role);
+            localStorage.setItem("role", resData.role);
 
-        dispatch({
-            type: LOGIN_SUCCESS,
-            payload: resData,
-        });
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: resData,
+            });
+        } else {
+            dispatch({
+                type: LOGIN_FAIL,
+                payload: {},
+            });
+        }
     } catch (error) {
         console.log(error.message);
     }
@@ -66,7 +73,6 @@ export const adminLogin = (loginData) => async (dispatch) => {
 
 export const renterRegister = (registerData) => async (dispatch) => {
     try {
-        
         const resData = await api.renterRegister(registerData);
 
         dispatch({
@@ -79,13 +85,21 @@ export const renterRegister = (registerData) => async (dispatch) => {
 };
 
 export const hostRegister = (registerData) => async (dispatch) => {
-    try {        
+    try {
         const resData = await api.hostRegister(registerData);
+        console.log(resData);
 
-        dispatch({
-            type: REGISTER_SUCCESS,
-            payload: resData,
-        });
+        if (resData.message !== "Saved successfully") {
+            dispatch({
+                type: REGISTER_FAIL,
+                payload: "Invalid Input",
+            });
+        } else {
+            dispatch({
+                type: REGISTER_SUCCESS,
+                payload: resData,
+            });
+        }
     } catch (error) {
         console.log(error.message);
     }

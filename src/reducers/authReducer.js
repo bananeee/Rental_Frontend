@@ -6,18 +6,16 @@ import {
     LOGOUT,
 } from "../constants/actionTypes.js";
 
-const user = localStorage.getItem("user");
+// const user = localStorage.getItem("user");
 
-const userState = user
-    ? { isLoggedIn: true, user }
-    : { isLoggedIn: false, user: null };
+const userState =  { isLoggedIn: false, user: null };
 
 export default (state = userState, action) => {
     switch (action.type) {
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                isLoggedIn: false,
+                isLoggedIn: true,
             };
         case REGISTER_FAIL:
             return {

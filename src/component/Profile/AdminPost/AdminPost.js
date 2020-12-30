@@ -21,6 +21,7 @@ function AdminPost() {
 
     return (
         <div className={style.userPost}>
+            { console.log(posts) }
             <div className={style.container}>
                 <div className={style.header}>
                     <h3>Post approval</h3>
@@ -39,11 +40,11 @@ function AdminPost() {
                         </tr>
 
                         {posts.map((post, key) => (<tr className={style.itemDetail} key={key}>
-                            <td className={style.imgCtn}><img src={post.image} alt=""/></td>
+                            <td className={style.imgCtn}><img src={post.image[0]} alt=""/></td>
                             <td>
                                 {`${post.no}, ${post.street}, ${post.ward}, ${post.district}, ${post.city}`}
                             </td>
-                            <td>post.type</td>
+                            <td>{post.type}</td>
                             <td><b>{post.price}triệu/tháng</b></td>
                             <td>{post.room}</td>
                             <td className={style.status}>{post.status}</td>

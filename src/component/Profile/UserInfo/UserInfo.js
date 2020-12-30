@@ -116,6 +116,7 @@ function UserInfo() {
         api.updateInfoUser(localStorage.getItem("user"), userInfo);
     };
 
+    // ---- Toast
     const [open, setOpen] = useState(false);
 
     const handleClose = (event, reason) => {

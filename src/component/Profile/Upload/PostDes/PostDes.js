@@ -1,11 +1,33 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 import style from "./post.des.module.css";
 
-function PostDes({ increaseStep, setPost, post, id }) {
-    // const [locationData, setLocationData] = useState({});
+// ---Validation
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-    // const [priceData, setPriceData] = useState({});
+const SigninSchema = yup.object().shape({
+    title: yup
+        .string()
+        .required()
+        .min(3, "title must have at least 3 characters"),
+    no: yup.string().required().min(3, "title must have at least 3 characters"),
+    street: yup
+        .string()
+        .required()
+        .min(3, "street must have at least 3 characters"),
+    ward: yup
+        .string()
+        .required()
+        .min(3, "title must have at least 3 characters"),
+});
+// ----------
+
+function PostDes({ increaseStep, setPost, post, id }) {
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(SigninSchema),
+    });
 
     const [city, setCity] = useState([]);
 
@@ -43,6 +65,10 @@ function PostDes({ increaseStep, setPost, post, id }) {
         }
     };
 
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+
     const handleChange = (e) => {
         setPost({
             ...post,
@@ -60,30 +86,6 @@ function PostDes({ increaseStep, setPost, post, id }) {
         }
     };
 
-    // const handleChangeLocation = async (e) => {
-    //     setLocationData({
-    //         ...locationData,
-    //         [e.target.name]: e.target.value,
-    //     });
-
-    //     setPost({
-    //         ...post,
-    //         location: locationData,
-    //     });
-    // };
-
-    // const handleChangePrice = async (e) => {
-    //     setPriceData({
-    //         ...priceData,
-    //         [e.target.name]: e.target.value,
-    //     });
-
-    //     setPost({
-    //         ...post,
-    //         price: priceData,
-    //     });
-    // };
-
     return (
         <div className={style.container}>
             <div id={style.description}>
@@ -91,13 +93,14 @@ function PostDes({ increaseStep, setPost, post, id }) {
             </div>
 
             <div className={style.description_form}>
-                <form>
+                <form onClick={handleSubmit(onSubmit)}>
                     <div className={style.category} id={style.title}>
                         <div className={style.category_name}>Title</div>
 
                         <div className={style.to_complete}>
                             <label for="title_title">Title</label>
                             <input
+                                ref={register}
                                 value={
                                     post.title === undefined ? "" : post.title
                                 }
@@ -107,6 +110,7 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 id={style.title_title}
                                 placeholder="Home Sweet Home"
                             />
+                            {errors.title && <p>{errors.title.message}</p>}
                         </div>
                     </div>
 
@@ -118,11 +122,7 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 id={style.location_no}>
                                 <label for="to_complete_no">No</label>
                                 <input
-                                    value={
-                                        post.no === undefined
-                                            ? ""
-                                            : post.no
-                                    }
+                                    value={post.no === undefined ? "" : post.no}
                                     onChange={handleChange}
                                     name="no"
                                     type="text"
@@ -135,6 +135,7 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 id={style.location_street}>
                                 <label for="to_complete_street">Street</label>
                                 <input
+                                    ref={register}
                                     value={
                                         post.street === undefined
                                             ? ""
@@ -146,6 +147,9 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                     id={style.to_complete_street}
                                     placeholder="Xuân Thủy"
                                 />
+                                {errors.street && (
+                                    <p>{errors.street.message}</p>
+                                )}
                             </div>
                             <div
                                 className={style.to_complete}
@@ -153,9 +157,7 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 <label for="to_complete_ward">Ward</label>
                                 <input
                                     value={
-                                        post.ward === undefined
-                                            ? ""
-                                            : post.ward
+                                        post.ward === undefined ? "" : post.ward
                                     }
                                     onChange={handleChange}
                                     name="ward"
@@ -189,18 +191,6 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                         </option>
                                     ))}
                                 </select>
-                                {/* <input
-                                    value={
-                                        post.district === undefined
-                                            ? ""
-                                            : post.district
-                                    }
-                                    onChange={handleChange}
-                                    name="district"
-                                    type="text"
-                                    id={style.to_complete_district}
-                                    placeholder="Cầu Giấy"
-                                /> */}
                             </div>
                             <div
                                 className={style.to_complete}
@@ -209,9 +199,7 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 <select
                                     name="city"
                                     value={
-                                        post.city === undefined
-                                            ? ""
-                                            : post.city
+                                        post.city === undefined ? "" : post.city
                                     }
                                     className={style.type_in}
                                     id={style.city}
@@ -225,18 +213,6 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                         </option>
                                     ))}
                                 </select>
-                                {/* <input
-                                    value={
-                                        post.city === undefined
-                                            ? ""
-                                            : post.city
-                                    }
-                                    onChange={handleCityChange}
-                                    name="city"
-                                    type="text"
-                                    id={style.to_complete_city}
-                                    placeholder="Hà Nội"
-                                /> */}
                             </div>
                         </div>
                     </div>
@@ -273,7 +249,9 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                     Chung cư mini
                                 </option>
 
-                                <option value="Nhà nguyên căn">Nhà nguyên căn</option>
+                                <option value="Nhà nguyên căn">
+                                    Nhà nguyên căn
+                                </option>
 
                                 <option value="Chung cư nguyên căn">
                                     Chung cư nguyên căn
@@ -300,31 +278,10 @@ function PostDes({ increaseStep, setPost, post, id }) {
 
                     <div className={style.category} id={style.price}>
                         <div className={style.category_name}>Price</div>
-                        {/* <div
-                            className={style.to_complete}
-                            id={style.price_type}>
-                            <label for="to_complete_price_type">Type</label>
-                            <select
-                                value={
-                                    priceData.category === undefined
-                                        ? ""
-                                        : priceData.category
-                                }
-                                onChange={handleChangePrice}
-                                name="category"
-                                id={style.to_complete_detail}>
-                                <option value="thang">Tháng</option>
-                                <option value="qui">Quí</option>
-                                <option value="nam">Năm</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div> */}
+
                         <div className={style.to_complete} id={style.price}>
                             <label for="to_complete_price">Price (đồng)</label>
                             <input
-                                // value={priceData.amount === undefined ? "" : priceData.amount}
-                                // onChange={handleChangePrice}
-                                // name="amount"
                                 value={
                                     post.price === undefined ? "" : post.price
                                 }
@@ -340,7 +297,9 @@ function PostDes({ increaseStep, setPost, post, id }) {
                     <div className={style.category} id={style.area}>
                         <div className={style.category_name}>Area</div>
                         <div className={style.to_complete}>
-                            <label for="to_complete_area">Area (m<sup>2</sup>)</label>
+                            <label for="to_complete_area">
+                                Area (m<sup>2</sup>)
+                            </label>
                             <input
                                 value={post.size === undefined ? "" : post.size}
                                 onChange={handleChange}

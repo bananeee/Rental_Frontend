@@ -1,144 +1,174 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { hostRegister, login } from "../../actions/userAction";
 import style from "./host.register.module.css";
 
+// ---Validation
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Snackbar } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
+
+const SignupSchema = yup.object().shape({
+    username: yup
+        .string()
+        .required()
+        .min(3, "Username must have at least 3 characters"),
+    phoneNumber: yup
+        .number()
+        .positive()
+        .integer()
+        .required()
+        .min(999999999, "This input must have at least 10 characters"),
+    password: yup.string().required().min(3, "Password is too weak"),
+    email: yup.string().email().required(),
+    fullName: yup.string().trim().ensure().required(),
+    idNumber: yup
+        .number()
+        .positive()
+        .integer()
+        .required()
+        .min(999999999, "This input must have at least 10 characters"),
+});
+
+// ----- Toast --
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+// ----
+
 function HostRegister() {
-    const [registerData, setRegisterData] = useState({
-        username: "",
-        password: "",
-        phoneNumber: "",
-        fullName: "",
-        idNumber: "",
-        email: "",
-        address: "",
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(SignupSchema),
     });
 
     const dispatch = useDispatch();
 
     const history = useHistory();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const userState = useSelector((state) => state.userState);
 
-        // if (
-        //     !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-        //         registerData.email
-        //     )
-        // ) {
-        //     M.toast({ html: "invalid email", classes: "#c62828 red darken-3" });
-        //     return;
-        // }
-
+    const onSubmit = (data) => {
         try {
-            dispatch(hostRegister(registerData));
-            history.push("/host/login");
+            dispatch(hostRegister(data));
+            console.log(data);
+            setOpen(true);
+            // setTimeout(() => {
+            //     history.push("/host/login");
+            // }, 2000);
         } catch (error) {
             console.log(error);
         }
     };
 
-    const handleChange = (e) => {
-        setRegisterData({
-            ...registerData,
-            [e.target.name]: e.target.value,
-        });
+    // ---- Toast
+    const [open, setOpen] = useState(false);
+
+    const handleClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+        setOpen(false);
     };
+    // ----
 
     return (
         <div id={style.container}>
+            {console.log(userState)}
+
             <div className={style.bg_opacity}>
                 <div className={style.info_container}>
-                    <div className={style.info}>
-                        {/* <h1>Title</h1>
-                        <p>Text here Text here Text here</p>
-                        <p>Text here Text here Text here</p>
-                        <p>Text here</p>
-                        <p>Text here</p>
-                        <p>Text here</p> */}
-                    </div>
+                    <div className={style.info}></div>
                 </div>
 
                 <div className={style.signup_container}>
                     <div className={style.form_container}>
                         <form
                             className={style.signup_form}
-                            onSubmit={handleSubmit}>
+                            onSubmit={handleSubmit(onSubmit)}>
                             <h1>Create an account</h1>
                             <p>
                                 Already have an account?{" "}
                                 <a href="/host/login">Log in</a>
                             </p>
                             <label for="name">Full name</label>
+
                             <input
+                                ref={register}
                                 type="text"
                                 placeholder="John Doe"
                                 className={style.type_in}
                                 id={style.name}
-                                onChange={handleChange}
-                                value={registerData.fullName}
                                 name="fullName"
                             />
+                            {errors.fullName && (
+                                <p>{errors.fullName.message}</p>
+                            )}
+
                             <label for="id">ID number</label>
                             <input
+                                ref={register}
                                 type="text"
                                 placeholder="123456789"
                                 className={style.type_in}
                                 id={style.id}
-                                onChange={handleChange}
-                                value={registerData.idNumber}
                                 name="idNumber"
                             />
-                            {/* <label for="address">Address</label>
-                            <input
-                                type="text"
-                                placeholder="Hanoi"
-                                className={style.type_in}
-                                id={style.address}
-                                onChange={handleChange}
-                                value={registerData.address}
-                                name="address"
-                            /> */}
+                            {errors.idNumber && (
+                                <p>{errors.idNumber.message}</p>
+                            )}
+
                             <label for="phone">Phone number</label>
                             <input
+                                ref={register}
                                 type="text"
                                 placeholder="123456789"
                                 className={style.type_in}
                                 id={style.phone}
-                                onChange={handleChange}
-                                value={registerData.phoneNumber}
                                 name="phoneNumber"
                             />
+                            {errors.phoneNumber && (
+                                <p>{errors.phoneNumber.message}</p>
+                            )}
+
                             <label for="email">Email</label>
                             <input
+                                ref={register}
                                 type="text"
                                 placeholder="abc@xyz.com"
                                 className={style.type_in}
                                 id={style.email}
-                                onChange={handleChange}
-                                value={registerData.email}
                                 name="email"
                             />
+                            {errors.email && <p>{errors.email.message}</p>}
+
                             <label for="username">Username</label>
                             <input
+                                ref={register}
                                 type="text"
                                 placeholder="Johndoe123"
                                 className={style.type_in}
                                 id={style.username}
-                                onChange={handleChange}
-                                value={registerData.username}
                                 name="username"
                             />
+                            {errors.username && (
+                                <p>{errors.username.message}</p>
+                            )}
+
                             <label for="password">Password</label>
                             <input
+                                ref={register}
                                 type="password"
                                 className={style.type_in}
                                 id={style.password}
-                                onChange={handleChange}
-                                value={registerData.password}
                                 name="password"
                             />
+                            {errors.password && (
+                                <p>{errors.password.message}</p>
+                            )}
+
                             <button className={style.signup_button}>
                                 <p>Create Account</p>
                             </button>
@@ -146,6 +176,15 @@ function HostRegister() {
                     </div>
                 </div>
             </div>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert
+                    onClose={handleClose}
+                    severity={userState.isLoggedIn ? "success" : "error"}>
+                    {userState.isLoggedIn
+                        ? "Register successfully ! You need to await admin to accept !!!"
+                        : "Invalid Input, you must input again !!!"}
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

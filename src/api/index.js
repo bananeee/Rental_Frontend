@@ -10,6 +10,7 @@ const Headers = {
 export const renterLogin = async (loginData) => {
     try {
         const response = await axios.post("auth/renter/login", loginData);
+        
         return response.data;
     } catch (error) {
         console.log(error);

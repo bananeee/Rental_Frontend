@@ -44,6 +44,8 @@ export const getFavorPosts = (id) => async (dispatch) => {
 export const getMyPosts = (id) => async (dispatch) => {
     try {
         const data = await api.getMyPosts(id);
+
+        console.log(data)
         dispatch({ type: MYPOSTS, payload: data.posts });
     } catch (error) {
         console.log(error.message);

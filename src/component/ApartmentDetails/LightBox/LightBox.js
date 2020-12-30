@@ -8,69 +8,22 @@ import { SRLWrapper } from "simple-react-lightbox";
 
 import styles from "./lightbox.module.css";
 
-const LightBox = () => {
+const LightBox = ({ images }) => {
     return (
         <div>
             <SimpleReactLightbox>
                 <SRLWrapper>
                     <div>
                         <div id={styles.row}>
-                            <div>
-                                <img
-                                    className={styles.image}
-                                    src={image1}
-                                    alt="New York City - Architecture"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    className={styles.image}
-                                    src={image2}
-                                    alt="Between two mountains"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    className={styles.image}
-                                    src={image3}
-                                    alt="Parallels building"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    className={styles.image}
-                                    src={image1}
-                                    alt="New York City - Architecture"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    className={styles.image}
-                                    src={image2}
-                                    alt="Between two mountains"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    className={styles.image}
-                                    src={image3}
-                                    alt="Parallels building"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    className={styles.image}
-                                    src={image1}
-                                    alt="New York City - Architecture"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    className={styles.image}
-                                    src={image2}
-                                    alt="Between two mountains"
-                                />
-                            </div>
+                            {images.map((img, index) => (
+                                <div>
+                                    <img
+                                        className={styles.image}
+                                        src={img}
+                                        alt={"Image " + index}
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </SRLWrapper>

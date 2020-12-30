@@ -5,6 +5,9 @@ function Comment({ comment }) {
     
     return (
         <div className={style.commentContainer}>
+            {
+                console.log(comment)
+            }
             <div>
                 <div className={style.avatar}>
                     <img src={comment.commentedBy.image} alt="" />
@@ -15,7 +18,7 @@ function Comment({ comment }) {
 
                 <div className={style.date}>
                     <i class="fal fa-calendar-alt"></i>
-                    {/* {comment.date} */}
+                    {comment.date}
                 </div>
 
                 <div className={style.description}>

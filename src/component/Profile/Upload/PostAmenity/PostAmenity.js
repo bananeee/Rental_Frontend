@@ -4,9 +4,17 @@ import style from "./post.amenity.module.css";
 
 import * as api from "../../../../api/index.js";
 import { useDispatch } from "react-redux";
-import { createPost, deletePost, updatePost } from "../../../../actions/postAction";
+import {
+    createPost,
+    deletePost,
+    updatePost,
+} from "../../../../actions/postAction";
 
-function PostAmenity({ post, setPost, uploadPost, id }) {
+
+function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
+
+    
+
     const [bathroomData, setBathroomData] = useState({});
 
     const history = useHistory();
@@ -35,14 +43,13 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
     const preventSubmit = async (e) => {
         e.preventDefault();
 
-        
         if (!id) {
-            console.log(post)
+            console.log(post);
             dispatch(createPost(post));
         } else {
             dispatch(updatePost(id, post));
         }
-        history.push("/posts");
+        history.push("/my_posts");
     };
 
     return (
@@ -221,6 +228,14 @@ function PostAmenity({ post, setPost, uploadPost, id }) {
                             id={style.continue_button}
                             onClick={preventSubmit}>
                             Submit
+                        </button>
+                    </div>
+
+                    <div className={style.category} id={style.continue}>
+                        <button
+                            id={style.continue_button}
+                            onClick={decreaseStep}>
+                            Back
                         </button>
                     </div>
                 </form>
