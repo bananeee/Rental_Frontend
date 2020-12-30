@@ -67,6 +67,10 @@
     outline-color: rgba(250, 141, 177, 0.658);
 }
 
+.to_complete textarea:focus {
+    outline-color: rgba(250, 141, 177, 0.658);
+
+}
 .to_complete>* {
     display: block;
 }

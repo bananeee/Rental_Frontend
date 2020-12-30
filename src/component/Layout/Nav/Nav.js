@@ -14,6 +14,7 @@ function Nav({ layout }) {
             {/* <NavLogin /> */}
             {/* {console.log(userState.user)} */}
             {!userState.isLoggedIn && <NavLogin />}
+            {localStorage.getItem("role") === null && <NavLogin />}
             {localStorage.getItem("role") === "renter" && <NavLogout />}
             {localStorage.getItem("role") === "host" && <NavLogout />}
             {localStorage.getItem("role") === "admin" && <NavAdmin />}

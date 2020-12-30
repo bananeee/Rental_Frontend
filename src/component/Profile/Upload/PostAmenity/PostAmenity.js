@@ -13,8 +13,6 @@ import {
 
 function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
 
-    
-
     const [bathroomData, setBathroomData] = useState({});
 
     const history = useHistory();
@@ -64,7 +62,8 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
                         <div className={style.category_name}>Bathroom</div>
                         <div
                             className={style.to_complete}
-                            id={style.bathroom_type}>
+                            id={style.bathroom_type}
+                        >
                             <label for="to_complete_type">Type</label>
                             <select
                                 id={style.to_complete_type}
@@ -74,7 +73,8 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
                                         : bathroomData.category
                                 }
                                 onChange={handleChangeBathroom}
-                                name="category">
+                                name="category"
+                            >
                                 <option value="Khép kín">Khép kín</option>
                                 <option value="Chung">Chung</option>
                             </select>
@@ -82,7 +82,8 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
 
                         <div
                             className={style.to_complete}
-                            id={style.bathroom_water}>
+                            id={style.bathroom_water}
+                        >
                             <label for="to_complete_water">Water</label>
                             <select
                                 id={style.to_complete_water}
@@ -92,7 +93,8 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
                                         : bathroomData.hot
                                 }
                                 onChange={handleChangeBathroom}
-                                name="hot">
+                                name="hot"
+                            >
                                 <option value="Nóng">Có nóng lạnh</option>
                                 <option value="Lạnh">Không có nóng lạnh</option>
                             </select>
@@ -111,7 +113,8 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
                                         : post.kitchen
                                 }
                                 onChange={handleChange}
-                                name="kitchen">
+                                name="kitchen"
+                            >
                                 <option value="Riêng">Khu bếp riêng</option>
                                 <option value="Chung">Khu bếp chung</option>
                                 <option value="Không nấu ăn">
@@ -136,7 +139,8 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
                                         : post.airConditioner
                                 }
                                 onChange={handleChange}
-                                name="airConditioner">
+                                name="airConditioner"
+                            >
                                 <option value="Có">Có</option>
                                 <option value="Không">Không</option>
                             </select>
@@ -155,7 +159,8 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
                                         : post.balcony
                                 }
                                 onChange={handleChange}
-                                name="balcony">
+                                name="balcony"
+                            >
                                 <option value="Có">Có</option>
                                 <option value="Không">Không</option>
                             </select>
@@ -164,13 +169,15 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
 
                     <div
                         className={style.category}
-                        id={style.electricity_water_bill}>
+                        id={style.electricity_water_bill}
+                    >
                         <div className={style.category_name}>
                             Electricity and Water bill
                         </div>
                         <div
                             className={style.to_complete}
-                            id={style.electricity_bill}>
+                            id={style.electricity_bill}
+                        >
                             <label for="to_complete_electricity_bill">
                                 Electricity
                             </label>
@@ -182,14 +189,16 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
                                         : post.electric
                                 }
                                 onChange={handleChange}
-                                name="electric">
+                                name="electric"
+                            >
                                 <option value="Giá dân">Giá dân</option>
                                 <option value="Giá thuê">Giá thuê</option>
                             </select>
                         </div>
                         <div
                             className={style.to_complete}
-                            id={style.water_bill}>
+                            id={style.water_bill}
+                        >
                             <label for="to_complete_water_bill">
                                 Water (đồng/m<sup>3</sup>)
                             </label>
@@ -226,7 +235,8 @@ function PostAmenity({ post, decreaseStep, setPost, uploadPost, id }) {
                     <div className={style.category} id={style.continue}>
                         <button
                             id={style.continue_button}
-                            onClick={preventSubmit}>
+                            onClick={preventSubmit}
+                        >
                             Submit
                         </button>
                     </div>

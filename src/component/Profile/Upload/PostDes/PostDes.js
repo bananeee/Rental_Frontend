@@ -114,12 +114,32 @@ function PostDes({ increaseStep, setPost, post, id }) {
                         </div>
                     </div>
 
+                    <div className={style.category} id={style.des}>
+                        <div className={style.category_name}>Description</div>
+
+                        <div className={style.to_complete}>
+                            <label for="to_complete_des">Description</label>
+                            <textarea
+                                value={
+                                    post.description === undefined
+                                        ? ""
+                                        : post.description
+                                }
+                                onChange={handleChange}
+                                name="description"
+                                id={style.to_complete_des}
+                                placeholder="Enter description"
+                            ></textarea>
+                        </div>
+                    </div>
+
                     <div className={style.category} id={style.location}>
                         <div className={style.category_name}>Location</div>
                         <div className={style.wrap_item}>
                             <div
                                 className={style.to_complete}
-                                id={style.location_no}>
+                                id={style.location_no}
+                            >
                                 <label for="to_complete_no">No</label>
                                 <input
                                     value={post.no === undefined ? "" : post.no}
@@ -132,7 +152,8 @@ function PostDes({ increaseStep, setPost, post, id }) {
                             </div>
                             <div
                                 className={style.to_complete}
-                                id={style.location_street}>
+                                id={style.location_street}
+                            >
                                 <label for="to_complete_street">Street</label>
                                 <input
                                     ref={register}
@@ -153,7 +174,8 @@ function PostDes({ increaseStep, setPost, post, id }) {
                             </div>
                             <div
                                 className={style.to_complete}
-                                id={style.location_ward}>
+                                id={style.location_ward}
+                            >
                                 <label for="to_complete_ward">Ward</label>
                                 <input
                                     value={
@@ -168,7 +190,8 @@ function PostDes({ increaseStep, setPost, post, id }) {
                             </div>
                             <div
                                 className={style.to_complete}
-                                id={style.location_district}>
+                                id={style.location_district}
+                            >
                                 <label for="to_complete_district">
                                     District
                                 </label>
@@ -181,12 +204,14 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                             ? ""
                                             : post.district
                                     }
-                                    onChange={handleChange}>
+                                    onChange={handleChange}
+                                >
                                     <option value="">Quận/Huyện</option>
                                     {district.map((d, key) => (
                                         <option
                                             key={key}
-                                            value={d.district_name}>
+                                            value={d.district_name}
+                                        >
                                             {d.district_name}
                                         </option>
                                     ))}
@@ -194,7 +219,8 @@ function PostDes({ increaseStep, setPost, post, id }) {
                             </div>
                             <div
                                 className={style.to_complete}
-                                id={style.location_city}>
+                                id={style.location_city}
+                            >
                                 <label for="to_complete_city">City</label>
                                 <select
                                     name="city"
@@ -203,12 +229,14 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                     }
                                     className={style.type_in}
                                     id={style.city}
-                                    onChange={handleCityChange}>
+                                    onChange={handleCityChange}
+                                >
                                     <option value="">Tỉnh/Thành phố</option>
                                     {city.map((c, key) => (
                                         <option
                                             key={key}
-                                            value={c.province_name}>
+                                            value={c.province_name}
+                                        >
                                             {c.province_name}
                                         </option>
                                     ))}
@@ -228,7 +256,8 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 onChange={handleChange}
                                 name="nearby"
                                 id={style.to_complete_nearby}
-                                placeholder="Trường học, bệnh viện,..."></textarea>
+                                placeholder="Trường học, bệnh viện,..."
+                            ></textarea>
                         </div>
                     </div>
 
@@ -236,13 +265,15 @@ function PostDes({ increaseStep, setPost, post, id }) {
                         <div className={style.category_name}>Type</div>
                         <div
                             className={style.to_complete}
-                            id={style.type_detail}>
+                            id={style.type_detail}
+                        >
                             <label for="to_complete_detail">Type</label>
                             <select
                                 value={post.type}
                                 onChange={handleChange}
                                 name="type"
-                                id={style.to_complete_detail}>
+                                id={style.to_complete_detail}
+                            >
                                 <option value="Phòng trọ">Phòng trọ</option>
 
                                 <option value="Chung cư mini">
@@ -319,7 +350,8 @@ function PostDes({ increaseStep, setPost, post, id }) {
                                 value={post.ownerType}
                                 onChange={handleChange}
                                 name="ownerType"
-                                id={style.to_complete_other}>
+                                id={style.to_complete_other}
+                            >
                                 <option value="Chung">Chung</option>
                                 <option value="Không chung">
                                     Không chung chủ
@@ -330,7 +362,8 @@ function PostDes({ increaseStep, setPost, post, id }) {
                     <div className={style.category} id={style.continue}>
                         <button
                             id={style.continue_button}
-                            onClick={increaseStep}>
+                            onClick={increaseStep}
+                        >
                             Continue
                         </button>
                     </div>
